@@ -1,15 +1,22 @@
 package starter;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 
 
 /**
- * This class contains utility methods to read a PPM image from file and simply print its contents. Feel free to change this method 
- *  as required.
+ * This class contains utility methods to read a PPM image from file and simply print its contents.
+ * Feel free to change this method as required.
  */
 public class ImageUtil {
+  private final Image image;
+
+  public ImageUtil(Image image) {
+    this.image = image;
+  }
 
   /**
    * Read an image file in the PPM format and print the colors.
@@ -58,6 +65,36 @@ public class ImageUtil {
             int b = sc.nextInt();
             System.out.println("Color of pixel ("+j+","+i+"): "+ r+","+g+","+b);
         }
+    }
+  }
+
+  public void savePPM(String filename) {
+    try {
+      try {
+        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(filename));
+        StringBuilder pixelValues = new StringBuilder();
+        for (int i = 0; i < this.image.getHeight(); i++) {
+          for (int j = 0; j < this.image.getWidth(); j++) {
+            Pixel pix = this.image.getPixels().get(i).get(j);
+            pixelValues.append(pix.getR())
+                    .append(" ")
+                    .append(pix.getG())
+                    .append(" ")
+                    .append(pix.getB())
+                    .append(" ");
+          }
+        }
+        String filePPM = "P3\n " + this.image.getWidth() + " " + this.image.getHeight() + " "
+                        + this.image.getMaxVal() + " " + pixelValues.toString();
+        byte[] file = filePPM.getBytes();
+        out.write(file);
+        out.flush();
+        out.close();
+      } catch (Exception e) {
+        throw new IllegalArgumentException("Failed to save PPM file.");
+      }
+    } catch (Exception e) {
+      throw new IllegalArgumentException("Save failed.");
     }
   }
 
