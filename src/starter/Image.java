@@ -29,4 +29,14 @@ public interface Image {
    * @returns a list of the pixels.
    */
   List<List<Pixel>> getPixels();
+
+  /**
+   * Flips the image horizontally in-place.
+   */
+  void flipHorizontal();
+
+  /**
+   * Flips the image vertically in-place.
+   */
+  void flipVertical();
 }
