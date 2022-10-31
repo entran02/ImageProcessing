@@ -1,4 +1,6 @@
-package model;
+package Macros;
+
+import model.Image;
 
 /**
  * Interface for Macros for manipulating images.

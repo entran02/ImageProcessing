@@ -3,6 +3,8 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
+import Macros.Macro;
+
 public class ImageProcessingModelImpl implements ImageProcessingModel{
   private Map<String, Image> images;
 
@@ -58,6 +60,6 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    */
   @Override
   public void apply(String name, Macro m) {
-      m.apply();
+      m.apply(this.images.get(name));
   }
 }
