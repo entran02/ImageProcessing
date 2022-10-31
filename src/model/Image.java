@@ -29,4 +29,18 @@ public interface Image {
    * @returns a list of the pixels.
    */
   List<List<Pixel>> getPixels();
+
+  /**
+   * Replaces a specific pixel with given one.
+   * @param row row of pixel to set
+   * @param col col of pixel to set
+   * @param p new Pixel value
+   */
+  void setPixel(int row, int col, Pixel p);
+
+  /**
+   * Replaces all pixels of this value with a new set.
+   * @param pixels new pixel values
+   */
+  void setPixels(List<List<Pixel>> pixels);
 }
