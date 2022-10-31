@@ -7,7 +7,7 @@ public class ImageImpl implements Image {
   private final int width;
   private final int height;
   private final int maxVal;
-  private final List<List<Pixel>> pixels;
+  private List<List<Pixel>> pixels;
 
   /**
    * Constructor for an image.
@@ -20,6 +20,7 @@ public class ImageImpl implements Image {
   public ImageImpl(int width, int height, int maxVal, List<List<Pixel>> pixels)
           throws IllegalArgumentException{
     if (width != pixels.get(0).size() || height != pixels.size() || maxVal < 0) {
+      throw new IllegalArgumentException("Invalid height, width, or maxVal");
     }
     this.width = Objects.requireNonNull(width);
     this.height = Objects.requireNonNull(height);
@@ -67,25 +68,28 @@ public class ImageImpl implements Image {
     return this.pixels;
   }
 
-//  /**
-//   * Flips the image horizontally in-place.
-//   */
-//  @Override
-//  public void flipHorizontal() {
-//    for (List<Pixel> row : this.pixels) {
-//      Collections.reverse(row);
-//    }
-//  }
-//
-//  /**
-//   * Flips the image vertically in-place.
-//   */
-//  @Override
-//  public void flipVertical() {
-//    for (int r = 0; r < height / 2; r++) {
-//      List<Pixel> row = this.pixels.get(r);
-//      this.pixels.set(r, this.pixels.get(height - r));
-//      this.pixels.set(height - r, row);
-//    }
-//  }
+  /**
+   * Replaces a specific pixel with given one.
+   *
+   * @param row row of pixel to set
+   * @param col col of pixel to set
+   * @param p   new Pixel value
+   */
+  @Override
+  public void setPixel(int row, int col, Pixel p) {
+    this.pixels.get(row).set(col, p);
+  }
+
+  /**
+   * Replaces all pixels of this value with a new set.
+   *
+   * @param pixels new pixel values
+   */
+  @Override
+  public void setPixels(List<List<Pixel>> pixels) {
+    if (width != pixels.get(0).size() || height != pixels.size()) {
+      throw new IllegalArgumentException("Invalid new pixel size");
+    }
+    this.pixels = pixels;
+  }
 }
