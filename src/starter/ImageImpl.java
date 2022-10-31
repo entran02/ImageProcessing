@@ -1,5 +1,7 @@
 package starter;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -65,5 +67,27 @@ public class ImageImpl implements Image{
   @Override
   public List<List<Pixel>> getPixels() {
     return this.pixels;
+  }
+
+  /**
+   * Flips the image horizontally in-place.
+   */
+  @Override
+  public void flipHorizontal() {
+    for (List<Pixel> row : this.pixels) {
+      Collections.reverse(row);
+    }
+  }
+
+  /**
+   * Flips the image vertically in-place.
+   */
+  @Override
+  public void flipVertical() {
+    for (int r = 0; r < height / 2; r++) {
+      List<Pixel> row = this.pixels.get(r);
+      this.pixels.set(r, this.pixels.get(height - r));
+      this.pixels.set(height - r, row);
+    }
   }
 }
