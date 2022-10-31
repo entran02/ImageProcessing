@@ -1,8 +1,11 @@
-package model;
+package Macros;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import model.Image;
+import model.Pixel;
 
 /**
  * Macro to flip an image horizontally.
