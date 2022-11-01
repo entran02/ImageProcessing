@@ -37,6 +37,7 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
     if (name == null || img == null) {
       throw new IllegalArgumentException("Invalid image or image name.");
     }
+    this.images.put(name, img);
   }
 
   /**
