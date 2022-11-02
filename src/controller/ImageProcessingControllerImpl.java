@@ -4,12 +4,21 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import Macros.Macro;
+import Macros.MacroAdjustBrightness;
+import Macros.MacroBlueGreyscale;
+import Macros.MacroFlipHorizontal;
+import Macros.MacroFlipVertical;
+import Macros.MacroGreenGreyscale;
+import Macros.MacroIntensityRepresentation;
+import Macros.MacroLumaRepresentation;
 import Macros.MacroRedGreyscale;
+import Macros.MacroValueRepresentation;
 import model.ImageProcessingModel;
 import model.ImageUtil;
 import view.ImageProcessingView;
 
-public class ImageProcessingControllerImpl implements ImageProcessingController{
+public class ImageProcessingControllerImpl implements ImageProcessingController {
   private final ImageProcessingModel model;
   private final ImageProcessingView view;
   private final Readable input;
@@ -109,46 +118,69 @@ public class ImageProcessingControllerImpl implements ImageProcessingController{
     writeMessage("Thank you for using this program!");
   }
 
+  private void applyMacro(Macro macro, Scanner sc) {
+    try {
+      String imgName = sc.next();
+      String destName = sc.next();
+      this.model.copy(imgName, destName);
+      this.model.apply(destName, macro);
+    } catch (NoSuchElementException | IllegalArgumentException e) {
+      writeMessage("Invalid operation! Please try again.\n");
+    }
+  }
+
   protected void processCommand(String userInstruction, Scanner sc, ImageProcessingModel model) {
     switch (userInstruction) {
       case "load":
-        if (userInstruction.length() == 3) {
-          try {
-            String filePath = sc.next();
-            String name = sc.next();
-            // vvv this line
-            this.model.add(name, new ImageUtil().readPPM(filePath));
-          } catch (NoSuchElementException | IllegalArgumentException e) {
-            writeMessage("Invalid operation! Please try again.\n");
-          }
-        } else {
-            writeMessage("Invalid operation! Please try again.\n");
-          }
+        try {
+          String filePath = sc.next();
+          String name = sc.next();
+          this.model.add(name, ImageUtil.readPPM(filePath));
+        } catch (NoSuchElementException | IllegalArgumentException e) {
+          writeMessage("Invalid operation! Please try again.\n");
+        }
         break;
       case "save":
-        if (userInstruction.length() == 3) {
-          try {
-            String filePath = sc.next();
-            String name = sc.next();
-            new ImageUtil(this.model.getImage(name)).savePPM(filePath);
-          } catch (NoSuchElementException | IllegalArgumentException | NullPointerException e) {
-            writeMessage("Invalid operation! Please try again.\n");
-          }
-        } else {
+        try {
+          String filePath = sc.next();
+          String name = sc.next();
+          ImageUtil.savePPM(filePath, this.model.getImage(name));
+        } catch (NoSuchElementException | IllegalArgumentException | NullPointerException e) {
           writeMessage("Invalid operation! Please try again.\n");
         }
         break;
       case "red-component":
-        if (userInstruction.length() == 3) {
-          try {
-            String imgName = sc.next();
-            // vvv this line
-            String destName = sc.next();
-            this.model.apply(imgName, new MacroRedGreyscale());
-          } catch (NoSuchElementException | IllegalArgumentException e) {
-            writeMessage("Invalid operation! Please try again.\n");
-          }
-        } else {
+        applyMacro(new MacroRedGreyscale(), sc);
+        break;
+      case "green-component":
+        applyMacro(new MacroGreenGreyscale(), sc);
+        break;
+      case "blue-component":
+        applyMacro(new MacroBlueGreyscale(), sc);
+        break;
+      case "value-component":
+        applyMacro(new MacroValueRepresentation(), sc);
+        break;
+      case "intensity-component":
+        applyMacro(new MacroIntensityRepresentation(), sc);
+        break;
+      case "luma-component":
+        applyMacro(new MacroLumaRepresentation(), sc);
+        break;
+      case "horizontal-flip":
+        applyMacro(new MacroFlipHorizontal(), sc);
+        break;
+      case "vertical-flip":
+        applyMacro(new MacroFlipVertical(), sc);
+        break;
+      case "brighten":
+        try {
+          int increment = sc.nextInt();
+          String imgName = sc.next();
+          String destName = sc.next();
+          this.model.copy(imgName, destName);
+          this.model.apply(destName, new MacroAdjustBrightness(increment));
+        } catch (NoSuchElementException | IllegalArgumentException e) {
           writeMessage("Invalid operation! Please try again.\n");
         }
         break;

@@ -63,4 +63,17 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
   public void apply(String name, Macro m) {
       m.apply(this.images.get(name));
   }
+
+  /**
+   * Copies one image with a new name.
+   *
+   * @param srcImage  Image to copy
+   * @param destImage New image name
+   */
+  @Override
+  public void copy(String srcImage, String destImage) {
+    Image src = this.images.get(srcImage);
+    this.images.put(destImage,
+            new ImageImpl(src.getWidth(), src.getHeight(), src.getMaxVal(), src.getPixels()));
+  }
 }

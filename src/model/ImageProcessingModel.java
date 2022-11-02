@@ -32,4 +32,11 @@ public interface ImageProcessingModel {
    * @param m macro to apply to image
    */
   void apply(String name, Macro m);
+
+  /**
+   * Copies one image with a new name.
+   * @param srcImage Image to copy
+   * @param destImage New image name
+   */
+  void copy(String srcImage, String destImage);
 }
