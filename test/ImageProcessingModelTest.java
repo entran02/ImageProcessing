@@ -13,6 +13,18 @@ public class ImageProcessingModelTest {
 
   @Test
   public void getImage() {
+    ImageProcessingModel model = new ImageProcessingModelImpl();
+    // get image that doesn't exist
+    assertThrows(IllegalArgumentException.class, () -> model.getImage("img1"));
+
+    model.add("kirby", TestingUtil.kirby);
+    assertEquals(TestingUtil.kirby, model.getImage("kirby"));
+    model.add("twobytwo", TestingUtil.twoByTwoImg);
+    assertEquals(TestingUtil.twoByTwoImg, model.getImage("twobytwo"));
+
+    // null name
+    assertThrows(IllegalArgumentException.class, () -> model.getImage(null));
+    assertThrows(IllegalArgumentException.class, () -> model.getImage(""));
   }
 
   @Test
@@ -48,6 +60,20 @@ public class ImageProcessingModelTest {
   public void apply() {
     ImageProcessingModel model = new ImageProcessingModelImpl();
     StringBuilder log = new StringBuilder();
+    MacroMock macro = new MacroMock(log);
+
+    // apply on image that doesn't exist
+    assertThrows(IllegalArgumentException.class, () -> model.apply("img", macro));
+
+    model.add("twobytwo", TestingUtil.twoByTwoImg);
+    model.apply("twobytwo", macro);
+    assertEquals("Macro applied\n", macro.log.toString());
+    model.apply("twobytwo", macro);
+    model.apply("twobytwo", macro);
+    assertEquals("Macro applied\nMacro applied\nMacro applied\n", macro.log.toString());
+
+    // null macro
+    assertThrows(NullPointerException.class, () -> model.apply("twobytwo", null));
   }
 
   @Test
