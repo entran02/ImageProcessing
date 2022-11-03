@@ -13,7 +13,7 @@ import model.Pixel;
 import static org.junit.Assert.assertEquals;
 
 public class MacroAdjustBrightnessTest {
-  public final List<List<Pixel>> brightPixels = new ArrayList<>(Arrays.asList(
+  public final List<List<Pixel>> newPixels = new ArrayList<>(Arrays.asList(
           new ArrayList<>(Arrays.asList(
                   new Pixel(154, 255, 154),
                   new Pixel(255, 205, 255),
@@ -76,7 +76,7 @@ public class MacroAdjustBrightnessTest {
                   new Pixel(203, 203, 152),
                   new Pixel(203, 0, 75),
                   new Pixel(203, 0, 75)))));
-  public final Image expectedBrightKirby = new ImageImpl(5, 5, 255, brightPixels);
+  public final Image expectedBrightKirby = new ImageImpl(5, 5, 255, newPixels);
   public final Image expectedDarkKirby = new ImageImpl(5, 5, 255, darkPixels);
 
   @Test
