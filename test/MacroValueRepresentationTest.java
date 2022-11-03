@@ -60,7 +60,7 @@ public class MacroValueRepresentationTest {
   @Test
   public void valueTest() {
     Macro value = new MacroValueRepresentation();
-    Image valueKirby = new TestingUtil().kirby;
+    Image valueKirby = TestingUtil.getKirby();
     value.apply(valueKirby);
     assertEquals(valueKirby, expectedValueKirby);
   }

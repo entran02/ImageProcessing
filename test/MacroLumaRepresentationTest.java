@@ -60,7 +60,7 @@ public class MacroLumaRepresentationTest {
   @Test
   public void lumaTest() {
     Macro luma = new MacroLumaRepresentation();
-    Image lumaKirby = new TestingUtil().kirby;
+    Image lumaKirby = TestingUtil.getKirby();
     luma.apply(lumaKirby);
     assertEquals(lumaKirby, expectedLumaKirby);
   }

@@ -85,7 +85,7 @@ public class MacroAdjustBrightnessTest {
   @Test
   public void brightenTest() {
     Macro brighten = new MacroAdjustBrightness(52);
-    Image brightKirby = TestingUtil.kirby;
+    Image brightKirby = TestingUtil.getKirby();
     brighten.apply(brightKirby);
     assertEquals(brightKirby, expectedBrightKirby);
   }
@@ -93,7 +93,7 @@ public class MacroAdjustBrightnessTest {
   @Test
   public void darkenTest() {
     Macro darken = new MacroAdjustBrightness(-52);
-    Image darkKirby = TestingUtil.kirby;
+    Image darkKirby = TestingUtil.getKirby();
     darken.apply(darkKirby);
     assertEquals(darkKirby, expectedDarkKirby);
   }
