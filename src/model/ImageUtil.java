@@ -31,10 +31,7 @@ public class ImageUtil {
     StringBuilder builder = new StringBuilder();
     //read the file line by line, and populate a string. This will throw away any comment lines
     while (sc.hasNextLine()) {
-      String s = sc.nextLine();
-      if (s.charAt(0) != '#') {
-        builder.append(s + System.lineSeparator());
-      }
+      builder.append(sc.nextLine()).append(System.lineSeparator());
     }
     return readStringPPM(builder.toString());
   }

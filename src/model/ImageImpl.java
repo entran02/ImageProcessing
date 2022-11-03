@@ -112,7 +112,7 @@ public class ImageImpl implements Image {
       }
       for (int i = 0; i < this.height; i ++) {
         for (int j = 0; j < this.width; j ++) {
-          if (this.pixels.get(i).get(j) != otherImage.getPixels().get(i).get(j)) {
+          if (!this.pixels.get(i).get(j).equals(otherImage.getPixels().get(i).get(j))) {
             return false;
           }
         }
