@@ -5,14 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import Macros.Macro;
-import Macros.MacroAdjustBrightness;
 import Macros.MacroBlueGreyscale;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Blue Greyscale Macro.
+ */
 public class MacroBlueGreyscaleTest {
   Pixel yellow = new Pixel(102, 102, 102);
   Pixel pink = new Pixel(204, 204, 204);

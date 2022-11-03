@@ -5,14 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import Macros.Macro;
-import Macros.MacroBlueGreyscale;
 import Macros.MacroFlipHorizontal;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Horizontal Flip Macro.
+ */
 public class MacroFlipHorizontalTest {
   Pixel yellow = new Pixel(102, 255, 102);
   Pixel pink = new Pixel(255, 153, 204);

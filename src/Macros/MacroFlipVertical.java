@@ -18,7 +18,7 @@ public class MacroFlipVertical implements Macro {
   @Override
   public void apply(Image img) {
     List<List<Pixel>> pixels = img.getPixels();
-    for (int r = 0; r < img.getHeight() / 2; r++) {
+    for (int r = 0; r <= img.getHeight() / 2; r++) {
       List<Pixel> row = pixels.get(r);
       pixels.set(r, pixels.get(img.getHeight() - r));
       pixels.set(img.getHeight() - r, row);
