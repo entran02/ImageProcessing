@@ -12,6 +12,7 @@ public class Pixel {
 
   /**
    * Constructor for a pixel with the red, green, and blue values.
+   *
    * @param r the value for red
    * @param g the value for green
    * @param b the value for blue
@@ -21,32 +22,47 @@ public class Pixel {
     if (r < 0 || g < 0 || b < 0) {
       throw new IllegalArgumentException("RGB value is invalid.");
     }
-    this.r = Objects.requireNonNull(r);
-    this.g = Objects.requireNonNull(g);
-    this.b = Objects.requireNonNull(b);
+    this.r = r;
+    this.g = g;
+    this.b = b;
   }
 
   /**
    * Gets red value.
+   *
    * @returns red value
    */
-  public int getR(){
+  public int getR() {
     return this.r;
   }
 
   /**
    * Gets green value.
+   *
    * @returns green value
    */
-  public int getG(){
+  public int getG() {
     return this.g;
   }
 
   /**
    * Gets blue value.
+   *
    * @returns red value
    */
-  public int getB(){
+  public int getB() {
     return this.b;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Pixel pixel = (Pixel) o;
+    return this.r == pixel.r && this.g == pixel.g && this.b == pixel.b;
   }
 }

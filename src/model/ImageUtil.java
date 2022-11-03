@@ -18,7 +18,7 @@ public class ImageUtil {
    * Read an image file in the PPM format and print the colors.
    *
    * @param filename the path of the file.
-   * @return image
+   * @return image the image
    */
   public static Image readPPM(String filename) {
     Scanner sc;
@@ -36,9 +36,18 @@ public class ImageUtil {
         builder.append(s + System.lineSeparator());
       }
     }
+    return readStringPPM(builder.toString());
+  }
 
+  /**
+   * Read an image in the PPM format as a string and return an Image.
+   *
+   * @param ppm the string representation of the ppm file.
+   * @return image the image
+   */
+  public static Image readStringPPM(String ppm) {
     //now set up the scanner to read from the string we just built
-    sc = new Scanner(builder.toString());
+    Scanner sc = new Scanner(ppm);
     String token = sc.next();
     if (!token.equals("P3")) {
       throw new IllegalArgumentException("Invalid PPM file: plain RAW file should begin with P3");
@@ -56,13 +65,17 @@ public class ImageUtil {
         int g = sc.nextInt();
         int b = sc.nextInt();
         row.add(new Pixel(r, g, b));
-        System.out.println("Color of pixel (" + j + "," + i + "): " + r + "," + g + "," + b);
       }
       pixels.add(row);
     }
     return new ImageImpl(width, height, maxValue, pixels);
   }
 
+  /**
+   * Saves an Image as a PPM file.
+   * @param filename file to store to
+   * @param image image to store
+   */
   public static void savePPM(String filename, Image image) {
     try {
       try {
@@ -100,7 +113,7 @@ public class ImageUtil {
     if (args.length > 0) {
       filename = args[0];
     } else {
-      filename = "src/images/Koala.ppm";
+      filename = "res/Koala/Koala.ppm";
     }
     System.out.println("Working Directory = " + System.getProperty("user.dir"));
     ImageUtil.readPPM(filename);

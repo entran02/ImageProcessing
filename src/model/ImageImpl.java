@@ -92,4 +92,33 @@ public class ImageImpl implements Image {
     }
     this.pixels = pixels;
   }
+
+  /**
+   * Equals method to check equality between two images.
+   *
+   * @param other other image
+   * @return if this and other are equal
+   */
+  @Override
+  public boolean equals(Object other) {
+    if (this == other) {
+      return true;
+    }
+    if (other instanceof Image) {
+      Image otherImage = (Image) other;
+      if (this.width != otherImage.getWidth() || this.height != otherImage.getHeight()
+        || this.maxVal != otherImage.getMaxVal()) {
+        return false;
+      }
+      for (int i = 0; i < this.height; i ++) {
+        for (int j = 0; j < this.width; j ++) {
+          if (this.pixels.get(i).get(j) != otherImage.getPixels().get(i).get(j)) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+    return false;
+  }
 }

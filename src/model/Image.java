@@ -43,4 +43,11 @@ public interface Image {
    * @param pixels new pixel values
    */
   void setPixels(List<List<Pixel>> pixels);
+
+  /**
+   * Equals method to check equality between two images.
+   * @param other other image
+   * @return if this and other are equal
+   */
+  boolean equals(Object other);
 }
