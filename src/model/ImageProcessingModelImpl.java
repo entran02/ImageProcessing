@@ -57,8 +57,7 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    */
   @Override
   public void apply(String name, Macro m) {
-    this.imageExists(name);
-    m.apply(this.images.get(name));
+    m.apply(this.getImage(name));
   }
 
   /**
