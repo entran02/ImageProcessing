@@ -13,7 +13,6 @@ import model.Pixel;
 import static org.junit.Assert.assertEquals;
 
 public class MacroAdjustBrightnessTest {
-
   public final List<List<Pixel>> brightPixels = new ArrayList<>(Arrays.asList(
           new ArrayList<>(Arrays.asList(
                   new Pixel(154, 255, 154),
@@ -46,7 +45,39 @@ public class MacroAdjustBrightnessTest {
                   new Pixel(255, 52, 179),
                   new Pixel(255, 52, 179)))));
 
+  public static final List<List<Pixel>> darkPixels = new ArrayList<>(Arrays.asList(
+          new ArrayList<>(Arrays.asList(
+                  new Pixel(50, 203, 50),
+                  new Pixel(203, 101, 152),
+                  new Pixel(203, 101, 152),
+                  new Pixel(203, 101, 152),
+                  new Pixel(203, 203, 152))),
+          new ArrayList<>(Arrays.asList(
+                  new Pixel(203, 101, 152),
+                  new Pixel(0, 0, 203),
+                  new Pixel(203, 101, 152),
+                  new Pixel(0, 0, 203),
+                  new Pixel(203, 101, 152))),
+          new ArrayList<>(Arrays.asList(
+                  new Pixel(203, 101, 152),
+                  new Pixel(0, 0, 0),
+                  new Pixel(203, 101, 152),
+                  new Pixel(0, 0, 0),
+                  new Pixel(203, 101, 152))),
+          new ArrayList<>(Arrays.asList(
+                  new Pixel(50, 203, 50),
+                  new Pixel(203, 101, 152),
+                  new Pixel(203, 101, 152),
+                  new Pixel(203, 101, 152),
+                  new Pixel(203, 203, 152))),
+          new ArrayList<>(Arrays.asList(
+                  new Pixel(203, 0, 75),
+                  new Pixel(203, 0, 75),
+                  new Pixel(203, 203, 152),
+                  new Pixel(203, 0, 75),
+                  new Pixel(203, 0, 75)))));
   public final Image expectedBrightKirby = new ImageImpl(5, 5, 255, brightPixels);
+  public final Image expectedDarkKirby = new ImageImpl(5, 5, 255, darkPixels);
 
   @Test
   public void brightenTest() {
@@ -54,6 +85,14 @@ public class MacroAdjustBrightnessTest {
     Image brightKirby = new TestingUtil().kirby;
     brighten.apply(brightKirby);
     assertEquals(brightKirby, expectedBrightKirby);
+  }
+
+  @Test
+  public void darkenTest() {
+    Macro darken = new MacroAdjustBrightness(-52);
+    Image darkKirby = new TestingUtil().kirby;
+    darken.apply(darkKirby);
+    assertEquals(darkKirby, expectedDarkKirby);
   }
 
 }
