@@ -5,14 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import Macros.Macro;
-import Macros.MacroFlipHorizontal;
 import Macros.MacroValueRepresentation;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Value Greyscale Macro.
+ */
 public class MacroValueRepresentationTest {
   Pixel yellow = new Pixel(255, 255, 255);
   Pixel pink = new Pixel(255, 255, 255);

@@ -5,14 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import Macros.Macro;
-import Macros.MacroFlipHorizontal;
 import Macros.MacroLumaRepresentation;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Luma Greyscale Macro.
+ */
 public class MacroLumaRepresentationTest {
   Pixel yellow = new Pixel(211, 211, 211);
   Pixel pink = new Pixel(178, 178, 178);

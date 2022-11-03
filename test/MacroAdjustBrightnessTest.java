@@ -12,6 +12,9 @@ import model.Pixel;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Tests for Adjust Brightness Macro.
+ */
 public class MacroAdjustBrightnessTest {
   public final List<List<Pixel>> newPixels = new ArrayList<>(Arrays.asList(
           new ArrayList<>(Arrays.asList(
@@ -82,7 +85,7 @@ public class MacroAdjustBrightnessTest {
   @Test
   public void brightenTest() {
     Macro brighten = new MacroAdjustBrightness(52);
-    Image brightKirby = new TestingUtil().kirby;
+    Image brightKirby = TestingUtil.kirby;
     brighten.apply(brightKirby);
     assertEquals(brightKirby, expectedBrightKirby);
   }
@@ -90,7 +93,7 @@ public class MacroAdjustBrightnessTest {
   @Test
   public void darkenTest() {
     Macro darken = new MacroAdjustBrightness(-52);
-    Image darkKirby = new TestingUtil().kirby;
+    Image darkKirby = TestingUtil.kirby;
     darken.apply(darkKirby);
     assertEquals(darkKirby, expectedDarkKirby);
   }
