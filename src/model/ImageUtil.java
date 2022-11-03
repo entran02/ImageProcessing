@@ -31,7 +31,11 @@ public class ImageUtil {
     StringBuilder builder = new StringBuilder();
     //read the file line by line, and populate a string. This will throw away any comment lines
     while (sc.hasNextLine()) {
-      builder.append(sc.nextLine()).append(System.lineSeparator());
+      String s = sc.nextLine();
+      if (s.charAt(0) != '#') {
+        builder.append(s).append(System.lineSeparator());
+      }
+
     }
     return readStringPPM(builder.toString());
   }
@@ -70,36 +74,33 @@ public class ImageUtil {
 
   /**
    * Saves an Image as a PPM file.
+   *
    * @param filename file to store to
-   * @param image image to store
+   * @param image    image to store
    */
   public static void savePPM(String filename, Image image) {
     try {
-      try {
-        BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(filename));
-        StringBuilder pixelValues = new StringBuilder();
-        for (int i = 0; i < image.getHeight(); i++) {
-          for (int j = 0; j < image.getWidth(); j++) {
-            Pixel pix = image.getPixels().get(i).get(j);
-            pixelValues.append(pix.getR())
-                    .append(" ")
-                    .append(pix.getG())
-                    .append(" ")
-                    .append(pix.getB())
-                    .append(" ");
-          }
+      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(filename));
+      StringBuilder pixelValues = new StringBuilder();
+      for (int i = 0; i < image.getHeight(); i++) {
+        for (int j = 0; j < image.getWidth(); j++) {
+          Pixel pix = image.getPixels().get(i).get(j);
+          pixelValues.append(pix.getR())
+                  .append(" ")
+                  .append(pix.getG())
+                  .append(" ")
+                  .append(pix.getB())
+                  .append("\n");
         }
-        String filePPM = "P3\n " + image.getWidth() + " " + image.getHeight() + " "
-                + image.getMaxVal() + " " + pixelValues.toString();
-        byte[] file = filePPM.getBytes();
-        out.write(file);
-        out.flush();
-        out.close();
-      } catch (Exception e) {
-        throw new IllegalArgumentException("Failed to save PPM file.");
       }
+      String filePPM = "P3\n" + image.getWidth() + "\n" + image.getHeight() + "\n"
+              + image.getMaxVal() + "\n" + pixelValues;
+      byte[] file = filePPM.getBytes();
+      out.write(file);
+      out.flush();
+      out.close();
     } catch (Exception e) {
-      throw new IllegalArgumentException("Save failed.");
+      throw new IllegalArgumentException("Failed to save PPM file.");
     }
   }
 
