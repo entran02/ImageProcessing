@@ -81,9 +81,12 @@ public class ImageUtil {
         for (int i = 0; i < image.getHeight(); i++) {
           for (int j = 0; j < image.getWidth(); j++) {
             Pixel pix = image.getPixels().get(i).get(j);
-            pixelValues.append(pix.getR()).append("\n")
-                    .append(pix.getG()).append("\n")
-                    .append(pix.getB()).append("\n");
+            pixelValues.append(pix.getR())
+                    .append(" ")
+                    .append(pix.getG())
+                    .append(" ")
+                    .append(pix.getB())
+                    .append(" ");
           }
         }
         String filePPM = "P3\n " + image.getWidth() + " " + image.getHeight() + " "
