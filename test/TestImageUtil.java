@@ -76,12 +76,18 @@ public class TestImageUtil {
     Image kirbyFromFile = ImageUtil.readStringPPM(kirby);
     assertEquals(TestingUtil.kirby, kirbyFromFile);
   }
-
   @Test
   public void testSavePPM() {
     ImageUtil.savePPM("res/Kirby/kirby-saved.ppm", TestingUtil.kirby);
     Image kirbyFromFile = ImageUtil.readPPM("res/Kirby/kirby-saved.ppm");
     assertEquals(TestingUtil.kirby, kirbyFromFile);
+  }
+
+  @Test
+  public void testSavePPMError() {
+    // try saving null image
+    assertThrows(IllegalArgumentException.class,
+            () -> ImageUtil.savePPM("filename.ppm", null));
   }
 
 
