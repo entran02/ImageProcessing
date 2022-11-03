@@ -20,21 +20,19 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    */
   @Override
   public Image getImage(String name) throws IllegalArgumentException{
-    if (name == null) {
-      throw new IllegalArgumentException("Invalid image name.");
-    }
+    this.imageExists(name);
     return this.images.get(name);
   }
 
   /**
-   * Stores image in collection.
+   * Stores image in collection. If name is duplicate, overwrites original image
    *
    * @param name name of image
    * @param img  the Image
    */
   @Override
   public void add(String name, Image img) throws IllegalArgumentException{
-    if (name == null || img == null) {
+    if (name == null || name.length() == 0 || img == null) {
       throw new IllegalArgumentException("Invalid image or image name.");
     }
     this.images.put(name, img);
@@ -47,9 +45,7 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    */
   @Override
   public void remove(String name) throws IllegalArgumentException {
-    if (name == null) {
-      throw new IllegalArgumentException("Invalid image name");
-    }
+    this.imageExists(name);
     images.remove(name);
   }
 
@@ -61,7 +57,8 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    */
   @Override
   public void apply(String name, Macro m) {
-      m.apply(this.images.get(name));
+    this.imageExists(name);
+    m.apply(this.images.get(name));
   }
 
   /**
@@ -72,8 +69,18 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    */
   @Override
   public void copy(String srcImage, String destImage) {
+    this.imageExists(srcImage);
     Image src = this.images.get(srcImage);
-    this.images.put(destImage,
+    this.add(destImage,
             new ImageImpl(src.getWidth(), src.getHeight(), src.getMaxVal(), src.getPixels()));
+  }
+
+  private void imageExists(String name) throws IllegalArgumentException {
+    if (name == null || name.length() == 0) {
+      throw new IllegalArgumentException("Invalid image name");
+    }
+    if (images.get(name) == null) {
+      throw new IllegalArgumentException("Image does not exist");
+    }
   }
 }
