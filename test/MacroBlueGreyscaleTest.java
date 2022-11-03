@@ -60,7 +60,7 @@ public class MacroBlueGreyscaleTest {
   @Test
   public void blueGreyscaleTest() {
     Macro blueGreyscale = new MacroBlueGreyscale();
-    Image blueKirby = new TestingUtil().kirby;
+    Image blueKirby = TestingUtil.getKirby();
     blueGreyscale.apply(blueKirby);
     assertEquals(blueKirby, expectedBlueKirby);
   }

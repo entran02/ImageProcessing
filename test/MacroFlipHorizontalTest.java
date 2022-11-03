@@ -60,7 +60,7 @@ public class MacroFlipHorizontalTest {
   @Test
   public void horizontalFlipTest() {
     Macro flipH = new MacroFlipHorizontal();
-    Image flipHKirby = new TestingUtil().kirby;
+    Image flipHKirby = TestingUtil.getKirby();
     flipH.apply(flipHKirby);
     assertEquals(flipHKirby, expectedFlipHKirby);
   }

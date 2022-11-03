@@ -60,7 +60,7 @@ public class MacroIntensityRepresentationTest {
   @Test
   public void horizontalFlipTest() {
     Macro intensity = new MacroIntensityRepresentation();
-    Image intensityKirby = new TestingUtil().kirby;
+    Image intensityKirby = TestingUtil.getKirby();
     intensity.apply(intensityKirby);
     assertEquals(intensityKirby, expectedIntensityKirby);
   }
