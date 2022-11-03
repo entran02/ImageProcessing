@@ -17,10 +17,10 @@ public class ImageProcessingModelTest {
     // get image that doesn't exist
     assertThrows(IllegalArgumentException.class, () -> model.getImage("img1"));
 
-    model.add("kirby", TestingUtil.kirby);
-    assertEquals(TestingUtil.kirby, model.getImage("kirby"));
-    model.add("twobytwo", TestingUtil.twoByTwoImg);
-    assertEquals(TestingUtil.twoByTwoImg, model.getImage("twobytwo"));
+    model.add("kirby", TestingUtil.getKirby());
+    assertEquals(TestingUtil.getKirby(), model.getImage("kirby"));
+    model.add("twobytwo", TestingUtil.getTwoByTwoImg());
+    assertEquals(TestingUtil.getTwoByTwoImg(), model.getImage("twobytwo"));
 
     // null name
     assertThrows(IllegalArgumentException.class, () -> model.getImage(null));
@@ -30,12 +30,12 @@ public class ImageProcessingModelTest {
   @Test
   public void testAdd() {
     ImageProcessingModel model = new ImageProcessingModelImpl();
-    model.add("img1", TestingUtil.twoByTwoImg);
-    assertEquals(TestingUtil.twoByTwoImg, model.getImage("img1"));
+    model.add("img1", TestingUtil.getTwoByTwoImg());
+    assertEquals(TestingUtil.getTwoByTwoImg(), model.getImage("img1"));
 
     // null name
-    assertThrows(IllegalArgumentException.class, () -> model.add(null, TestingUtil.kirby));
-    assertThrows(IllegalArgumentException.class, () -> model.add("", TestingUtil.kirby));
+    assertThrows(IllegalArgumentException.class, () -> model.add(null, TestingUtil.getKirby()));
+    assertThrows(IllegalArgumentException.class, () -> model.add("", TestingUtil.getKirby()));
     // null image
     assertThrows(IllegalArgumentException.class, () -> model.add("asdf", null));
   }
@@ -46,8 +46,8 @@ public class ImageProcessingModelTest {
     // no image yet
     assertThrows(IllegalArgumentException.class, () -> model.remove("img1"));
 
-    model.add("img1", TestingUtil.twoByTwoImg);
-    assertEquals(TestingUtil.twoByTwoImg, model.getImage("img1"));
+    model.add("img1", TestingUtil.getTwoByTwoImg());
+    assertEquals(TestingUtil.getTwoByTwoImg(), model.getImage("img1"));
     model.remove("img1");
     assertThrows(IllegalArgumentException.class, () -> model.getImage("img1"));
 
@@ -65,7 +65,7 @@ public class ImageProcessingModelTest {
     // apply on image that doesn't exist
     assertThrows(IllegalArgumentException.class, () -> model.apply("img", macro));
 
-    model.add("twobytwo", TestingUtil.twoByTwoImg);
+    model.add("twobytwo", TestingUtil.getTwoByTwoImg());
     model.apply("twobytwo", macro);
     assertEquals("Macro applied\n", macro.log.toString());
     model.apply("twobytwo", macro);
@@ -79,9 +79,9 @@ public class ImageProcessingModelTest {
   @Test
   public void copy() {
     ImageProcessingModel model = new ImageProcessingModelImpl();
-    model.add("kirby", TestingUtil.kirby);
+    model.add("kirby", TestingUtil.getKirby());
     model.copy("kirby", "kirby-copy");
-    assertEquals(model.getImage("kirby-copy"), TestingUtil.kirby);
+    assertEquals(model.getImage("kirby-copy"), TestingUtil.getKirby());
     // copy non-existent image
     assertThrows(IllegalArgumentException.class, () -> model.copy("notkirby", "copy"));
 

@@ -14,7 +14,7 @@ public class TestImageUtil {
   @Test
   public void testReadPPMFile() {
     Image kirbyFromFile = ImageUtil.readPPM("res/Kirby/Kirby.ppm");
-    assertEquals(TestingUtil.kirby, kirbyFromFile);
+    assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
   @Test
@@ -74,13 +74,13 @@ public class TestImageUtil {
             "255 0 127\n" +
             "255 0 127";
     Image kirbyFromFile = ImageUtil.readStringPPM(kirby);
-    assertEquals(TestingUtil.kirby, kirbyFromFile);
+    assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
   @Test
   public void testSavePPM() {
-    ImageUtil.savePPM("res/Kirby/kirby-saved.ppm", TestingUtil.kirby);
+    ImageUtil.savePPM("res/Kirby/kirby-saved.ppm", TestingUtil.getKirby());
     Image kirbyFromFile = ImageUtil.readPPM("res/Kirby/kirby-saved.ppm");
-    assertEquals(TestingUtil.kirby, kirbyFromFile);
+    assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
   @Test
