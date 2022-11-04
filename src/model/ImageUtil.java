@@ -102,7 +102,7 @@ public class ImageUtil {
   /**
    * Demo main function to test loading and saving of PPMs.
    *
-   * @param args
+   * @param args command-line arguments
    */
   public static void main(String[] args) {
     String filename;
