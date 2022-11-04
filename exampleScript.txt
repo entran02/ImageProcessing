@@ -1,0 +1,14 @@
+# hashtags represent comments
+
+# load res/Kirby/Kirby.ppm and name it 'kirby'
+load res/example/Kirby.ppm Kirby
+
+# convert it to green component greyscale and name it 'GreenKirby'
+green-component Kirby GreenKirby
+
+# flip it horizontally and name it 'HorizontalKirby'
+horizontal-flip Kirby HorizontalKirby
+
+# save both modified versions
+save res/example/HorizontalKirby.ppm HorizontalKirby
+save res/example/GreenKirby.ppm GreenKirby

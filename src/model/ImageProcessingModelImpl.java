@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import Macros.Macro;
@@ -70,8 +72,16 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
   public void copy(String srcImage, String destImage) {
     this.imageExists(srcImage);
     Image src = this.images.get(srcImage);
+    List<List<Pixel>> pixels = new ArrayList<>(new ArrayList<>());
+    for (List<Pixel> r : src.getPixels()) {
+      List<Pixel> row = new ArrayList<>();
+      for (Pixel p : r) {
+        row.add(new Pixel(p.getR(), p.getG(), p.getB()));
+      }
+      pixels.add(row);
+    }
     this.add(destImage,
-            new ImageImpl(src.getWidth(), src.getHeight(), src.getMaxVal(), src.getPixels()));
+            new ImageImpl(src.getWidth(), src.getHeight(), src.getMaxVal(), pixels));
   }
 
   private void imageExists(String name) throws IllegalArgumentException {

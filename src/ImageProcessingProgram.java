@@ -32,7 +32,7 @@ public class ImageProcessingProgram {
     Readable rd;
     ImageProcessingView view;
     Appendable outAppendable = new StringBuilder();
-    if (args.length == 0) {
+    if (args.length == 0) { // did not supply script file
       rd = new InputStreamReader(System.in);
       view = new ImageProcessingViewImpl(System.out);
     } else if (args.length <= 2) {
@@ -46,7 +46,7 @@ public class ImageProcessingProgram {
       //read the file line by line, and populate a string. This will throw away any comment lines
       while (sc.hasNextLine()) {
         String s = sc.nextLine();
-        if (s.charAt(0) != '#') {
+        if (s.length() > 0 && s.charAt(0) != '#') {
           builder.append(s).append(System.lineSeparator());
         }
       }
