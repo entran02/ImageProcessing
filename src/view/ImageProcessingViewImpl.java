@@ -2,8 +2,6 @@ package view;
 
 import java.io.IOException;
 
-import model.ImageProcessingModelImpl;
-
 /**
  * Represents the text view that the user will see from the image processor.
  */
