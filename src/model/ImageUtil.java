@@ -99,14 +99,18 @@ public class ImageUtil {
     }
   }
 
-  //demo main
+  /**
+   * Demo main function to test loading and saving of PPMs.
+   *
+   * @param args command-line arguments
+   */
   public static void main(String[] args) {
     String filename;
 
     if (args.length > 0) {
       filename = args[0];
     } else {
-      filename = "res/Koala/Koala.ppm";
+      filename = "res/Kirby/Kirby.ppm";
     }
     System.out.println("Working Directory = " + System.getProperty("user.dir"));
     ImageUtil.readPPM(filename);

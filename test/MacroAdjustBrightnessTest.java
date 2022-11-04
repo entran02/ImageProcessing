@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Macros.Macro;
-import Macros.MacroAdjustBrightness;
+import macro.Macro;
+import macro.MacroAdjustBrightness;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;
@@ -48,7 +48,7 @@ public class MacroAdjustBrightnessTest {
                   new Pixel(255, 52, 179),
                   new Pixel(255, 52, 179)))));
 
-  public static final List<List<Pixel>> darkPixels = new ArrayList<>(Arrays.asList(
+  public final List<List<Pixel>> darkPixels = new ArrayList<>(Arrays.asList(
           new ArrayList<>(Arrays.asList(
                   new Pixel(50, 203, 50),
                   new Pixel(203, 101, 152),

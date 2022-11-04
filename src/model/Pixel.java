@@ -65,4 +65,9 @@ public class Pixel {
     Pixel pixel = (Pixel) o;
     return this.r == pixel.r && this.g == pixel.g && this.b == pixel.b;
   }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.r, this.g, this.b);
+  }
 }

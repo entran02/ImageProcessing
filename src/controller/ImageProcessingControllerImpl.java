@@ -4,25 +4,36 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import Macros.Macro;
-import Macros.MacroAdjustBrightness;
-import Macros.MacroBlueGreyscale;
-import Macros.MacroFlipHorizontal;
-import Macros.MacroFlipVertical;
-import Macros.MacroGreenGreyscale;
-import Macros.MacroIntensityRepresentation;
-import Macros.MacroLumaRepresentation;
-import Macros.MacroRedGreyscale;
-import Macros.MacroValueRepresentation;
+import macro.Macro;
+import macro.MacroAdjustBrightness;
+import macro.MacroBlueGreyscale;
+import macro.MacroFlipHorizontal;
+import macro.MacroFlipVertical;
+import macro.MacroGreenGreyscale;
+import macro.MacroIntensityRepresentation;
+import macro.MacroLumaRepresentation;
+import macro.MacroRedGreyscale;
+import macro.MacroValueRepresentation;
 import model.ImageProcessingModel;
 import model.ImageUtil;
 import view.ImageProcessingView;
 
+/**
+ * Controller for ImageProcessingModel. Takes user commands and runs macros depending
+ * on the user input.
+ */
 public class ImageProcessingControllerImpl implements ImageProcessingController {
   private final ImageProcessingModel model;
   private final ImageProcessingView view;
   private final Readable input;
 
+  /**
+   * Constructor to instantiate this class, ensures arguments are non-null.
+   * @param model Image processing model
+   * @param view view to return outputs
+   * @param input readable to receive user input
+   * @throws IllegalArgumentException if arguments are null
+   */
   public ImageProcessingControllerImpl(ImageProcessingModel model, ImageProcessingView view,
                                        Readable input) throws IllegalArgumentException {
     if (model == null || view == null || input == null) {

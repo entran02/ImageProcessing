@@ -13,4 +13,4 @@ vertical-flip image-name dest-image-name (Flip an image vertically to create a n
 brighten increment image-name dest-image-name (brighten the image by the given increment to create a new image, referred to henceforth by the given destination name. The increment may be positive (brightening) or negative (darkening))
 menu (Print supported instruction list)
 q or quit (quit the program) 
-Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Thank you for using this program!
+Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Thank you for using this program!

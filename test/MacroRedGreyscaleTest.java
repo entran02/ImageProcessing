@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Macros.Macro;
-import Macros.MacroRedGreyscale;
+import macro.Macro;
+import macro.MacroRedGreyscale;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;
