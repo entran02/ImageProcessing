@@ -1,9 +1,10 @@
 # ImageProcessing
+Joshua Cheng and Evan Tran CS3500 HW5
 
 ## To Run:
 1. ImageProgessingProgram.java main method with no arguments. Instructions are printed out.
 2. ImageProgessingProgram.java main method with argument `"path/to/script.txt"` and optional argument `"path/to/output.txt"` containing path to text file containing a list of commands separated by a newline, and optionally a path to a text file for the outputs to be stored in. If no output file is supplied, the default `"output.txt"` is used. See example script in `exampleScript.txt` included.
-Example: ```ImageProgessingProgram.java "exampleScript.txt" "output.txt"```
+Example: ```ImageProgessingProgram.java exampleScript.txt output.txt```
 
 ---------------------------
 ## Model -- ImageProcessingModel.java
@@ -31,3 +32,8 @@ Example: ```ImageProgessingProgram.java "exampleScript.txt" "output.txt"```
 - ImageUtil.java: read and store PPM files
 - Image.java: represents an image. Stores its dimensions and pixel values.
 - Pixel.java: represents a single pixel. Has RGB values.
+
+----------------------------
+### Image Credts:
+- `Kirby.ppm` created by Evan Tran manually with Intellij color-picker
+- `Koala.ppm` provided from in-class materials
