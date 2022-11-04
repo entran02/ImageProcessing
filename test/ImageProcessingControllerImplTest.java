@@ -296,7 +296,7 @@ public class ImageProcessingControllerImplTest {
             "menu (Print supported instruction list)\r\n" +
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("RedKirby").getPixels().get(0).get(0),
             new Pixel(102, 102, 102));
     assertEquals(expectedOut, out.toString());
   }
@@ -338,7 +338,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("GreenKirby").getPixels().get(0).get(0),
             new Pixel(255, 255, 255));
   }
 
@@ -379,7 +379,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("BlueKirby").getPixels().get(0).get(0),
             new Pixel(102, 102, 102));
   }
 
@@ -420,7 +420,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("ValueKirby").getPixels().get(0).get(0),
             new Pixel(255, 255, 255));
   }
 
@@ -461,7 +461,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("LumaKirby").getPixels().get(0).get(0),
             new Pixel(211, 211, 211));
   }
 
@@ -502,7 +502,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("IntensityKirby").getPixels().get(0).get(0),
             new Pixel(153, 153, 153));
   }
 
@@ -543,7 +543,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("HorizontalKirby").getPixels().get(0).get(0),
             new Pixel(255, 255, 204));
   }
 
@@ -584,7 +584,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("VerticalKirby").getPixels().get(0).get(0),
             new Pixel(255, 0, 127));
   }
 
@@ -625,7 +625,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("BrightKirby").getPixels().get(0).get(0),
             new Pixel(154, 255, 154));
   }
 
@@ -666,7 +666,7 @@ public class ImageProcessingControllerImplTest {
             "q or quit (quit the program) \r\n" +
             "Type instruction: Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
-    assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
+    assertEquals(model.getImage("DarkKirby").getPixels().get(0).get(0),
             new Pixel(50, 203, 50));
   }
 
