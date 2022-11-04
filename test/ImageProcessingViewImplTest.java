@@ -6,7 +6,7 @@ import view.ImageProcessingView;
 import view.ImageProcessingViewImpl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;;
+import static org.junit.Assert.fail;
 
 /**
  * Tests for the view of the program which is displayed to the user.

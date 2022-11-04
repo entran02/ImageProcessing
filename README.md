@@ -19,7 +19,7 @@ Example: ```ImageProgessingProgram.java exampleScript.txt output.txt``` (Image o
 - calls appropriate methods in the model to process desired images
 
 ## Others:
-- Macros: Does the actual editting of the image. 
+- macro: Does the actual editting of the image. 
     - AdjustBrightness
     - FlipHorizontal
     - FlipVertrical
@@ -36,4 +36,3 @@ Example: ```ImageProgessingProgram.java exampleScript.txt output.txt``` (Image o
 ----------------------------
 ### Image Credts:
 - `Kirby.ppm` created by Evan Tran manually with Intellij color-picker
-- `Koala.ppm` provided from in-class materials

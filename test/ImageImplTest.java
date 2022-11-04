@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +9,8 @@ import model.Image;
 import model.ImageImpl;
 import model.Pixel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 /**
  * Test the functions of Image.
@@ -33,24 +33,16 @@ public class ImageImplTest {
   public void testConstructor() {
     List<List<Pixel>> pixels = new ArrayList<>(new ArrayList<>());
     // empty pixels
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(1, 1, 255, pixels));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(1, 1, 255, pixels));
     // width/height/max mismatch
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(1, 1, 255, pixels22));
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(2, 1, 255, pixels22));
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(1, 2, 255, pixels22));
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(1, 2, 1, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(1, 1, 255, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(2, 1, 255, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(1, 2, 255, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(1, 2, 1, pixels22));
     // negative values
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(2, -2, 255, pixels22));
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(-2, 2, 255, pixels22));
-    assertThrows(IllegalArgumentException.class,
-            () -> new ImageImpl(2, 2, -255, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(2, -2, 255, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(-2, 2, 255, pixels22));
+    assertThrows(IllegalArgumentException.class, () -> new ImageImpl(2, 2, -255, pixels22));
 
     // successfully load image
     Image img = new ImageImpl(2, 2, 255, pixels22);

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Macros.Macro;
-import Macros.MacroFlipVertical;
+import macro.Macro;
+import macro.MacroFlipVertical;
 import model.Image;
 import model.ImageImpl;
 import model.Pixel;

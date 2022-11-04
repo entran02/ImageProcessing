@@ -5,11 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Macros.Macro;
+import macro.Macro;
 
-public class ImageProcessingModelImpl implements ImageProcessingModel{
+/**
+ * Implementation of ImageProcessingModel, which stores a map of images with names.
+ */
+public class ImageProcessingModelImpl implements ImageProcessingModel {
   private Map<String, Image> images;
 
+  /**
+   * Constructor that instantiates the empty hashmap.
+   */
   public ImageProcessingModelImpl() {
     this.images = new HashMap<String, Image>();
   }
@@ -21,7 +27,7 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    * @return requested image
    */
   @Override
-  public Image getImage(String name) throws IllegalArgumentException{
+  public Image getImage(String name) throws IllegalArgumentException {
     this.imageExists(name);
     return this.images.get(name);
   }
@@ -33,7 +39,7 @@ public class ImageProcessingModelImpl implements ImageProcessingModel{
    * @param img  the Image
    */
   @Override
-  public void add(String name, Image img) throws IllegalArgumentException{
+  public void add(String name, Image img) throws IllegalArgumentException {
     if (name == null || name.length() == 0 || img == null) {
       throw new IllegalArgumentException("Invalid image or image name.");
     }

@@ -1,10 +1,10 @@
 import java.util.Objects;
 
-import Macros.Macro;
+import macro.Macro;
 import model.Image;
 
 /**
- * Mock class to represent a macro
+ * Mock class to represent a macro. Logs when apply is called.
  */
 public class MacroMock implements Macro {
   public Appendable log;
@@ -12,6 +12,7 @@ public class MacroMock implements Macro {
   public MacroMock(Appendable log) {
     this.log = Objects.requireNonNull(log);
   }
+
   /**
    * Log macro use.
    *

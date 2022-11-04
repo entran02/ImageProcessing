@@ -1,6 +1,6 @@
 package model;
 
-import Macros.Macro;
+import macro.Macro;
 
 /**
  * Interface to manipulate a collection of images.

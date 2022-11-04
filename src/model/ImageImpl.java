@@ -1,9 +1,12 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation of Image. Stores dimensions and pixel values of a single image.
+ */
 public class ImageImpl implements Image {
   private final int width;
   private final int height;
@@ -12,14 +15,15 @@ public class ImageImpl implements Image {
 
   /**
    * Constructor for an image.
-   * @param width width of the image
+   *
+   * @param width  width of the image
    * @param height height of the image
    * @param maxVal maximum value of the colors of the pixels for the image
    * @param pixels a list of the pixels that make the image
    * @throws IllegalArgumentException if any of the values are invalid or null
    */
   public ImageImpl(int width, int height, int maxVal, List<List<Pixel>> pixels)
-          throws IllegalArgumentException{
+          throws IllegalArgumentException {
     if (pixels.size() == 0 || width != pixels.get(0).size()
             || height != pixels.size() || maxVal < 0) {
       throw new IllegalArgumentException("Invalid height, width, or maxVal");
@@ -106,8 +110,8 @@ public class ImageImpl implements Image {
     if (pixels == null || width != pixels.get(0).size() || height != pixels.size()) {
       throw new IllegalArgumentException("Invalid new pixel size");
     }
-    for (int i = 0; i < this.height; i ++) {
-      for (int j = 0; j < this.width; j ++) {
+    for (int i = 0; i < this.height; i++) {
+      for (int j = 0; j < this.width; j++) {
         setPixel(i, j, pixels.get(i).get(j));
       }
     }
@@ -127,11 +131,11 @@ public class ImageImpl implements Image {
     if (other instanceof Image) {
       Image otherImage = (Image) other;
       if (this.width != otherImage.getWidth() || this.height != otherImage.getHeight()
-        || this.maxVal != otherImage.getMaxVal()) {
+              || this.maxVal != otherImage.getMaxVal()) {
         return false;
       }
-      for (int i = 0; i < this.height; i ++) {
-        for (int j = 0; j < this.width; j ++) {
+      for (int i = 0; i < this.height; i++) {
+        for (int j = 0; j < this.width; j++) {
           if (!this.pixels.get(i).get(j).equals(otherImage.getPixels().get(i).get(j))) {
             return false;
           }
@@ -140,5 +144,10 @@ public class ImageImpl implements Image {
       return true;
     }
     return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.width, this.height, this.maxVal, this.pixels);
   }
 }
