@@ -5,7 +5,8 @@ import java.io.IOException;
 import view.ImageProcessingView;
 import view.ImageProcessingViewImpl;
 
-import static org.junit.Assert.assertEquals;;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;;
 
 /**
  * Tests for the view of the program which is displayed to the user.
@@ -26,13 +27,13 @@ public class ImageProcessingViewImplTest {
     try {
       view.renderMessage("BARK!\n");
     } catch (IOException e) {
-      throw new IllegalStateException("bad.");
+      fail();
     }
     assertEquals(out.toString(), expectedOut);
     try {
       view.renderMessage("meow uwu");
     } catch (IOException e) {
-      throw new IllegalStateException("bad.");
+      fail();
     }
     assertEquals(out.toString(), expectedOut2);
   }
