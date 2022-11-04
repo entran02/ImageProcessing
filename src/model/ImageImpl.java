@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,8 +20,16 @@ public class ImageImpl implements Image {
    */
   public ImageImpl(int width, int height, int maxVal, List<List<Pixel>> pixels)
           throws IllegalArgumentException{
-    if (width != pixels.get(0).size() || height != pixels.size() || maxVal < 0) {
+    if (pixels.size() == 0 || width != pixels.get(0).size()
+            || height != pixels.size() || maxVal < 0) {
       throw new IllegalArgumentException("Invalid height, width, or maxVal");
+    }
+    for (List<Pixel> r : pixels) {
+      for (Pixel p : r) {
+        if (p.getR() > maxVal || p.getG() > maxVal || p.getB() > maxVal) {
+          throw new IllegalArgumentException("Maxvalue exceeded");
+        }
+      }
     }
     this.width = Objects.requireNonNull(width);
     this.height = Objects.requireNonNull(height);
@@ -77,20 +86,31 @@ public class ImageImpl implements Image {
    */
   @Override
   public void setPixel(int row, int col, Pixel p) {
-    this.pixels.get(row).set(col, p);
+    if (p == null) {
+      throw new IllegalArgumentException("Null pixel");
+    }
+    try {
+      this.pixels.get(row).set(col, p);
+    } catch (IndexOutOfBoundsException e) {
+      throw new IllegalArgumentException("invalid row/col");
+    }
   }
 
   /**
-   * Replaces all pixels of this value with a new set.
+   * Replaces all pixels of this value with a new set. Cannot change height or width.
    *
    * @param pixels new pixel values
    */
   @Override
   public void setPixels(List<List<Pixel>> pixels) {
-    if (width != pixels.get(0).size() || height != pixels.size()) {
+    if (pixels == null || width != pixels.get(0).size() || height != pixels.size()) {
       throw new IllegalArgumentException("Invalid new pixel size");
     }
-    this.pixels = pixels;
+    for (int i = 0; i < this.height; i ++) {
+      for (int j = 0; j < this.width; j ++) {
+        setPixel(i, j, pixels.get(i).get(j));
+      }
+    }
   }
 
   /**
