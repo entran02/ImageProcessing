@@ -3,12 +3,44 @@
 # load res/Kirby/Kirby.ppm and name it 'kirby'
 load res/example/Kirby.ppm Kirby
 
+# convert it to red component greyscale and name it 'RedKirby'
+red-component Kirby RedKirby
+
 # convert it to green component greyscale and name it 'GreenKirby'
 green-component Kirby GreenKirby
+
+# convert it to blue component greyscale and name it 'BlueKirby'
+blue-component Kirby BlueKirby
+
+# convert it to value component greyscale and name it 'ValueKirby'
+value-component Kirby ValueKirby
+
+# convert it to luma component greyscale and name it 'LumaKirby'
+luma-component Kirby LumaKirby
+
+# convert it to intensity component greyscale and name it 'IntensityKirby'
+intensity-component Kirby IntensityKirby
 
 # flip it horizontally and name it 'HorizontalKirby'
 horizontal-flip Kirby HorizontalKirby
 
+# flip it vertically and name it 'VerticalKirby'
+vertical-flip Kirby VerticalKirby
+
+# brighten it by 10 and name it 'BrightKirby'
+brighten 10 Kirby BrightKirby
+
+# brighten it by -10 and name it 'DarkKirby'
+brighten -10 Kirby DarkKirby
+
 # save both modified versions
 save res/example/HorizontalKirby.ppm HorizontalKirby
+save res/example/VerticalKirby.ppm VerticalKirby
 save res/example/GreenKirby.ppm GreenKirby
+save res/example/RedKirby.ppm RedKirby
+save res/example/BlueKirby.ppm BlueKirby
+save res/example/ValueKirby.ppm ValueKirby
+save res/example/LumaKirby.ppm LumaKirby
+save res/example/IntensityKirby.ppm IntensityKirby
+save res/example/BrightKirby.ppm BrightKirby
+save res/example/DarkKirby.ppm DarkKirby
