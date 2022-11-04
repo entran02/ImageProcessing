@@ -22,7 +22,6 @@ public class ImageUtil {
    */
   public static Image readPPM(String filename) {
     Scanner sc;
-
     try {
       sc = new Scanner(new FileInputStream(filename));
     } catch (FileNotFoundException e) {
@@ -35,7 +34,6 @@ public class ImageUtil {
       if (s.charAt(0) != '#') {
         builder.append(s).append(System.lineSeparator());
       }
-
     }
     return readStringPPM(builder.toString());
   }

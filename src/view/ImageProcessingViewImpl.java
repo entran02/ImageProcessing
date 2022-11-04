@@ -11,7 +11,7 @@ public class ImageProcessingViewImpl implements ImageProcessingView{
   private Appendable out;
 
   public ImageProcessingViewImpl() {
-    this(System.out);
+    this.out = System.out;
   }
 
   public ImageProcessingViewImpl(Appendable out) throws IllegalArgumentException {
