@@ -51,6 +51,7 @@ public class ImageUtil {
       case ("jpeg"):
       case ("png"):
       case ("jpg"):
+      case("bmp"):
         try {
           File file = new File(filename);
           BufferedImage image = ImageIO.read(file);
@@ -148,6 +149,7 @@ public class ImageUtil {
         case ("jpeg"):
         case ("png"):
         case ("jpg"):
+        case("bmp"):
           try {
             List<List<Pixel>> pixels = image.getPixels();
             BufferedImage fileImage = new BufferedImage(image.getWidth(), image.getHeight(),
