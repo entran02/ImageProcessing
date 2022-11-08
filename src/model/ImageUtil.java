@@ -118,26 +118,55 @@ public class ImageUtil {
    * @param filename file to store to
    * @param image    image to store
    */
-  public static void savePPM(String filename, Image image) {
+  public static void saveFile(String filename, Image image) {
     try {
-      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(filename));
-      StringBuilder pixelValues = new StringBuilder();
-      for (int i = 0; i < image.getHeight(); i++) {
-        for (int j = 0; j < image.getWidth(); j++) {
-          Pixel pix = image.getPixels().get(i).get(j);
-          pixelValues.append(pix.getR()).append("\n")
-                  .append(pix.getG()).append("\n")
-                  .append(pix.getB()).append("\n");
-        }
+      int index = filename.lastIndexOf(".");
+      String fileType = filename.substring(index + 1);
+      switch (fileType) {
+        case ("ppm"):
+          try {
+            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(filename));
+            StringBuilder pixelValues = new StringBuilder();
+            for (int i = 0; i < image.getHeight(); i++) {
+              for (int j = 0; j < image.getWidth(); j++) {
+                Pixel pix = image.getPixels().get(i).get(j);
+                pixelValues.append(pix.getR()).append("\n")
+                        .append(pix.getG()).append("\n")
+                        .append(pix.getB()).append("\n");
+              }
+            }
+            String filePPM = "P3\n" + image.getWidth() + " " + image.getHeight() + "\n"
+                    + image.getMaxVal() + "\n" + pixelValues;
+            byte[] file = filePPM.getBytes();
+            out.write(file);
+            out.flush();
+            out.close();
+          } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to save PPM file.");
+          }
+          break;
+        case ("jpeg"):
+        case ("png"):
+        case ("jpg"):
+          try {
+            List<List<Pixel>> pixels = image.getPixels();
+            BufferedImage fileImage = new BufferedImage(image.getWidth(), image.getHeight(),
+                    BufferedImage.TYPE_INT_RGB);
+            for (int i = 0; i < image.getHeight(); i++) {
+              for (int j = 0; j < image.getWidth(); j++) {
+                Pixel pixel = pixels.get(i).get(j);
+                int rgb = new Color(pixel.getR(), pixel.getG(), pixel.getB()).getRGB();
+                fileImage.setRGB(j, i, rgb);
+              }
+            }
+            ImageIO.write(fileImage, fileType, new File(filename));
+          } catch (IOException e) {
+            throw new IllegalArgumentException(String.format("Failed to save %s file.", fileType));
+          }
+          break;
       }
-      String filePPM = "P3\n" + image.getWidth() + " " + image.getHeight() + "\n"
-              + image.getMaxVal() + "\n" + pixelValues;
-      byte[] file = filePPM.getBytes();
-      out.write(file);
-      out.flush();
-      out.close();
     } catch (Exception e) {
-      throw new IllegalArgumentException("Failed to save PPM file.");
+      throw new IllegalArgumentException("Error in saving file.");
     }
   }
 

@@ -48,7 +48,7 @@ public class Pixel {
   /**
    * Gets blue value.
    *
-   * @returns red value
+   * @returns blue value
    */
   public int getB() {
     return this.b;
