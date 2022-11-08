@@ -1,12 +1,18 @@
 package model;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.FileInputStream;
+
+import javax.imageio.ImageIO;
 
 
 /**
@@ -20,22 +26,58 @@ public class ImageUtil {
    * @param filename the path of the file.
    * @return image the image
    */
-  public static Image readPPM(String filename) {
+  public static Image readFile(String filename) {
     Scanner sc;
-    try {
-      sc = new Scanner(new FileInputStream(filename));
-    } catch (FileNotFoundException e) {
-      throw new IllegalArgumentException(filename + " not found");
+    int index = filename.lastIndexOf(".");
+    String fileType = filename.substring(index + 1);
+    Image result;
+    switch (fileType) {
+      case ("ppm"):
+        try {
+          sc = new Scanner(new FileInputStream(filename));
+        } catch (FileNotFoundException e) {
+          throw new IllegalArgumentException(filename + " not found");
+        }
+        StringBuilder builder = new StringBuilder();
+        //read the file line by line, and populate a string. This will throw away any comment lines
+        while (sc.hasNextLine()) {
+          String s = sc.nextLine();
+          if (s.charAt(0) != '#') {
+            builder.append(s).append(System.lineSeparator());
+          }
+        }
+        result = readStringPPM(builder.toString());
+        break;
+      case ("jpeg"):
+      case ("png"):
+      case ("jpg"):
+        try {
+          File file = new File(filename);
+          BufferedImage image = ImageIO.read(file);
+          result = readFileOther(image);
+        } catch (IOException e) {
+          throw new IllegalArgumentException(e);
+        }
+        break;
+      default:
+        return null;
     }
-    StringBuilder builder = new StringBuilder();
-    //read the file line by line, and populate a string. This will throw away any comment lines
-    while (sc.hasNextLine()) {
-      String s = sc.nextLine();
-      if (s.charAt(0) != '#') {
-        builder.append(s).append(System.lineSeparator());
+    return result;
+  }
+
+  public static Image readFileOther(BufferedImage image) {
+    List<List<Pixel>> pixels = new ArrayList<>();
+    for (int i = 0; i < image.getHeight(); i++) {
+      List<Pixel> row = new ArrayList<>();
+      for (int j = 0; j < image.getWidth(); j++) {
+        int rgb = image.getRGB(j, i);
+        Pixel pixel = new Pixel(new Color(rgb).getRed(), new Color(rgb).getGreen(),
+                new Color(rgb).getBlue());
+        row.add(pixel);
       }
+      pixels.add(row);
     }
-    return readStringPPM(builder.toString());
+    return new ImageImpl(image.getWidth(), image.getHeight(), 255, pixels);
   }
 
   /**
@@ -113,7 +155,7 @@ public class ImageUtil {
       filename = "res/Kirby/Kirby.ppm";
     }
     System.out.println("Working Directory = " + System.getProperty("user.dir"));
-    ImageUtil.readPPM(filename);
+    ImageUtil.readFile(filename);
 
 
   }

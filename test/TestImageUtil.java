@@ -13,18 +13,18 @@ public class TestImageUtil {
 
   @Test
   public void testReadPPMFile() {
-    Image kirbyFromFile = ImageUtil.readPPM("res/Kirby/Kirby.ppm");
+    Image kirbyFromFile = ImageUtil.readFile("res/Kirby/Kirby.ppm");
     assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
   @Test
   public void testReadFail() {
     // file doesn't exist
-    assertThrows(IllegalArgumentException.class, () -> ImageUtil.readPPM("filedoesntexist.ppm"));
+    assertThrows(IllegalArgumentException.class, () -> ImageUtil.readFile("filedoesntexist.ppm"));
     // first line not P3
     assertThrows(IllegalArgumentException.class, () -> ImageUtil.readStringPPM(
             "P5\n1\n1\n255\n127 127 127"));
-    assertThrows(IllegalArgumentException.class, () -> ImageUtil.readPPM(
+    assertThrows(IllegalArgumentException.class, () -> ImageUtil.readFile(
             "res/Kirby/invalid-ppm.ppm"));
     // negative pixel numbers
     assertThrows(IllegalArgumentException.class, () -> ImageUtil.readStringPPM(
@@ -79,7 +79,7 @@ public class TestImageUtil {
   @Test
   public void testSavePPM() {
     ImageUtil.savePPM("res/Kirby/kirby-saved.ppm", TestingUtil.getKirby());
-    Image kirbyFromFile = ImageUtil.readPPM("res/Kirby/kirby-saved.ppm");
+    Image kirbyFromFile = ImageUtil.readFile("res/Kirby/kirby-saved.ppm");
     assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
@@ -89,5 +89,10 @@ public class TestImageUtil {
     assertThrows(IllegalArgumentException.class, () -> ImageUtil.savePPM("filename.ppm", null));
   }
 
+  @Test
+  public void testReadJpg(){
+    Image amongUsFromFile = ImageUtil.readFile("res/Images/amongus.jpg");
+    assertEquals(TestingUtil.getKirby(), amongUsFromFile);
+  }
 
 }
