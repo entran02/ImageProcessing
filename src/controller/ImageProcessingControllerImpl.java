@@ -146,7 +146,7 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
         try {
           String filePath = sc.next();
           String name = sc.next();
-          this.model.add(name, ImageUtil.readPPM(filePath));
+          this.model.add(name, ImageUtil.readFile(filePath));
         } catch (NoSuchElementException | IllegalArgumentException e) {
           writeMessage("Invalid operation! Please try again.\n");
         }
