@@ -12,6 +12,9 @@ import model.Image;
 import model.ImageImpl;
 import model.Pixel;
 
+/**
+ * Tests for blur macro.
+ */
 public class MacroBlurTest {
   private Pixel getConstPixel(int i) {
     return new Pixel(i, i, i);
