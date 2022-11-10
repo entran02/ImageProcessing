@@ -16,12 +16,12 @@ import javax.imageio.ImageIO;
 
 
 /**
- * This class contains utility methods to read a PPM image from file and simply print its contents.
+ * This class contains utility methods to read an image from a file and simply print its contents.
  * Feel free to change this method as required.
  */
 public class ImageUtil {
   /**
-   * Read an image file in the PPM format and print the colors.
+   * Read an image file in the following formats: ppm, ppm, jpeg, png, jpg, bmp.
    *
    * @param filename the path of the file.
    * @return image the image
@@ -66,6 +66,12 @@ public class ImageUtil {
     return result;
   }
 
+  /**
+   * Helper method to help read any file other than ppm.
+   *
+   * @param image the image to be read
+   * @returns the image as a model compatible image.
+   */
   public static Image readFileOther(BufferedImage image) {
     List<List<Pixel>> pixels = new ArrayList<>();
     for (int i = 0; i < image.getHeight(); i++) {
@@ -114,7 +120,7 @@ public class ImageUtil {
   }
 
   /**
-   * Saves an Image as a PPM file.
+   * Saves an Image in either of the following formats: ppm, jpeg, png, jpg, bmp.
    *
    * @param filename file to store to
    * @param image    image to store
