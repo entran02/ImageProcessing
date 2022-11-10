@@ -40,7 +40,7 @@ blur Kirby BlurryKirby
 sharpen Kirby SharpKirby
 
 # apply sepia effect and name it 'SepiaKirby'
-speia Kirby SepiaKirby
+sepia Kirby SepiaKirby
 
 # convert it to greyscale and name it 'GreyKirby'
 greyscale Kirby GreyKirby
@@ -57,7 +57,7 @@ save res/example/LumaKirby.ppm LumaKirby
 save res/example/IntensityKirby.ppm IntensityKirby
 save res/example/BrightKirby.ppm BrightKirby
 save res/example/DarkKirby.ppm DarkKirby
-save res/example/BlurKirby.png BlurKirby
+save res/example/BlurryKirby.png BlurryKirby
 save res/example/SharpKirby.bmp SharpKirby
 save res/example/SepiaKirby.jpg SepiaKirby
 save res/example/GreyKirby.ppm GreyKirby
