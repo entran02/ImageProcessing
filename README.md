@@ -40,3 +40,4 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
 ----------------------------
 ### Image Credts:
 - `Kirby.ppm` created by Evan Tran manually with Intellij color-picker
+- `shanghai.jpg` from https://en.wikipedia.org/wiki/File:Pudong_Shanghai_November_2017_panorama.jpg under Creative Commons License 
