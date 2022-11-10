@@ -58,7 +58,7 @@ public class MacroGreyscaleTest {
   public final Image expectedGreyscaleKirby = new ImageImpl(5, 5, 255, newPixels);
 
   @Test
-  public void lumaTest() {
+  public void greyscaleTest() {
     Macro greyscale = new MacroGreyscale();
     Image greyscaleKirby = TestingUtil.getKirby();
     greyscale.apply(greyscaleKirby);
