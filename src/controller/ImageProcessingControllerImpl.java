@@ -14,6 +14,10 @@ import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
 import macro.MacroRedGreyscale;
 import macro.MacroValueRepresentation;
+import macro.MacroBlur;
+import macro.MacroSharpen;
+import macro.MacroSepia;
+import macro.MacroGreyscale;
 import model.ImageProcessingModel;
 import model.ImageUtil;
 import view.ImageProcessingView;
@@ -121,6 +125,18 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
             + "henceforth by the given destination name. The increment may be positive "
             + "(brightening) or negative (darkening))"
             + System.lineSeparator());
+    writeMessage("blur image-name dest-image-name "
+            + "(Blur an image to create a new image)"
+            + System.lineSeparator());
+    writeMessage("sharpen image-name dest-image-name "
+            + "(Sharpen an image to create a new image)"
+            + System.lineSeparator());
+    writeMessage("sepia image-name dest-image-name "
+            + "(Convert image to sepia tones to create a new image)"
+            + System.lineSeparator());
+    writeMessage("greyscale image-name dest-image-name "
+            + "(Convert image to greyscale to create a new image)"
+            + System.lineSeparator());
     writeMessage("menu (Print supported instruction list)" + System.lineSeparator());
     writeMessage("q or quit (quit the program) " + System.lineSeparator());
   }
@@ -183,6 +199,18 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
         break;
       case "vertical-flip":
         applyMacro(new MacroFlipVertical(), sc);
+        break;
+      case "blur":
+        applyMacro(new MacroBlur(), sc);
+        break;
+      case "sharpen":
+        applyMacro(new MacroSharpen(), sc);
+        break;
+      case "sepia":
+        applyMacro(new MacroSepia(), sc);
+        break;
+      case "greyscale":
+        applyMacro(new MacroGreyscale(), sc);
         break;
       case "brighten":
         try {
