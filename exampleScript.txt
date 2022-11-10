@@ -33,7 +33,20 @@ brighten 10 Kirby BrightKirby
 # brighten it by -10 and name it 'DarkKirby'
 brighten -10 Kirby DarkKirby
 
-# save both modified versions
+# blur it and name it 'BlurryKirby'
+blur Kirby BlurryKirby
+
+# sharpen it and name it 'SharpKirby'
+sharpen Kirby SharpKirby
+
+# apply sepia effect and name it 'SepiaKirby'
+speia Kirby SepiaKirby
+
+# convert it to greyscale and name it 'GreyKirby'
+greyscale Kirby GreyKirby
+
+
+# save all modified versions
 save res/example/HorizontalKirby.ppm HorizontalKirby
 save res/example/VerticalKirby.ppm VerticalKirby
 save res/example/GreenKirby.ppm GreenKirby
@@ -44,3 +57,7 @@ save res/example/LumaKirby.ppm LumaKirby
 save res/example/IntensityKirby.ppm IntensityKirby
 save res/example/BrightKirby.ppm BrightKirby
 save res/example/DarkKirby.ppm DarkKirby
+save res/example/BlurKirby.png BlurKirby
+save res/example/SharpKirby.bmp SharpKirby
+save res/example/SepiaKirby.jpg SepiaKirby
+save res/example/GreyKirby.ppm GreyKirby
