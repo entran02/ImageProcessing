@@ -80,4 +80,3 @@ save res/example/BlurryShanghai.jpeg BlurryShanghai
 save res/example/SharpShanghai.png SharpShanghai
 save res/example/SepiaShanghai.bmp SepiaShanghai
 save res/example/GreyShanghai.jpg GreyShanghai
-save res/example/PPMShanghai.ppm Shanghai

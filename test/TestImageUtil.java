@@ -5,6 +5,7 @@ import model.ImageUtil;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.fail;
 
 /**
  * Test reading and writing PPM files in ImageUtil class.
@@ -90,17 +91,27 @@ public class TestImageUtil {
   }
 
   @Test
-  public void testSavePNG(){
+  public void testSavePNG() {
     ImageUtil.saveFile("res/Kirby/kirby-saved.png", TestingUtil.getKirby());
     Image kirbyFromFile = ImageUtil.readFile("res/Kirby/kirby-saved.png");
     assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
   @Test
-  public void testSaveBMP(){
+  public void testSaveBMP() {
     ImageUtil.saveFile("res/Kirby/kirby-saved.bmp", TestingUtil.getKirby());
     Image kirbyFromFile = ImageUtil.readFile("res/Kirby/kirby-saved.bmp");
     assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
+  @Test
+  public void testSaveJPG() {
+    try {
+      ImageUtil.saveFile("res/Kirby/kirby-saved.jpg", TestingUtil.getKirby());
+      Image kirbyFromFile = ImageUtil.readFile("res/Kirby/kirby-saved.jpg");
+      // since saving a jpg is lossy, the results of a saved and reloaded jpg are not identical.
+    } catch (Exception e) {
+      fail();
+    }
+  }
 }
