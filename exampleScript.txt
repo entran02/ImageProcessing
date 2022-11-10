@@ -40,7 +40,7 @@ blur Kirby BlurryKirby
 sharpen Kirby SharpKirby
 
 # apply sepia effect and name it 'SepiaKirby'
-speia Kirby SepiaKirby
+sepia Kirby SepiaKirby
 
 # convert it to greyscale and name it 'GreyKirby'
 greyscale Kirby GreyKirby
