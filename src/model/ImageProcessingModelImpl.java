@@ -77,17 +77,8 @@ public class ImageProcessingModelImpl implements ImageProcessingModel {
   @Override
   public void copy(String srcImage, String destImage) {
     this.imageExists(srcImage);
-    Image src = this.images.get(srcImage);
-    List<List<Pixel>> pixels = new ArrayList<>(new ArrayList<>());
-    for (List<Pixel> r : src.getPixels()) {
-      List<Pixel> row = new ArrayList<>();
-      for (Pixel p : r) {
-        row.add(new Pixel(p.getR(), p.getG(), p.getB()));
-      }
-      pixels.add(row);
-    }
     this.add(destImage,
-            new ImageImpl(src.getWidth(), src.getHeight(), src.getMaxVal(), pixels));
+            this.images.get(srcImage).copy());
   }
 
   private void imageExists(String name) throws IllegalArgumentException {

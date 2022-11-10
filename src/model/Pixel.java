@@ -54,6 +54,14 @@ public class Pixel {
     return this.b;
   }
 
+  /**
+   * Returns a copy of this pixel.
+   * @return copy of this pixel
+   */
+  public Pixel copy() {
+    return new Pixel(r, g, b);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

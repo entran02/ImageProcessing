@@ -50,4 +50,10 @@ public interface Image {
    * @return if this and other are equal
    */
   boolean equals(Object other);
+
+  /**
+   * Returns a copy of this image.
+   * @return copy of this image.
+   */
+  Image copy();
 }

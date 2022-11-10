@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -145,8 +147,27 @@ public class ImageImpl implements Image {
     return false;
   }
 
+  /**
+   * Returns a copy of this image.
+   *
+   * @return copy of this image.
+   */
+  @Override
+  public Image copy() {
+    List<List<Pixel>> pix = new ArrayList<>(new ArrayList<>());
+    for (List<Pixel> row : this.pixels) {
+      List<Pixel> r = new ArrayList<>();
+      for (Pixel p : row) {
+        r.add(p.copy());
+      }
+      pix.add(r);
+    }
+    return new ImageImpl(this.width, this.height, this.maxVal, pix);
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(this.width, this.height, this.maxVal, this.pixels);
   }
+
 }
