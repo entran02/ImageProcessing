@@ -16,9 +16,11 @@ public abstract class ColorTransformationMacro extends AMacro implements Macro {
    */
   @Override
   protected Pixel applyToPixel(Pixel p) {
-    return new Pixel(
-            (int) (matrix[0][0] * p.getR() + matrix[0][1] * p.getG() + matrix[0][2] * p.getB()),
-            (int) (matrix[1][0] * p.getR() + matrix[1][1] * p.getG() + matrix[1][2] * p.getB()),
-            (int) (matrix[2][0] * p.getR() + matrix[2][1] * p.getG() + matrix[2][2] * p.getB()));
+    int[] vals = new int[3];
+    for (int i = 0; i < 3; i ++) {
+      double v = matrix[i][0] * p.getR() + matrix[i][1] * p.getG() + matrix[i][2] * p.getB();
+      vals[i] = (int) Math.max(0, Math.min(img.getMaxVal(), v));
+    }
+    return new Pixel(vals[0], vals[1], vals[2]);
   }
 }

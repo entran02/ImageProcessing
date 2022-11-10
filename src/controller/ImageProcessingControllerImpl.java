@@ -185,15 +185,8 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
         applyMacro(new MacroFlipVertical(), sc);
         break;
       case "brighten":
-        try {
-          int increment = sc.nextInt();
-          String imgName = sc.next();
-          String destName = sc.next();
-          this.model.copy(imgName, destName);
-          this.model.apply(destName, new MacroAdjustBrightness(increment));
-        } catch (NoSuchElementException | IllegalArgumentException e) {
-          writeMessage("Invalid operation! Please try again.\n");
-        }
+        int increment = sc.nextInt();
+        applyMacro(new MacroAdjustBrightness(increment), sc);
         break;
       case "menu": //print the menu of supported instructions
         welcomeMessage();
