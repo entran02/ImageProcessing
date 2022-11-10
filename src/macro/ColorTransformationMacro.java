@@ -19,7 +19,7 @@ public abstract class ColorTransformationMacro extends AMacro implements Macro {
     int[] vals = new int[3];
     for (int i = 0; i < 3; i ++) {
       double v = matrix[i][0] * p.getR() + matrix[i][1] * p.getG() + matrix[i][2] * p.getB();
-      vals[i] = (int) Math.max(0, Math.min(img.getMaxVal(), v));
+      vals[i] = (int) Math.round(Math.max(0, Math.min(img.getMaxVal(), v)));
     }
     return new Pixel(vals[0], vals[1], vals[2]);
   }

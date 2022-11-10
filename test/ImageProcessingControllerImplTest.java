@@ -18,6 +18,37 @@ import static org.junit.Assert.assertEquals;
  * Tests for the controller which runs the Image Processing Program.
  */
 public class ImageProcessingControllerImplTest {
+  String menu = "Welcome to the image processing program!\r\n" +
+          "Supported user instructions are: \r\n" +
+          "load image-path image-name (Load an image from the path and name it)\r\n" +
+          "save image-path image-name (Save the image with that name to the specified path)\r\n" +
+          "red-component image-name dest-image-name (Create a greyscale image with" +
+          " the red-component of the image with the given name)\r\n" +
+          "green-component image-name dest-image-name (Create a greyscale image with" +
+          " the green-component of the image with the given name)\r\n" +
+          "blue-component image-name dest-image-name (Create a greyscale image with the" +
+          " blue-component of the image with the given name)\r\n" +
+          "value-component image-name dest-image-name (Create a greyscale image with the" +
+          " value-component of the image with the given name)\r\n" +
+          "luma-component image-name dest-image-name (Create a greyscale image with the" +
+          " luma-component of the image with the given name)\r\n" +
+          "intensity-component image-name dest-image-name (Create a greyscale image with" +
+          " the intensity-component of the image with the given name)\r\n" +
+          "horizontal-flip image-name dest-image-name (Flip an image horizontally to create" +
+          " a new image)\r\n" +
+          "vertical-flip image-name dest-image-name (Flip an image vertically to " +
+          "create a new image)\r\n" +
+          "brighten increment image-name dest-image-name (brighten the image by the given" +
+          " increment to create a new image, referred to henceforth by the given destination" +
+          " name. The increment may be positive (brightening) or negative (darkening))\r\n" +
+          "blur image-name dest-image-name (Blur an image to create a new image)\r\n" +
+          "sharpen image-name dest-image-name (Sharpen an image to create a new image)\r\n" +
+          "sepia image-name dest-image-name (Convert image to sepia tones to create" +
+          " a new image)\r\n" +
+          "greyscale image-name dest-image-name (Convert image to greyscale to" +
+          " create a new image)\r\n" +
+          "menu (Print supported instruction list)\r\n" +
+          "q or quit (quit the program) \r\n";
 
   @Test (expected = IllegalArgumentException.class)
   public void testConstructorNoModel() {
@@ -45,59 +76,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a " +
-            "greyscale image with the red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a " +
-            "greyscale image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a " +
-            "greyscale image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a " +
-            "greyscale image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a " +
-            "greyscale image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a" +
-            " greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an " +
-            "image vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, referred " +
-            "to henceforth by the given destination name. The increment may be positive" +
-            " (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: " + this.menu
+            + "Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
   }
 
@@ -109,33 +89,7 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
   }
 
@@ -147,33 +101,7 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
   }
 
@@ -185,33 +113,7 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("Kirby").getPixels().get(0).get(0),
             new Pixel(102, 255, 102));
@@ -227,34 +129,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Type instruction:" +
-            " Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Type instruction: " +
+            "Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("Kirby"), model.getImage("Kirby2"));
 
@@ -269,33 +145,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(model.getImage("RedKirby").getPixels().get(0).get(0),
             new Pixel(102, 102, 102));
     assertEquals(expectedOut, out.toString());
@@ -310,33 +161,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("GreenKirby").getPixels().get(0).get(0),
             new Pixel(255, 255, 255));
@@ -351,33 +177,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("BlueKirby").getPixels().get(0).get(0),
             new Pixel(102, 102, 102));
@@ -392,33 +193,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("ValueKirby").getPixels().get(0).get(0),
             new Pixel(255, 255, 255));
@@ -433,33 +209,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("LumaKirby").getPixels().get(0).get(0),
             new Pixel(211, 211, 211));
@@ -474,33 +225,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("IntensityKirby").getPixels().get(0).get(0),
             new Pixel(153, 153, 153));
@@ -515,33 +241,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("HorizontalKirby").getPixels().get(0).get(0),
             new Pixel(255, 255, 204));
@@ -556,36 +257,76 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("VerticalKirby").getPixels().get(0).get(0),
             new Pixel(255, 0, 127));
+  }
+
+  @Test
+  public void testBlur() {
+    ImageProcessingModel model = new ImageProcessingModelImpl();
+    Readable in = new StringReader("load res/Kirby/Kirby.ppm Kirby " +
+            "blur Kirby BlurKirby");
+    StringBuilder out = new StringBuilder();
+    ImageProcessingView view = new ImageProcessingViewImpl(out);
+    ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
+    controller.run();
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
+    assertEquals(expectedOut, out.toString());
+    assertEquals(model.getImage("BlurKirby").getPixels().get(0).get(0),
+            new Pixel(92, 105, 92));
+  }
+
+  @Test
+  public void testSharpen() {
+    ImageProcessingModel model = new ImageProcessingModelImpl();
+    Readable in = new StringReader("load res/Kirby/Kirby.ppm Kirby " +
+            "sharpen Kirby SharpenKirby");
+    StringBuilder out = new StringBuilder();
+    ImageProcessingView view = new ImageProcessingViewImpl(out);
+    ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
+    controller.run();
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
+    assertEquals(expectedOut, out.toString());
+    assertEquals(model.getImage("SharpenKirby").getPixels().get(0).get(0),
+            new Pixel(115, 255, 166));
+
+  }
+
+  @Test
+  public void testGreyscale() {
+    ImageProcessingModel model = new ImageProcessingModelImpl();
+    Readable in = new StringReader("load res/Kirby/Kirby.ppm Kirby " +
+            "greyscale Kirby GreyscaleKirby");
+    StringBuilder out = new StringBuilder();
+    ImageProcessingView view = new ImageProcessingViewImpl(out);
+    ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
+    controller.run();
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
+    assertEquals(expectedOut, out.toString());
+    assertEquals(model.getImage("GreyscaleKirby").getPixels().get(0).get(0),
+            new Pixel(211, 211, 211));
+  }
+
+  @Test
+  public void testSepia() {
+    ImageProcessingModel model = new ImageProcessingModelImpl();
+    Readable in = new StringReader("load res/Kirby/Kirby.ppm Kirby " +
+            "sepia Kirby SepiaKirby");
+    StringBuilder out = new StringBuilder();
+    ImageProcessingView view = new ImageProcessingViewImpl(out);
+    ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
+    controller.run();
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
+    assertEquals(expectedOut, out.toString());
+    assertEquals(model.getImage("SepiaKirby").getPixels().get(0).get(0),
+            new Pixel(255, 228, 177));
   }
 
   @Test
@@ -597,33 +338,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("BrightKirby").getPixels().get(0).get(0),
             new Pixel(154, 255, 154));
@@ -638,33 +354,8 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Type instruction: Thank you for using this program!";
+    String expectedOut = this.menu + "Type instruction: Type instruction: Thank you " +
+            "for using this program!";
     assertEquals(expectedOut, out.toString());
     assertEquals(model.getImage("DarkKirby").getPixels().get(0).get(0),
             new Pixel(50, 203, 50));
@@ -678,33 +369,7 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Invalid operation! Please try again.\n" +
+    String expectedOut = this.menu + "Type instruction: Invalid operation! Please try again.\n" +
             "Thank you for using this program!";
     assertEquals(expectedOut, out.toString());
   }
@@ -717,33 +382,7 @@ public class ImageProcessingControllerImplTest {
     ImageProcessingView view = new ImageProcessingViewImpl(out);
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, in);
     controller.run();
-    String expectedOut = "Welcome to the image processing program!\r\n" +
-            "Supported user instructions are: \r\n" +
-            "load image-path image-name (Load an image from the path and name it)\r\n" +
-            "save image-path image-name (Save the image with that name to the specified path)\r\n" +
-            "red-component image-name dest-image-name (Create a greyscale image with the " +
-            "red-component of the image with the given name)\r\n" +
-            "green-component image-name dest-image-name (Create a greyscale " +
-            "image with the green-component of the image with the given name)\r\n" +
-            "blue-component image-name dest-image-name (Create a greyscale " +
-            "image with the blue-component of the image with the given name)\r\n" +
-            "value-component image-name dest-image-name (Create a greyscale " +
-            "image with the value-component of the image with the given name)\r\n" +
-            "luma-component image-name dest-image-name (Create a greyscale " +
-            "image with the luma-component of the image with the given name)\r\n" +
-            "intensity-component image-name dest-image-name (Create a " +
-            "greyscale image with the intensity-component of the image with the given name)\r\n" +
-            "horizontal-flip image-name dest-image-name (Flip an image " +
-            "horizontally to create a new image)\r\n" +
-            "vertical-flip image-name dest-image-name (Flip an image " +
-            "vertically to create a new image)\r\n" +
-            "brighten increment image-name dest-image-name (brighten " +
-            "the image by the given increment to create a new image, " +
-            "referred to henceforth by the given destination name. " +
-            "The increment may be positive (brightening) or negative (darkening))\r\n" +
-            "menu (Print supported instruction list)\r\n" +
-            "q or quit (quit the program) \r\n" +
-            "Type instruction: Undefined instruction: copy-image\r\n" +
+    String expectedOut = this.menu + "Type instruction: Undefined instruction: copy-image\r\n" +
             "Type instruction: Undefined instruction: Kirby\r\n" +
             "Type instruction: Undefined instruction: NewKirby\r\n" +
             "Thank you for using this program!";
