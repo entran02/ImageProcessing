@@ -45,6 +45,21 @@ sepia Kirby SepiaKirby
 # convert it to greyscale and name it 'GreyKirby'
 greyscale Kirby GreyKirby
 
+# load res/example/shanghai.jpg and name it 'Shanghai'
+load res/example/shanghai.jpg Shanghai
+
+# blur it and name it 'BlurryShanghai'
+blur Shanghai BlurryShanghai
+
+# sharpen it and name it 'SharpShanghai'
+sharpen Shanghai SharpShanghai
+
+# apply sepia effect and name it 'SepiaShanghai'
+sepia Shanghai SepiaShanghai
+
+# convert it to greyscale and name it 'GreyShanghai'
+greyscale Shanghai GreyShanghai
+
 
 # save all modified versions
 save res/example/HorizontalKirby.ppm HorizontalKirby
@@ -61,3 +76,8 @@ save res/example/BlurryKirby.png BlurryKirby
 save res/example/SharpKirby.bmp SharpKirby
 save res/example/SepiaKirby.jpg SepiaKirby
 save res/example/GreyKirby.ppm GreyKirby
+save res/example/BlurryShanghai.jpeg BlurryShanghai
+save res/example/SharpShanghai.png SharpShanghai
+save res/example/SepiaShanghai.bmp SepiaShanghai
+save res/example/GreyShanghai.jpg GreyShanghai
+save res/example/PPMShanghai.ppm Shanghai
