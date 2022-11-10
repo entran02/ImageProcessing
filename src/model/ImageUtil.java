@@ -172,6 +172,8 @@ public class ImageUtil {
             throw new IllegalArgumentException(String.format("Failed to save %s file.", fileType));
           }
           break;
+        default:
+          throw new IllegalArgumentException("Illegal file type.");
       }
     } catch (Exception e) {
       throw new IllegalArgumentException("Error in saving file.");

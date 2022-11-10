@@ -28,8 +28,8 @@ public class ImageProcessingProgram {
    *             are supplied, the System console is used for input and output.
    */
   public static void main(String[] args) {
-    Readable rd = new InputStreamReader(System.in);;
-    ImageProcessingView view = new ImageProcessingViewImpl(System.out);;
+    Readable rd = new InputStreamReader(System.in);
+    ImageProcessingView view = new ImageProcessingViewImpl(System.out);
     Appendable outAppendable = new StringBuilder();
     String scriptFile = "";
     for (int i = 0; i < args.length; i ++) { // making room for future CLI arguments
