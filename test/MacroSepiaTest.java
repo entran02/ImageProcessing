@@ -58,7 +58,7 @@ public class MacroSepiaTest {
   public final Image expectedSepia = new ImageImpl(5, 5, 255, newPixels);
 
   @Test
-  public void lumaTest() {
+  public void sepiaTest() {
     Macro sepia = new MacroSepia();
     Image sepiaKirby = TestingUtil.getKirby();
     sepia.apply(sepiaKirby);
