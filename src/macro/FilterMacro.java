@@ -48,9 +48,10 @@ public abstract class FilterMacro implements Macro {
       }
     }
     for (int i = 0; i < 3; i ++) {
-      vals[i] = Math.max(0, Math.min(img.getMaxVal(), vals[i]));
+      vals[i] = Math.round(Math.max(0, Math.min(img.getMaxVal(), vals[i])));
     }
-    return new Pixel((int) vals[0], (int) vals[1], (int) vals[2]);
+    return new Pixel((int) Math.round(vals[0]), (int) Math.round(vals[1]),
+            (int) Math.round(vals[2]));
   }
 
 }
