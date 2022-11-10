@@ -90,9 +90,17 @@ public class TestImageUtil {
   }
 
   @Test
-  public void testReadJpg(){
-    Image amongUsFromFile = ImageUtil.readFile("res/Images/amongus.jpg");
-    assertEquals(TestingUtil.getKirby(), amongUsFromFile);
+  public void testSavePNG(){
+    ImageUtil.saveFile("res/Kirby/kirby-saved.png", TestingUtil.getKirby());
+    Image kirbyFromFile = ImageUtil.readFile("res/Kirby/kirby-saved.png");
+    assertEquals(TestingUtil.getKirby(), kirbyFromFile);
+  }
+
+  @Test
+  public void testSaveBMP(){
+    ImageUtil.saveFile("res/Kirby/kirby-saved.bmp", TestingUtil.getKirby());
+    Image kirbyFromFile = ImageUtil.readFile("res/Kirby/kirby-saved.bmp");
+    assertEquals(TestingUtil.getKirby(), kirbyFromFile);
   }
 
 }
