@@ -90,8 +90,8 @@ public class TestImageUtil {
   }
 
   @Test
-  public void testReadJpg(){
-    Image amongUsFromFile = ImageUtil.readFile("res/Images/amongus.jpg");
+  public void testReadJpg() {
+    Image amongUsFromFile = ImageUtil.readFile("res/Kirby/amongus.jpg");
     assertEquals(TestingUtil.getKirby(), amongUsFromFile);
   }
 

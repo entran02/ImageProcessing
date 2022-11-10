@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -51,7 +51,7 @@ public class ImageUtil {
       case ("jpeg"):
       case ("png"):
       case ("jpg"):
-      case("bmp"):
+      case ("bmp"):
         try {
           File file = new File(filename);
           BufferedImage image = ImageIO.read(file);
@@ -155,7 +155,7 @@ public class ImageUtil {
         case ("jpeg"):
         case ("png"):
         case ("jpg"):
-        case("bmp"):
+        case ("bmp"):
           try {
             List<List<Pixel>> pixels = image.getPixels();
             BufferedImage fileImage = new BufferedImage(image.getWidth(), image.getHeight(),

@@ -1,8 +1,5 @@
 package macro;
 
-import java.util.Objects;
-
-import model.Image;
 import model.Pixel;
 
 /**
