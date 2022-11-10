@@ -1,0 +1,20 @@
+Welcome to the image processing program!
+Supported user instructions are: 
+load image-path image-name (Load an image from the path and name it)
+save image-path image-name (Save the image with that name to the specified path)
+red-component image-name dest-image-name (Create a greyscale image with the red-component of the image with the given name)
+green-component image-name dest-image-name (Create a greyscale image with the green-component of the image with the given name)
+blue-component image-name dest-image-name (Create a greyscale image with the blue-component of the image with the given name)
+value-component image-name dest-image-name (Create a greyscale image with the value-component of the image with the given name)
+luma-component image-name dest-image-name (Create a greyscale image with the luma-component of the image with the given name)
+intensity-component image-name dest-image-name (Create a greyscale image with the intensity-component of the image with the given name)
+horizontal-flip image-name dest-image-name (Flip an image horizontally to create a new image)
+vertical-flip image-name dest-image-name (Flip an image vertically to create a new image)
+brighten increment image-name dest-image-name (brighten the image by the given increment to create a new image, referred to henceforth by the given destination name. The increment may be positive (brightening) or negative (darkening))
+blur image-name dest-image-name (Blur an image to create a new image)
+sharpen image-name dest-image-name (Sharpen an image to create a new image)
+sepia image-name dest-image-name (Convert image to sepia tones to create a new image)
+greyscale image-name dest-image-name (Convert image to greyscale to create a new image)
+menu (Print supported instruction list)
+q or quit (quit the program) 
+Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Type instruction: Thank you for using this program!
