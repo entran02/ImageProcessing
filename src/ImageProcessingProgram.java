@@ -8,8 +8,10 @@ import java.util.Scanner;
 
 import controller.ImageProcessingController;
 import controller.ImageProcessingControllerImpl;
+import controller.ImageProcessingGUIController;
 import model.ImageProcessingModel;
 import model.ImageProcessingModelImpl;
+import view.ImageGraphicsView;
 import view.ImageProcessingView;
 import view.ImageProcessingViewImpl;
 
@@ -59,7 +61,10 @@ public class ImageProcessingProgram {
     }
     ImageProcessingModel model = new ImageProcessingModelImpl();
     ImageProcessingController controller = new ImageProcessingControllerImpl(model, view, rd);
-    controller.run();
+    ImageGraphicsView testView = new ImageGraphicsView();
+    ImageProcessingGUIController testController = new ImageProcessingGUIController(model, testView);
+    testController.run();
+    //controller.run();
     if (args.length > 0) { // saves output to inputfile-output.txt
       String outfile = scriptFile.substring(0, scriptFile.lastIndexOf(".")) + "-output"
               + scriptFile.substring(scriptFile.lastIndexOf("."));
