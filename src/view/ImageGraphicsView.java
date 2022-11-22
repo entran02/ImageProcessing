@@ -32,7 +32,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     loadButton.setActionCommand("load");
     loadButton.addActionListener(actionEvent);
     JButton saveButton = new JButton("save");
-    saveButton.setActionCommand("save");
+    saveButton.setActionCommand("soad");
     saveButton.addActionListener(actionEvent);
     final JPanel buttonPanel = new JPanel(new FlowLayout());
     buttonPanel.add(loadButton, BorderLayout.EAST);
@@ -51,9 +51,22 @@ public class ImageGraphicsView extends JFrame implements IView {
     pane.add(imagePanel, BorderLayout.CENTER);
 
     // side panel for picture operations
+    // TODO: make helper method to make buttons so that its less cluttered
     JSlider brightnessSlider = new JSlider(0, 200, 100);
     //brightnessSlider.addChangeListener();
     JLabel brightnessLabel = new JLabel("brightness :" + brightnessSlider.getValue());
+    JButton blueButton = new JButton("blue greyscale");
+    JButton blurButton = new JButton("blur");
+    JButton horizontalButton = new JButton("horizontal flip");
+    JButton verticalButton = new JButton("vertical flip");
+    JButton greenButton = new JButton("green greyscale");
+    JButton greyscaleButton = new JButton("greyscale");
+    JButton intensityButton = new JButton("intensity representation");
+    JButton lumaButton = new JButton("luma representation");
+    JButton redButton = new JButton("red greyscale");
+    JButton sepiaButton = new JButton("sepia filter");
+    JButton sharpenButton = new JButton("sharpen");
+    JButton valueButton = new JButton("value representation");
     Container filterPane = new JPanel();
     filterPane.setLayout(new BoxLayout(filterPane, BoxLayout.Y_AXIS));
     filterPane.add(Box.createVerticalStrut(30));
@@ -61,18 +74,43 @@ public class ImageGraphicsView extends JFrame implements IView {
     filterPane.add(brightnessSlider);
     brightnessLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     filterPane.add(brightnessLabel);
-    addOperation("blur", filterPane);
-    addOperation("sharpen", filterPane);
-    addOperation("horizontal flip", filterPane);
-    addOperation("vertical flip", filterPane);
-    addOperation("red greyscale", filterPane);
-    addOperation("green greyscale", filterPane);
-    addOperation("blue greyscale", filterPane);
-    addOperation("greyscale", filterPane);
-    addOperation("intensity representation", filterPane);
-    addOperation("luma representation", filterPane);
-    addOperation("value representation", filterPane);
-    addOperation("sepia filter", filterPane);
+    filterPane.add(Box.createVerticalStrut(10));
+    blurButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(blurButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    sharpenButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(sharpenButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    horizontalButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(horizontalButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    verticalButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(verticalButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    greyscaleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(greyscaleButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    redButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(redButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    greenButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(greenButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    blueButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(blueButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    intensityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(intensityButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    lumaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(lumaButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    valueButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(valueButton);
+    filterPane.add(Box.createVerticalStrut(10));
+    sepiaButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(sepiaButton);
+    filterPane.add(Box.createVerticalStrut(10));
     pane.add(filterPane, BorderLayout.WEST);
     filterPane.setPreferredSize(new Dimension(180, 700));
 
@@ -82,15 +120,8 @@ public class ImageGraphicsView extends JFrame implements IView {
     pane.add(temp, BorderLayout.EAST);
     temp.setPreferredSize(new Dimension(300, 700));
 
-  }
 
-  private static void addOperation(String text, Container container) {
-    container.add(Box.createVerticalStrut(10));
-    JButton button = new JButton(text);
-    button.setAlignmentX(Component.CENTER_ALIGNMENT);
-    container.add(button);
   }
-
 
   @Override
   public void makeVisible(ActionListener actionEvent) {
