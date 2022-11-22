@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.Container;
@@ -15,6 +14,12 @@ import model.Histogram;
 import model.Image;
 import model.Pixel;
 
+/**
+ * An implementation of the IView interface that uses Java Swing to
+ * create a GUI for the Image Processing Program.
+ * It provides the user with save and load functionality, photo operations,
+ * the image, as well as the corresponding histogram.
+ */
 public class ImageGraphicsView extends JFrame implements IView {
   private JPanel imagePanel, histoPanel;
   private JLabel imageLabel;
@@ -24,6 +29,12 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.imageLabel = new JLabel();
   }
 
+  /**
+   * Creates the frame that the user sees and interacts with.
+   *
+   * @param actionEvent the action listener provided to the user to operate buttons
+   * @param changeEvent the change listener provided to the user to operate sliders
+   */
   public void makeFrame(ActionListener actionEvent, ChangeListener changeEvent) {
     this.setTitle("PictureStore");
     this.setSize(1200, 700);
@@ -91,6 +102,9 @@ public class ImageGraphicsView extends JFrame implements IView {
 
   }
 
+  /**
+   * Helper method to add an operation button to the GUI.
+   */
   private static void addOperation(String text, Container container, ActionListener actionEvent) {
     container.add(Box.createVerticalStrut(10));
     JButton button = new JButton(text);
@@ -101,12 +115,23 @@ public class ImageGraphicsView extends JFrame implements IView {
   }
 
 
+  /**
+   * Makes the GUI visible to the user.
+   *
+   * @param actionEvent provides the view with an action listener for buttons that cause a command.
+   * @param changeEvent provides the view with a change listener for sliders that cause a command.
+   */
   @Override
   public void makeVisible(ActionListener actionEvent, ChangeListener changeEvent) {
     this.makeFrame(actionEvent, changeEvent);
     this.setVisible(true);
   }
 
+  /**
+   * Displays an image to the GUI for the user.
+   *
+   * @param image the image to be displayed
+   */
   @Override
   public void displayImage(Image image) {
     BufferedImage display = new BufferedImage(image.getWidth(), image.getHeight(),
@@ -123,6 +148,11 @@ public class ImageGraphicsView extends JFrame implements IView {
     imagePanel.validate();
   }
 
+  /**
+   * Displays the histogram for the corresponding image to the GUI for the user.
+   *
+   * @param image the histogram to be displayed
+   */
   @Override
   public void displayHistogram(Image image) {
     Histogram histogram = new Histogram(image);

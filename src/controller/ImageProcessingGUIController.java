@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -53,10 +52,6 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
   @Override
   public void run() throws IllegalStateException {
     this.view.makeVisible(this, this);
-  }
-
-  private String getFileName() {
-    return file.toString();
   }
 
   /**
@@ -158,20 +153,27 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
     }
   }
 
+
+  /**
+   * Invoked when a change in event occurs.
+   *
+   * @param e a ChangeEvent object
+   */
   @Override
   public void stateChanged(ChangeEvent e) {
     String descriptor = "brightness";
     JSlider source = (JSlider)e.getSource();
     if (!source.getValueIsAdjusting()) {
       int brightness = source.getValue();
-      String imgName = file.toString();
-      String destName = descriptor + imgName;
-      this.model.copy(imgName, destName);
-      this.model.apply(destName, new MacroAdjustBrightness(brightness));
-      this.view.displayImage(this.model.getImage(destName));
+      applyMacro(new MacroAdjustBrightness(brightness), descriptor);
+      source.setValue(0);
     }
   }
 
+  /**
+   * Helper method to apply the command to the image as well
+   * as making it the current image in the model to be worked on.
+   */
   private void applyMacro(Macro macro, String descriptor) {
     try {
       String imgName = file.toString();
