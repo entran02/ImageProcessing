@@ -9,7 +9,9 @@ import javax.swing.event.ChangeListener;
 
 import java.awt.Container;
 import java.awt.image.BufferedImage;
+import java.util.Map;
 
+import model.Histogram;
 import model.Image;
 import model.Pixel;
 
@@ -81,10 +83,10 @@ public class ImageGraphicsView extends JFrame implements IView {
     filterPane.setPreferredSize(new Dimension(180, 700));
 
     // histogram
-    // this.histoPanel = new Histogram();
-    JPanel temp = new JPanel();
-    pane.add(temp, BorderLayout.EAST);
-    temp.setPreferredSize(new Dimension(300, 700));
+//    this.histoPanel = new Histogram();
+    this.histoPanel = new JPanel();
+    pane.add(histoPanel, BorderLayout.EAST);
+    histoPanel.setPreferredSize(new Dimension(300, 700));
 
 
   }
@@ -123,6 +125,15 @@ public class ImageGraphicsView extends JFrame implements IView {
 
   @Override
   public void displayHistogram(Image image) {
+    Histogram histogram = new Histogram(image);
+    Map<String, int[]> histograms = histogram.getHistograms();
+
+
+
+    this.histoPanel.validate();
+//    for (String title: histograms.keySet()) {
+//
+//    }
 
   }
 
