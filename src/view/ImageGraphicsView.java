@@ -52,16 +52,19 @@ public class ImageGraphicsView extends JFrame implements IView {
     pane.add(imagePanel, BorderLayout.CENTER);
 
     // side panel for picture operations
-    JSlider brightnessSlider = new JSlider(-100, 100, 0);
+    JLabel brightnessLabel = new JLabel("brightness");
+    JSlider brightnessSlider = new JSlider(-200, 200, 0);
+    brightnessSlider.setPaintTicks(true);
+    brightnessSlider.setPaintLabels(true);
+    brightnessSlider.setMajorTickSpacing(100);
     brightnessSlider.addChangeListener(changeEvent);
-    JLabel brightnessLabel = new JLabel("brightness :" + brightnessSlider.getValue());
     Container filterPane = new JPanel();
     filterPane.setLayout(new BoxLayout(filterPane, BoxLayout.Y_AXIS));
     filterPane.add(Box.createVerticalStrut(30));
-    brightnessSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
-    filterPane.add(brightnessSlider);
     brightnessLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     filterPane.add(brightnessLabel);
+    brightnessSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
+    filterPane.add(brightnessSlider);
     addOperation("blur", filterPane, actionEvent);
     addOperation("sharpen", filterPane, actionEvent);
     addOperation("horizontal-flip", filterPane, actionEvent);
