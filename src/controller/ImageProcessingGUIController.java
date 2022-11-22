@@ -164,11 +164,8 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
     JSlider source = (JSlider)e.getSource();
     if (!source.getValueIsAdjusting()) {
       int brightness = source.getValue();
-      String imgName = file.toString();
-      String destName = descriptor + imgName;
-      this.model.copy(imgName, destName);
-      this.model.apply(destName, new MacroAdjustBrightness(brightness));
-      this.view.displayImage(this.model.getImage(destName));
+      applyMacro(new MacroAdjustBrightness(brightness), descriptor);
+      source.setValue(0);
     }
   }
 
