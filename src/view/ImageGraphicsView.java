@@ -11,9 +11,7 @@ import model.Image;
 import model.Pixel;
 
 public class ImageGraphicsView extends JFrame implements IView {
-  private JButton imageButton;
   private JPanel imagePanel, histoPanel;
-  private JTextField imageText;
   private JLabel imageLabel;
 
   public ImageGraphicsView() {
@@ -61,18 +59,18 @@ public class ImageGraphicsView extends JFrame implements IView {
     filterPane.add(brightnessSlider);
     brightnessLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     filterPane.add(brightnessLabel);
-    addOperation("blur", filterPane);
-    addOperation("sharpen", filterPane);
-    addOperation("horizontal flip", filterPane);
-    addOperation("vertical flip", filterPane);
-    addOperation("red greyscale", filterPane);
-    addOperation("green greyscale", filterPane);
-    addOperation("blue greyscale", filterPane);
-    addOperation("greyscale", filterPane);
-    addOperation("intensity representation", filterPane);
-    addOperation("luma representation", filterPane);
-    addOperation("value representation", filterPane);
-    addOperation("sepia filter", filterPane);
+    addOperation("blur", filterPane, actionEvent);
+    addOperation("sharpen", filterPane, actionEvent);
+    addOperation("horizontal-flip", filterPane, actionEvent);
+    addOperation("vertical-flip", filterPane, actionEvent);
+    addOperation("red-component", filterPane, actionEvent);
+    addOperation("green-component", filterPane, actionEvent);
+    addOperation("blue-component", filterPane, actionEvent);
+    addOperation("greyscale", filterPane, actionEvent);
+    addOperation("intensity-component", filterPane, actionEvent);
+    addOperation("luma-component", filterPane, actionEvent);
+    addOperation("value-component", filterPane, actionEvent);
+    addOperation("sepia", filterPane, actionEvent);
     pane.add(filterPane, BorderLayout.WEST);
     filterPane.setPreferredSize(new Dimension(180, 700));
 
@@ -82,13 +80,16 @@ public class ImageGraphicsView extends JFrame implements IView {
     pane.add(temp, BorderLayout.EAST);
     temp.setPreferredSize(new Dimension(300, 700));
 
+
   }
 
-  private static void addOperation(String text, Container container) {
+  private static void addOperation(String text, Container container, ActionListener actionEvent) {
     container.add(Box.createVerticalStrut(10));
     JButton button = new JButton(text);
     button.setAlignmentX(Component.CENTER_ALIGNMENT);
     container.add(button);
+    button.setActionCommand(text);
+    button.addActionListener(actionEvent);
   }
 
 
@@ -105,9 +106,9 @@ public class ImageGraphicsView extends JFrame implements IView {
 
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
-        Pixel pixel = image.getPixels().get(i).get(j);
-        Color color = new Color(pixel.getR(), pixel.getG(), pixel.getB());
-        display.setRGB(j, i, color.getRGB());
+        Pixel pix = image.getPixels().get(i).get(j);
+        Color rgb = new Color(pix.getR(), pix.getG(), pix.getB());
+        display.setRGB(j, i, rgb.getRGB());
       }
     }
     this.imageLabel.setIcon(new ImageIcon(display));
