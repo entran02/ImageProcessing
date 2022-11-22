@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.Container;
 import java.awt.image.BufferedImage;
 
@@ -19,7 +22,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.imageLabel = new JLabel();
   }
 
-  public void makeFrame(ActionListener actionEvent) {
+  public void makeFrame(ActionListener actionEvent, ChangeListener changeEvent) {
     this.setTitle("PictureStore");
     this.setSize(1200, 700);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,8 +52,8 @@ public class ImageGraphicsView extends JFrame implements IView {
     pane.add(imagePanel, BorderLayout.CENTER);
 
     // side panel for picture operations
-    JSlider brightnessSlider = new JSlider(0, 200, 100);
-    //brightnessSlider.addChangeListener();
+    JSlider brightnessSlider = new JSlider(-100, 100, 0);
+    brightnessSlider.addChangeListener(changeEvent);
     JLabel brightnessLabel = new JLabel("brightness :" + brightnessSlider.getValue());
     Container filterPane = new JPanel();
     filterPane.setLayout(new BoxLayout(filterPane, BoxLayout.Y_AXIS));
@@ -94,8 +97,8 @@ public class ImageGraphicsView extends JFrame implements IView {
 
 
   @Override
-  public void makeVisible(ActionListener actionEvent) {
-    this.makeFrame(actionEvent);
+  public void makeVisible(ActionListener actionEvent, ChangeListener changeEvent) {
+    this.makeFrame(actionEvent, changeEvent);
     this.setVisible(true);
   }
 
@@ -119,4 +122,5 @@ public class ImageGraphicsView extends JFrame implements IView {
   public void displayHistogram(Image image) {
 
   }
+
 }

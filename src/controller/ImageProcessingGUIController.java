@@ -7,6 +7,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import macro.Macro;
@@ -27,7 +29,8 @@ import model.ImageProcessingModel;
 import model.ImageUtil;
 import view.IView;
 
-public class ImageProcessingGUIController implements ImageProcessingController, ActionListener {
+public class ImageProcessingGUIController implements ImageProcessingController, ActionListener,
+        ChangeListener {
   private final ImageProcessingModel model;
   private final IView view;
   private final StringBuilder file;
@@ -49,7 +52,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
    */
   @Override
   public void run() throws IllegalStateException {
-    this.view.makeVisible(this);
+    this.view.makeVisible(this, this);
   }
 
   private String getFileName() {
@@ -151,8 +154,18 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         descriptor = "greyscale";
         applyMacro(new MacroGreyscale(), descriptor);
         break;
-      //case "brighten":
       default:
+    }
+  }
+
+  @Override
+  public void stateChanged(ChangeEvent e) {
+    String descriptor = "brightness";
+    JSlider source = (JSlider)e.getSource();
+    if (!source.getValueIsAdjusting()) {
+      int lastVal = source.getValue();
+      int brightness = lastVal + source.getValue();
+      applyMacro(new MacroAdjustBrightness(brightness), descriptor);
     }
   }
 
