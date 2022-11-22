@@ -6,7 +6,6 @@ import java.io.File;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 
 import model.ImageProcessingModel;
 import model.ImageUtil;
@@ -16,6 +15,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
   private final ImageProcessingModel model;
   private final IView view;
   private final StringBuilder file;
+  JLabel fileSaveDisplay;
 
   public ImageProcessingGUIController(ImageProcessingModel model, IView view)
           throws IllegalArgumentException {
@@ -49,7 +49,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
   @Override
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
-      case "load":
+      case "load": {
         JFileChooser chooser = new JFileChooser(".");
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG, JPEG, BMP, PNG, and PPM Images",
@@ -60,6 +60,8 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
           File f = chooser.getSelectedFile();
           String filePath = f.getPath();
           String name = f.getName();
+          file.delete(0, file.length());
+          file.append(name);
           try {
             this.model.add(name, ImageUtil.readFile(filePath));
             view.displayImage(this.model.getImage(name));
@@ -68,7 +70,22 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
             throw new IllegalArgumentException();
           }
         }
+      }
         break;
+      case "save": {
+          final JFileChooser chooser = new JFileChooser(".");
+          int retvalue = chooser.showSaveDialog(null);
+          if (retvalue == JFileChooser.APPROVE_OPTION) {
+            File f = chooser.getSelectedFile();
+            try {
+              String filePath = chooser.getSelectedFile().getPath();
+              String name = file.toString();
+              ImageUtil.saveFile(filePath, this.model.getImage(name));
+            } catch (Exception ex) {
+              throw new IllegalArgumentException();
+            }
+          }
+      }
       default:
     }
   }
