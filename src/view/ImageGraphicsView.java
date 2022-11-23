@@ -38,7 +38,7 @@ public class ImageGraphicsView extends JFrame implements IView {
    */
   public void makeFrame(ActionListener actionEvent, ChangeListener changeEvent) {
     this.setTitle("PictureStore");
-    this.setSize(1500, 700);
+    this.setSize(1250, 700);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Container pane = new JPanel(new BorderLayout());
 
@@ -60,7 +60,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.imagePanel = new JPanel();
     this.imagePanel.setBorder(BorderFactory.createTitledBorder("Image"));
     JScrollPane imageScrollPane = new JScrollPane(this.imageLabel);
-    imageScrollPane.setPreferredSize(new Dimension(650, 500));
+    imageScrollPane.setPreferredSize(new Dimension(700, 500));
     imagePanel.add(imageScrollPane);
 
     pane.add(imagePanel, BorderLayout.CENTER);
@@ -95,11 +95,10 @@ public class ImageGraphicsView extends JFrame implements IView {
     filterPane.setPreferredSize(new Dimension(180, 700));
 
     // histogram
-//    this.histoPanel = new Histogram();
     this.histoPanel = new JPanel();
+    this.histoPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
     pane.add(histoPanel, BorderLayout.EAST);
-    histoPanel.setPreferredSize(new Dimension(600, 600));
-
+    histoPanel.setPreferredSize(new Dimension(450, 450));
 
   }
 
@@ -137,7 +136,6 @@ public class ImageGraphicsView extends JFrame implements IView {
   public void displayImage(Image image) {
     BufferedImage display = new BufferedImage(image.getWidth(), image.getHeight(),
             BufferedImage.TYPE_INT_RGB);
-
     for (int i = 0; i < image.getHeight(); i++) {
       for (int j = 0; j < image.getWidth(); j++) {
         Pixel pix = image.getPixels().get(i).get(j);
@@ -158,7 +156,7 @@ public class ImageGraphicsView extends JFrame implements IView {
   public void displayHistogram(Image image) {
     this.histoPanel.removeAll();
     HistogramPanel histo = new HistogramPanel(new Histogram(image));
-    histo.setPreferredSize(new Dimension(500, 500));
+    histo.setPreferredSize(new Dimension(425, 425));
     histo.setBorder(BorderFactory.createLineBorder(Color.black));
     this.histoPanel.add(histo, BorderLayout.CENTER);
     this.histoPanel.validate();
