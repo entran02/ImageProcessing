@@ -8,6 +8,7 @@ import javax.swing.event.ChangeListener;
 
 import java.awt.Container;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Map;
 
 import model.Histogram;
@@ -24,6 +25,7 @@ public class ImageGraphicsView extends JFrame implements IView {
   private JPanel imagePanel;
   private JPanel histoPanel;
   private JLabel imageLabel;
+  private Container pane;
 
   public ImageGraphicsView() {
     super();
@@ -40,7 +42,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.setTitle("PictureStore");
     this.setSize(1250, 700);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    Container pane = new JPanel(new BorderLayout());
+    this.pane = new JPanel(new BorderLayout());
 
     //load and save panel
     JButton loadButton = new JButton("load");
@@ -162,4 +164,14 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.histoPanel.validate();
   }
 
+  /**
+   * Render a specific message as a popup.
+   *
+   * @param message the message to be transmitted
+   * @throws IOException if transmission to the provided destination fails
+   */
+  @Override
+  public void renderMessage(String message) throws IOException {
+    JOptionPane.showMessageDialog(this.pane, message);
+  }
 }

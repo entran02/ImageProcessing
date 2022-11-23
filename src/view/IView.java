@@ -9,7 +9,7 @@ import model.Image;
 /**
  * Represents an interface for the views of the Image processing program.
  */
-public interface IView {
+public interface IView extends ImageProcessingView {
 
   /**
    * Makes the GUI visible to the user.
