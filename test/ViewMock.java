@@ -1,4 +1,5 @@
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.event.ChangeListener;
 
@@ -52,5 +53,16 @@ public class ViewMock implements IView {
     } catch (Exception e) {
       return;
     }
+  }
+
+  /**
+   * Render a specific message to the provided data destination.
+   *
+   * @param message the message to be transmitted
+   * @throws IOException if transmission to the provided destination fails
+   */
+  @Override
+  public void renderMessage(String message) throws IOException {
+    log.append("Message displayed: ").append(message).append("\n");
   }
 }
