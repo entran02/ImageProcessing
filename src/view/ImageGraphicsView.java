@@ -21,7 +21,8 @@ import model.Pixel;
  * the image, as well as the corresponding histogram.
  */
 public class ImageGraphicsView extends JFrame implements IView {
-  private JPanel imagePanel, histoPanel;
+  private JPanel imagePanel;
+  private JPanel histoPanel;
   private JLabel imageLabel;
 
   public ImageGraphicsView() {
@@ -37,7 +38,7 @@ public class ImageGraphicsView extends JFrame implements IView {
    */
   public void makeFrame(ActionListener actionEvent, ChangeListener changeEvent) {
     this.setTitle("PictureStore");
-    this.setSize(1200, 700);
+    this.setSize(1500, 700);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Container pane = new JPanel(new BorderLayout());
 
@@ -97,7 +98,7 @@ public class ImageGraphicsView extends JFrame implements IView {
 //    this.histoPanel = new Histogram();
     this.histoPanel = new JPanel();
     pane.add(histoPanel, BorderLayout.EAST);
-    histoPanel.setPreferredSize(new Dimension(300, 700));
+    histoPanel.setPreferredSize(new Dimension(600, 600));
 
 
   }
@@ -155,16 +156,12 @@ public class ImageGraphicsView extends JFrame implements IView {
    */
   @Override
   public void displayHistogram(Image image) {
-    Histogram histogram = new Histogram(image);
-    Map<String, int[]> histograms = histogram.getHistograms();
-
-
-
+    this.histoPanel.removeAll();
+    HistogramPanel histo = new HistogramPanel(new Histogram(image));
+    histo.setPreferredSize(new Dimension(500, 500));
+    histo.setBorder(BorderFactory.createLineBorder(Color.black));
+    this.histoPanel.add(histo, BorderLayout.CENTER);
     this.histoPanel.validate();
-//    for (String title: histograms.keySet()) {
-//
-//    }
-
   }
 
 }

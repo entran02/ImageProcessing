@@ -181,6 +181,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       this.model.copy(imgName, destName);
       this.model.apply(destName, macro);
       this.view.displayImage(this.model.getImage(destName));
+      this.view.displayHistogram(this.model.getImage(destName));
       this.file.delete(0, file.length());
       this.file.append(destName);
     } catch (NoSuchElementException | IllegalArgumentException e) {
