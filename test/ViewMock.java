@@ -23,7 +23,6 @@ public class ViewMock implements IView {
    */
   @Override
   public void makeVisible(ActionListener actionEvent, ChangeListener changeEvent) {
-
   }
 
   /**
