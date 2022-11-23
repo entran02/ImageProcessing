@@ -42,3 +42,31 @@ Note: Images may only be manipulated if they have already been loaded in (see ab
     - applies sepia filter to `<image-name>` and stores it as `<dest-image-name>`
 - `greyscale <image-name> <dest-image-name>`
     - converts `<image-name>` to greyscale with the luma value of each pixel and stores it as `<dest-image-name>`
+## GUI use:
+- `horizontal-flip button`
+  - flips `<image-name>` horizontally and stores it as `<dest-image-name>`
+- `vertical-flip button`
+  - flips `<image-name>` vertical and stores it as `<dest-image-name>`
+- `brighten <increment> <image-name> <dest-image-name>`
+  - brightens `<image-name>` by `<increment>` amount and stores it as `<dest-image-name>`
+  - if `<increment>` is a negative value, the image darkens
+- `red-component <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the red channel of each pixel and stores it as `<dest-image-name>`
+- `blue-component <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the blue channel of each pixel and stores it as `<dest-image-name>`
+- `green-component <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the green channel of each pixel and stores it as `<dest-image-name>`
+- `value-representation <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the maximum value of each pixel and stores it as `<dest-image-name>`
+- `luma-representation <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the luma value of each pixel and stores it as `<dest-image-name>`
+- `intensity-representation <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the average value of each pixel and stores it as `<dest-image-name>`
+- `blur <image-name> <dest-image-name>`
+  - blurs `<image-name>` and stores it as `<dest-image-name>`
+- `sharpen <image-name> <dest-image-name>`
+  - sharpens `<image-name>` and stores it as `<dest-image-name>`
+- `sepia <image-name> <dest-image-name>`
+  - applies sepia filter to `<image-name>` and stores it as `<dest-image-name>`
+- `greyscale <image-name> <dest-image-name>`
+  - converts `<image-name>` to greyscale with the luma value of each pixel and stores it as `<dest-image-name>`
