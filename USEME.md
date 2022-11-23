@@ -43,30 +43,52 @@ Note: Images may only be manipulated if they have already been loaded in (see ab
 - `greyscale <image-name> <dest-image-name>`
     - converts `<image-name>` to greyscale with the luma value of each pixel and stores it as `<dest-image-name>`
 ## GUI use:
+Note: Images may only be manipulated if they have already been loaded in (see below)
+- `load button`
+  - button is located at the top of the GUI
+  - loads and image from the selected path and displays it for further manipulation
+- `save button`
+  - button is located at the top of the GUI
+  - saves the image with given name at selected path in the directory navigator. Supports PPM, png, jpg, jpeg, bmp.
+  - only the current displayed photo can be saved.
+  - must be saved with file extension in name `i.e. photo.jpeg`
 - `horizontal-flip button`
-  - flips `<image-name>` horizontally and stores it as `<dest-image-name>`
+  - located on the left bar of the GUI
+  - flips the current displayed photo horizontally
 - `vertical-flip button`
-  - flips `<image-name>` vertical and stores it as `<dest-image-name>`
-- `brighten <increment> <image-name> <dest-image-name>`
-  - brightens `<image-name>` by `<increment>` amount and stores it as `<dest-image-name>`
-  - if `<increment>` is a negative value, the image darkens
-- `red-component <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the red channel of each pixel and stores it as `<dest-image-name>`
-- `blue-component <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the blue channel of each pixel and stores it as `<dest-image-name>`
-- `green-component <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the green channel of each pixel and stores it as `<dest-image-name>`
-- `value-representation <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the maximum value of each pixel and stores it as `<dest-image-name>`
-- `luma-representation <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the luma value of each pixel and stores it as `<dest-image-name>`
-- `intensity-representation <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the average value of each pixel and stores it as `<dest-image-name>`
-- `blur <image-name> <dest-image-name>`
-  - blurs `<image-name>` and stores it as `<dest-image-name>`
-- `sharpen <image-name> <dest-image-name>`
-  - sharpens `<image-name>` and stores it as `<dest-image-name>`
-- `sepia <image-name> <dest-image-name>`
-  - applies sepia filter to `<image-name>` and stores it as `<dest-image-name>`
-- `greyscale <image-name> <dest-image-name>`
-  - converts `<image-name>` to greyscale with the luma value of each pixel and stores it as `<dest-image-name>`
+  - located on the left bar of the GUI
+  - flips the current displayed photo vertically 
+- `brightness slider`
+  - located at the left bar of the GUI 
+  - brightens the displayed image by the selected slider amount from -200 to 200
+  - if slider value is a negative value, the image darkens
+- `red-component button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the red channel of each pixel
+- `blue-component button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the blue channel of each pixel
+- `green-component button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the green channel of each pixel
+- `value-representation button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the maximum value of each pixel
+- `luma-representation button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the luma value of each pixel
+- `intensity-representation button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the average value of each pixel
+- `blur button`
+  - located on the left bar of the GUI
+  - blurs displayed image
+- `sharpen button`
+  - located on the left bar of the GUI
+  - sharpens displayed image
+- `sepia button`
+  - located on the left bar of the GUI
+  - applies sepia filter to the displayed image 
+- `greyscale button`
+  - located on the left bar of the GUI
+  - converts displayed image to greyscale with the luma value of each pixel
