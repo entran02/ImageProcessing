@@ -40,9 +40,15 @@ public class ImageProcessingGUIControllerTest {
   }
 
   @Test
-  public void testLoad() {
-    controller.actionPerformed(new ActionEvent("", 0, "load"));
-    String expectedOut = "";
+  public void testRedComponent() {
+    this.model = new ImageProcessingModelImpl();
+    model.add("Image", TestingUtil.getKirby());
+    this.log = new StringBuilder();
+    this.view = new ViewMock(log);
+    this.controller = new ImageProcessingGUIController(model, view);
+    controller.actionPerformed(new ActionEvent("", 0, "red-component"));
+    String expectedOut = "Image displayed\n" +
+            "Histogram displayed\n";
     assertEquals(expectedOut, log.toString());
   }
 
