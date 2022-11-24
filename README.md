@@ -38,6 +38,27 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
 - Pixel.java: represents a single pixel. Has RGB values.
 
 ----------------------------
+### Design Changes:
+- V2 - Extended use update
+  - Created new methods in the ImageUtil class
+    - Extends program use to allow for other file types to be read and saved
+  - Created AMacro class
+    - Allows for abstraction of logic and minimizes code duplication
+  - Created FilterMacro, ColorTransformationMacro as well as other Macro classes
+    - Allows for new operations including: blur, sharpen, sepia, and greyscale
+  - Edited ImageProcessingControllerImpl
+    - To allow for the user to use new macro operations
+- V3 - GUI update
+  - Implemented IView interface and implementing class ImageGraphicsView
+    - Used to create the GUI interface in which the user interacts with including: buttons to load and save image, photo operation buttons, image display, and histogram display.
+  - Created ImageProcessingGUIController class
+    - Allows for the user events from the GUI to interact with the model, in order for the user to user the Image Program.
+  - Created Histogram and HistogramPanel classes
+    - Histogram class located in model package and contains the logic for the histogram
+    - HistogramPanel is the object for the histogram when displayed on the GUI
+
+
+----------------------------
 ### Image Credts:
 - `Kirby.ppm` created by Evan Tran manually with Intellij color-picker
 - `shanghai.jpg` from https://en.wikipedia.org/wiki/File:Pudong_Shanghai_November_2017_panorama.jpg under Creative Commons License 
