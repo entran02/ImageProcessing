@@ -12,6 +12,9 @@ public class ScriptParsingUtil {
    * @return parsed script file
    */
   public static String parseScript(Scanner sc) {
+    if (sc == null) {
+      throw new IllegalArgumentException("Empty Scanner");
+    }
     StringBuilder builder = new StringBuilder();
     //read the file line by line, and populate a string. This will throw away any comment lines
     while (sc.hasNextLine()) {
