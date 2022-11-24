@@ -92,3 +92,9 @@ Note: Images may only be manipulated if they have already been loaded in (see be
 - `greyscale button`
   - located on the left bar of the GUI
   - converts displayed image to greyscale with the luma value of each pixel
+- `image display`
+  - located in the center of the GUI
+  - display the image
+- `histogram display`
+  - located on the right of the GUI
+  - displays the histogram of the current image
