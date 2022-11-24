@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class ScriptParsingUtil {
   /**
-   * Parses scanner, deletes comments, returns output as a string
+   * Parses scanner, deletes comments, returns output as a string.
    * @param sc Scanner containing the file
    * @return parsed script file
    */

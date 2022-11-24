@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.*;
+import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 
 import controller.ImageProcessingGUIController;
@@ -11,8 +11,11 @@ import model.ImageProcessingModel;
 import model.ImageProcessingModelImpl;
 import view.IView;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Testing the GUI controller.
+ */
 public class ImageProcessingGUIControllerTest {
   private ImageProcessingModel model;
   private IView view;

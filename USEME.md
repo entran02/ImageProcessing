@@ -3,7 +3,11 @@
 - `-file <script-path.txt>`
     - Loads script file, executes commands in the file, then quits program.
     - i.e. `java -jar ImageProgessingProgram.jar -file exampleScript.txt`
-## General:
+- `-text`
+    - Loads the program in command-line mode
+- No arguments
+    - Loads the program GUI
+## Text Comamnds:
 - `menu`
     - prints the menu
 - `quit` or `q`
@@ -13,7 +17,7 @@
 - `save <image-path> <image-name>`
     - saves the image with that name at the specified path. Saves the image as the designated format i.e. `save img.png image1` saves the image as a png. Support PPM, png, jpg, bmp.
     - Only images previously loaded can be saved.
-## Image Manipulation:
+### Image Manipulation:
 Note: Images may only be manipulated if they have already been loaded in (see above)
 - `horizontal-flip <image-name> <dest-image-name>`
     - flips `<image-name>` horizontally and stores it as `<dest-image-name>`

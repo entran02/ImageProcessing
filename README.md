@@ -2,9 +2,10 @@
 Joshua Cheng and Evan Tran CS3500 HW6
 
 ## To Run:
-1. ImageProgessingProgram.jar with no arguments. Instructions are printed out.
+1. ImageProgessingProgram.jar with no arguments. GUI is launched.
 2. ImageProgessingProgram.jar with argument `"-file path/to/script.txt"` containing path to text file containing a list of commands separated by a newline. See example script in `exampleScript.txt` included.
 Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Image outputs are in res/examples)
+3. ImageProcessingProgram.jar with argument `-text` command-line mode launched.
 
 ---------------------------
 ## Model -- ImageProcessingModel.java

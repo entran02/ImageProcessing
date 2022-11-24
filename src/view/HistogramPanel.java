@@ -1,18 +1,24 @@
 package view;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.*;
+
+import javax.swing.JPanel;
 
 import model.Histogram;
 
+/**
+ * JPanel that displays a histogram.
+ */
 public class HistogramPanel extends JPanel {
   private Histogram histogram;
 
   /**
    * Set data and show the updated histogram.
+   *
    * @param histogram histogram to display
    */
   public HistogramPanel(Histogram histogram) {
@@ -43,7 +49,8 @@ public class HistogramPanel extends JPanel {
       g.setColor(colorLookup.get(e.getKey()));
       for (int i = 0; i < e.getValue().length; i++) {
         int binHeight = (e.getValue()[i] * height) / histogram.getMaxCount();
-        g.drawLine(prevx, prevy, (int) (i * ((float) getWidth() / (float) e.getValue().length)), height - binHeight);
+        g.drawLine(prevx, prevy, (int) (i * ((float) getWidth() / (float) e.getValue().length)),
+                height - binHeight);
         prevx = (int) (i * ((float) getWidth() / (float) e.getValue().length));
         prevy = height - binHeight;
       }
