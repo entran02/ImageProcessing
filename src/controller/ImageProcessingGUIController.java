@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.NoSuchElementException;
 
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -28,12 +29,22 @@ import model.ImageProcessingModel;
 import model.ImageUtil;
 import view.IView;
 
+/**
+ * Implementation of Image Processing Controller to control the GUI.
+ */
 public class ImageProcessingGUIController implements ImageProcessingController, ActionListener,
         ChangeListener {
   private final ImageProcessingModel model;
   private final IView view;
   private final StringBuilder file;
 
+  /**
+   * Constructor that sets the model and view.
+   *
+   * @param model Model which stores images
+   * @param view  GUI view
+   * @throws IllegalArgumentException if null inputs
+   */
   public ImageProcessingGUIController(ImageProcessingModel model, IView view)
           throws IllegalArgumentException {
     if (model == null || view == null) {
@@ -85,21 +96,21 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
           }
         }
       }
-        break;
+      break;
       case "save": {
-          final JFileChooser chooser = new JFileChooser(".");
-          int retvalue = chooser.showSaveDialog(null);
-          if (retvalue == JFileChooser.APPROVE_OPTION) {
-            File f = chooser.getSelectedFile();
-            try {
-              String filePath = chooser.getSelectedFile().getPath();
-              String name = this.file.toString();
-              ImageUtil.saveFile(filePath, this.model.getImage(name));
-            } catch (Exception ex) {
-              throw new IllegalArgumentException();
-            }
+        final JFileChooser chooser = new JFileChooser(".");
+        int retvalue = chooser.showSaveDialog(null);
+        if (retvalue == JFileChooser.APPROVE_OPTION) {
+          File f = chooser.getSelectedFile();
+          try {
+            String filePath = chooser.getSelectedFile().getPath();
+            String name = this.file.toString();
+            ImageUtil.saveFile(filePath, this.model.getImage(name));
+          } catch (Exception ex) {
+            throw new IllegalArgumentException();
           }
-          break;
+        }
+        break;
       }
       case "red-component":
         descriptor = "red";
@@ -162,7 +173,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
   @Override
   public void stateChanged(ChangeEvent e) {
     String descriptor = "brightness";
-    JSlider source = (JSlider)e.getSource();
+    JSlider source = (JSlider) e.getSource();
     if (!source.getValueIsAdjusting()) {
       int brightness = source.getValue();
       applyMacro(new MacroAdjustBrightness(brightness), descriptor);
