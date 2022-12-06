@@ -134,4 +134,8 @@ public class PixelImpl implements Pixel {
             this.channelValues[1] + "\n" +
             this.channelValues[2] + "\n";
   }
+
+  public PixelImpl copy() {
+    return new PixelImpl(redChannel, greenChannel, blueChannel);
+  }
 }

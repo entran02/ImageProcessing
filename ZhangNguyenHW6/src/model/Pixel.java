@@ -81,4 +81,5 @@ public interface Pixel {
    */
   String toString();
 
+  Pixel copy();
 }

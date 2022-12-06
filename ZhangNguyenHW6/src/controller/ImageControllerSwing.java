@@ -70,10 +70,57 @@ public class ImageControllerSwing implements ActionListener {
         this.doCommand(command, currImage);
         break;
       case "mosaic":
+        /*
+        Start of trial code to implement mosaic
+
+        // preloads shanghai example picture
+        File fileName = new File("res/shanghai.jpg");
+        BufferedImage image;
+
+        // sets image to the image in the file
+        try {
+        image = ImageIO.read(fileName);
+      } catch (IOException ex) {
+        this.writeMessage("Unable to read image");
+        throw new IllegalArgumentException("Unable to read image");
+      }
+
+        int height = image.getHeight();
+        int width = image.getWidth();
+        Pixel[][] imageChannels = new Pixel[height][width];
+
+        for (int row = 0; row < height; row++) {
+          for (int col = 0; col < width; col++) {
+            Color color = new Color(image.getRGB(col, row));
+            int[] colorArray = {color.getRed(), color.getGreen(), color.getBlue()};
+            Pixel pixel = new PixelImpl(colorArray);
+            imageChannels[row][col] = pixel;
+          }
+        }
+        // adds the image to the model
+        ImageModel currImg = new ImageModelImpl(imageChannels, height, width, 1000);
+        this.model.addImage(fileName.getName(), currImg);
+        ------------------------------------------------------------------------------
+        end of attempt
+        */
+
+        /*
+         Unable to add mosaic to GUI controller, due mainly to the code's restriction
+         in that the controller was not designed/able to apply commands via buttons/
+         actionListeners. The GUI is also unable to display images after manipulation without
+         editing original code as the loadImage method displays a java.awt.Image but the getter
+         for an image in the model returns a 2d array of pixels that can be used to make an
+         ImageModel, but not java.awt.Image. The following code is a skeleton on how to implement
+         the mosaic button if the above functionality was implemented prior.
+        */
+
+        // asks users for how many seeds
         String askSeeds = JOptionPane.showInputDialog("How many seeds?");
         if (askSeeds.matches("^[a-zA-Z0-9]*$")) {
-          new Mosaic(Integer.parseInt(askSeeds), "res/shanghai.jpg/", "shanghai-GUI");
-          //this.view.loadImage(this.model.getImage("shanghai-GUI"));
+          new Mosaic(Integer.parseInt(askSeeds), "name of file when in model",
+                  System.out.format("name of file when in model-%d",
+                          Integer.parseInt(askSeeds)).toString());
+          //this.view.loadImage(this.model.getter(imageName);
         } else {
           try {
             this.view.renderMessage("not valid seed value, try again.");
