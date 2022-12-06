@@ -38,6 +38,10 @@ public class ImageGUIViewImpl extends JFrame implements ImageGUIView {
 
   private ImageModel imageModel;
 
+  // new fields
+
+  private JButton mosaic;
+
 
   /**
    * Constructs the GUI implementation of the view.
@@ -66,6 +70,8 @@ public class ImageGUIViewImpl extends JFrame implements ImageGUIView {
     this.flip = new JButton("flip");
     this.colorTransformation = new JButton("color transformation");
     this.filter = new JButton("filter");
+    // new button
+    this.mosaic = new JButton("mosaic");
   }
 
   /**
@@ -91,6 +97,8 @@ public class ImageGUIViewImpl extends JFrame implements ImageGUIView {
     commandPanel.add(this.flip);
     commandPanel.add(this.colorTransformation);
     commandPanel.add(this.filter);
+    // add new button to GUI
+    commandPanel.add(this.mosaic);
 
   }
 
@@ -146,12 +154,17 @@ public class ImageGUIViewImpl extends JFrame implements ImageGUIView {
     this.brighten.setActionCommand("brighten");
     this.flip.setActionCommand("flip");
     this.colorTransformation.setActionCommand("color transformation");
+    // set action command for mosaic
+    this.mosaic.setActionCommand("mosaic");
 
     this.load.addActionListener(actionListener);
     this.save.addActionListener(actionListener);
     this.brighten.addActionListener(actionListener);
     this.flip.addActionListener(actionListener);
     this.colorTransformation.addActionListener(actionListener);
+    // set action listener for mosaic
+    this.mosaic.addActionListener(actionListener);
+
 
   }
 

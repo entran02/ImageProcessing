@@ -1,6 +1,6 @@
 package controller;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFileChooser;
+import javax.swing.*;
+
+import controller.commands.Mosaic;
 import model.ImageModel;
 import model.ImageModelImpl;
 import model.ImageProcessorModel;
@@ -38,6 +40,7 @@ public class ImageControllerSwing implements ActionListener {
 
     this.model = new ImageProcessorModelImpl();
     this.view = view;
+    this.file = new StringBuilder("Image");
   }
 
   /**
@@ -66,6 +69,19 @@ public class ImageControllerSwing implements ActionListener {
       case "color transformation":
       case "filter":
         this.doCommand(command, currImage);
+        break;
+      case "mosaic":
+        String askSeeds = JOptionPane.showInputDialog("How many seeds?");
+        if (askSeeds.matches("^[a-zA-Z0-9]*$")) {
+          new Mosaic(Integer.parseInt(askSeeds), "res/shanghai.jpg/", "shanghai-GUI");
+          //this.view.loadImage(this.model.getImage("shanghai-GUI"));
+        } else {
+          try {
+            this.view.renderMessage("not valid seed value, try again.");
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        }
         break;
       default:
         this.view.renderError("Invalid command. Please try again.");
