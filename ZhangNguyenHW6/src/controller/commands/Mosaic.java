@@ -26,18 +26,30 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
    * @param newFileName new file name of image
    */
   public Mosaic(int numSeeds, String fileName, String newFileName) {
+    this(numSeeds, fileName, newFileName, new Random());
+  }
+
+  /**
+   * Constructor to apply mosaic effect with given Random object.
+   *
+   * @param numSeeds    number of seeds for mosaicing an image
+   * @param fileName    filename of image to mosaic
+   * @param newFileName new file name of image
+   * @param rand        random object used to generate seeds
+   */
+  public Mosaic(int numSeeds, String fileName, String newFileName, Random rand) {
     super(fileName, newFileName);
     if (numSeeds <= 0) {
       throw new IllegalArgumentException("Num seeds must be non-zero positive");
     }
     this.numSeeds = numSeeds;
-    this.rand = new Random();
+    this.rand = Objects.requireNonNull(rand);
   }
 
   /**
    * Applies the respective command object.
    *
-   * @param model
+   * @param model Image Processor Model that stores the images.
    */
   @Override
   public void apply(ImageProcessorModel model) {
