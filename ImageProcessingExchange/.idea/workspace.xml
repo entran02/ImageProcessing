@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="73e4c023-df50-4758-93b7-563af7d91a84" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/HW4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/ImageProcessor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClassDiagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW4.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageProcessingExchange.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/USEME.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/main/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/out/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/out/artifacts/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/out/production/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/out/test/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/res/._questionnaire.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/src/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/__MACOSX/src/controller/._.DS_Store" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/HEAD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/description" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/applypatch-msg.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/commit-msg.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/fsmonitor-watchman.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/post-update.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/pre-applypatch.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/pre-commit.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/pre-merge-commit.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/pre-push.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/pre-rebase.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/pre-receive.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/prepare-commit-msg.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/hooks/update.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/info/exclude" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ImageProcessor_jar/HW4.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/ImageController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/ImageControllerImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/ImageControllerSwing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/ImageProgram.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/ImageProgramSwing.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/commands/AbstractCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/commands/Brighten.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/commands/ColorTransformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/commands/Filter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/commands/Flip.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/controller/commands/ImageCommand.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/Histogram.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/HistogramImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/ImageModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/ImageModelImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/ImageModelState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/ImageProcessorModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/ImageProcessorModelImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/Pixel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/model/PixelImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/view/ImageGUIView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/view/ImageGUIViewImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/view/ImageModelTextView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ImageProcessingExchange/view/ImageModelView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/ImageProcessor.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/questionnaire.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/script.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImageControllerImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImageControllerSwing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImageProgram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImageProgramSwing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/commands/AbstractCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/commands/Brighten.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/commands/ColorTransformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/commands/Filter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/commands/Flip.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/commands/ImageCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Histogram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/HistogramImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ImageModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ImageModelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ImageModelState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ImageProcessorModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ImageProcessorModelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PixelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ImageGUIView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ImageGUIViewImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ImageModelTextView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ImageModelView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestBrighten.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestColorPixel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestFlip.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestGreyscale.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestHistogram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestImageModelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestLoad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestPPMImageProcessorModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestSave.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestScript.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestView.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IEb8D6Ad8xAKhRVpSyePJcVaOb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/14138/Desktop/CS3500/ImageProcessing/ZhangNguyenHW6"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ImageProgramSwing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="controller.ImageProgramSwing" />
+      <module name="ImageProcessingExchange" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ImageProgramSwing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="73e4c023-df50-4758-93b7-563af7d91a84" name="Changes" comment="" />
+      <created>1669749527919</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1669749527919</updated>
+      <workItem from="1669749529970" duration="1612000" />
+      <workItem from="1669839796135" duration="288000" />
+      <workItem from="1669962316190" duration="3709000" />
+      <workItem from="1670272117982" duration="3633000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
