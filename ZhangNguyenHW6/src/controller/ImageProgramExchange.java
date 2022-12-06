@@ -5,7 +5,6 @@ import java.io.StringReader;
 
 import model.ImageProcessorModel;
 import model.ImageProcessorModelImpl;
-import view.ImageGUIView;
 import view.ImageGUIViewImpl;
 import view.ImageModelTextView;
 import view.ImageModelView;
