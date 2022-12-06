@@ -40,7 +40,6 @@ public class ImageControllerSwing implements ActionListener {
 
     this.model = new ImageProcessorModelImpl();
     this.view = view;
-    this.file = new StringBuilder("Image");
   }
 
   /**
