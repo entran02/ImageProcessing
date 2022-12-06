@@ -3,28 +3,26 @@ package controller.commands;
 import model.ImageModel;
 import model.ImageModelImpl;
 import model.ImageProcessorModel;
-import model.Pixel;
 import model.PixelImpl;
 
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeMap;
 
+/**
+ * Command to apply mosaic effect on an ImageModel.
+ */
 public class Mosaic extends AbstractCommand implements ImageCommand {
   private int numSeeds;
   private Random rand;
+
   /**
-   * Abstract constructor for command objects.
+   * Constructor to apply mosaic effect on an Image.
    *
-   * @param numSeeds number of seeds for mosaicing an image
-   * @param fileName file name of image to mosaic
+   * @param numSeeds    number of seeds for mosaicing an image
+   * @param fileName    file name of image to mosaic
    * @param newFileName new file name of image
    */
   public Mosaic(int numSeeds, String fileName, String newFileName) {
@@ -54,30 +52,51 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
     }
   }
 
+  /**
+   * Represents an X-Y coordinate pair.
+   */
   private class Coord {
     private int x;
     private int y;
 
+    /**
+     * Constructor for setting x-y coordinate pair.
+     *
+     * @param x x coordinate
+     * @param y y coordinate
+     */
     public Coord(int x, int y) {
       this.x = x;
       this.y = y;
     }
 
+    /**
+     * Get x coordinate.
+     *
+     * @return x coordinate
+     */
     public int getX() {
       return x;
     }
 
+    /**
+     * Get y coordinate.
+     *
+     * @return y coordinate
+     */
     public int getY() {
       return y;
     }
 
+    /**
+     * Compute straight-line distance to an x-y pair.
+     *
+     * @param x x coordinate
+     * @param y y coordinate
+     * @return distance from this to given x-y coordinates
+     */
     public double distance(int x, int y) {
       return Math.sqrt(Math.pow(this.x - x, 2) + Math.pow((this.y - y), 2));
-    }
-
-    @Override
-    public String toString() {
-      return String.format("x: %d y: %d", x, y);
     }
 
     @Override
@@ -100,6 +119,12 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
     }
   }
 
+  /**
+   * Applies mosaic effect to given image. Returns a copy of image with mosaic effect.
+   *
+   * @param img image to apply effect on
+   * @return image with mosaic effect
+   */
   private ImageModel mosaic(ImageModel img) {
     // map of coord_of_seed : list_of_pixels_belonging_to_this_cluster
     Map<Coord, ArrayList<Coord>> clusters = new HashMap<>();
@@ -109,33 +134,37 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
       clusters.put(new Coord(rand.nextInt(img.getWidth()),
               rand.nextInt(img.getHeight())), new ArrayList<Coord>());
     }
-    long startTime = System.currentTimeMillis();
     this.sortIntoCluster(clusters, img);
-    System.out.println("sorting took: " + (System.currentTimeMillis() - startTime));
 
     ImageModel newimg = new ImageModelImpl(img.getHeight(), img.getWidth(), img.getMaxValue());
 
-    for (Map.Entry<Coord, ArrayList<Coord>> c: clusters.entrySet()) {
+    for (Map.Entry<Coord, ArrayList<Coord>> c : clusters.entrySet()) {
       if (c.getValue().size() == 0) {
         continue;
       }
       int[] avg = new int[3];
-      for (Coord coord: c.getValue()) {
-        avg[0] += img.getPixelAt(coord.getX(), coord.getY()).getRedChannel();
-        avg[1] += img.getPixelAt(coord.getX(), coord.getY()).getGreenChannel();
-        avg[2] += img.getPixelAt(coord.getX(), coord.getY()).getBlueChannel();
+      for (Coord coord : c.getValue()) {
+        avg[0] += img.getPixelAt(coord.getY(), coord.getX()).getRedChannel();
+        avg[1] += img.getPixelAt(coord.getY(), coord.getX()).getGreenChannel();
+        avg[2] += img.getPixelAt(coord.getY(), coord.getX()).getBlueChannel();
       }
       avg[0] /= c.getValue().size();
       avg[1] /= c.getValue().size();
       avg[2] /= c.getValue().size();
-      for (Coord coord: c.getValue()) {
-        newimg.updateImagePixel(coord.getX(), coord.getY(), new PixelImpl(avg[0], avg[1], avg[2]));
+      for (Coord coord : c.getValue()) {
+        newimg.updateImagePixel(coord.getY(), coord.getX(), new PixelImpl(avg[0], avg[1], avg[2]));
       }
     }
 
     return newimg;
   }
 
+  /**
+   * Partitions the seeds into sectors, then finds the closest seed to each pixel.
+   *
+   * @param clusters map of seed: list of closest pixels
+   * @param img      image to apply effect on
+   */
   private void sortIntoCluster(Map<Coord, ArrayList<Coord>> clusters,
                                ImageModel img) {
     // sort the seeds into rectangular "sectors",
@@ -145,19 +174,19 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
 
     // sector(xy coord of top left corner) : list_of_seeds_in_sector
     Map<Coord, ArrayList<Coord>> sectors = new HashMap<>();
-    for (int i = 0; i < 11; i ++) {
-      for (int j = 0; j < 11; j ++) {
-        sectors.put(new Coord(i*sectorX, j*sectorY), new ArrayList<Coord>());
+    for (int i = 0; i < 11; i++) {
+      for (int j = 0; j < 11; j++) {
+        sectors.put(new Coord(i * sectorX, j * sectorY), new ArrayList<Coord>());
       }
     }
 
-    for (Coord c: clusters.keySet()) {
-      sectors.get(new Coord(Math.min((c.getX() / sectorX) * sectorX, sectorX*10),
-              Math.min((c.getY() / sectorY) * sectorY, sectorY*10))).add(c);
+    for (Coord c : clusters.keySet()) {
+      sectors.get(new Coord(Math.min((c.getX() / sectorX) * sectorX, sectorX * 10),
+              Math.min((c.getY() / sectorY) * sectorY, sectorY * 10))).add(c);
     }
 
-    for (int i = 0; i < img.getHeight(); i ++) {
-      for (int j = 0; j < img.getWidth(); j ++) {
+    for (int i = 0; i < img.getWidth(); i++) {
+      for (int j = 0; j < img.getHeight(); j++) {
         Coord closest = null;
         double closest_distance = Double.MAX_VALUE;
         for (Coord c : this.mergeSectors(sectors, sectorX, sectorY, i, j)) {
@@ -169,14 +198,13 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
         clusters.get(closest).add(new Coord(i, j));
       }
     }
-    int x = 0;
   }
 
   private ArrayList<Coord> mergeSectors(Map<Coord, ArrayList<Coord>> sectors,
                                         int sectorX, int sectorY, int x, int y) {
     ArrayList<Coord> seedsToCheck = new ArrayList<Coord>();
-    int xStart = Math.min((x / sectorX) * sectorX, sectorX*10) - sectorX;
-    int yStart = Math.min((y / sectorY) * sectorY, sectorY*10) - sectorY;
+    int xStart = Math.min((x / sectorX) * sectorX, sectorX * 10) - sectorX;
+    int yStart = Math.min((y / sectorY) * sectorY, sectorY * 10) - sectorY;
 
     for (int i = xStart; i <= xStart + 2 * sectorX; i += sectorX) {
       for (int j = yStart; j <= yStart + 2 * sectorY; j += sectorY) {
@@ -185,28 +213,13 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
         }
       }
     }
-    if (seedsToCheck.size() == 0) {
+    if (seedsToCheck.size() <= numSeeds / 100) {
+      // if the seed count is low or in the unlikely chance there are very few seeds
+      // in the nearby sectors, check with all seeds
       for (ArrayList<Coord> coords : sectors.values()) {
         seedsToCheck.addAll(coords);
       }
     }
     return seedsToCheck;
   }
-
-//  private void sortIntoCluster(Map<Coord, ArrayList<Coord>> clusters,
-//                                                       ImageModel img) {
-//    for (int i = 0; i < img.getHeight(); i ++) {
-//      for (int j = 0; j < img.getWidth(); j ++) {
-//        Coord closest = null;
-//        double closest_distance = Double.MAX_VALUE;
-//        for (Coord c: clusters.keySet()) {
-//          if (closest == null || (c.distance(i, j) < closest_distance)) {
-//            closest = c;
-//            closest_distance = closest.distance(i, j);
-//          }
-//        }
-//        clusters.get(closest).add(new Coord(i, j));
-//      }
-//    }
-//  }
 }
