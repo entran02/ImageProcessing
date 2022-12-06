@@ -1,0 +1,3 @@
+load res/shanghai.jpg shanghai
+mosaic 1000 shanghai shanghai-1000
+save res/shanghai-1000 shanghai-1000 png

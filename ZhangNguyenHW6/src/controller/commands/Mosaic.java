@@ -69,11 +69,11 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
     }
 
     public double distance(int x, int y) {
-      return Math.sqrt(((this.x - x)^2) + ((this.y - y)^2));
+      return Math.sqrt(Math.pow(this.x - x, 2) + Math.pow((this.y - y), 2));
     }
   }
 
-  public ImageModel mosaic(ImageModel img) {
+  private ImageModel mosaic(ImageModel img) {
     // map of coord_of_seed : list_of_pixels_belonging_to_this_cluster
     Map<Coord, ArrayList<Coord>> clusters = new HashMap<>();
     numSeeds = Math.min(numSeeds, img.getHeight() * img.getWidth());
@@ -82,20 +82,10 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
       clusters.put(new Coord(rand.nextInt(img.getHeight()),
               rand.nextInt(img.getWidth())), new ArrayList<Coord>());
     }
+    long startTime = System.currentTimeMillis();
+    this.sortIntoCluster(clusters, img);
+    System.out.println("sorting took: " + (System.currentTimeMillis() - startTime));
 
-    for (int i = 0; i < img.getHeight(); i ++) {
-      for (int j = 0; j < img.getWidth(); j ++) {
-        Coord closest = null;
-        for (Coord c: clusters.keySet()) {
-          if (closest == null || (c.distance(i, j) < closest.distance(i, j))) {
-            closest = c;
-          }
-        }
-        ArrayList<Coord> clusterMembers = clusters.get(closest);
-        clusterMembers.add(new Coord(i, j));
-        clusters.put(closest, clusterMembers);
-      }
-    }
     ImageModel newimg = new ImageModelImpl(img.getHeight(), img.getWidth(), img.getMaxValue());
 
     for (Map.Entry<Coord, ArrayList<Coord>> c: clusters.entrySet()) {
@@ -117,5 +107,60 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
     }
 
     return newimg;
+  }
+
+//  private void sortIntoCluster(Map<Coord, ArrayList<Coord>> clusters,
+//                               ImageModel img) {
+//    // sort the seeds into "sectors", each pixel only looks for seeds in the 9 closest sectors
+//    int sectorX = img.getWidth() / 10;
+//    int sectorY = img.getHeight() / 10;
+//
+//    // sector : list_of_seeds_in_sector
+//    Map<Coord, ArrayList<Coord>> sectors = new HashMap<>();
+//    for (int i = 0; i < 11; i ++) {
+//      for (int j = 0; j < 11; j ++) {
+//        sectors.put(new Coord(i*sectorX, j*sectorY), new ArrayList<Coord>());
+//      }
+//      // overflow bucket due to integer math
+//      sectors.put(new Coord(i*sectorX, img.getHeight()), new ArrayList<>());
+//    }
+//    sectors.put(new Coord(img.getWidth(), img.getHeight()), new ArrayList<>());
+//
+//    for (Coord c: clusters.keySet()) {
+//
+//    }
+//
+//    for (int i = 0; i < img.getHeight(); i ++) {
+//      for (int j = 0; j < img.getWidth(); j ++) {
+//        Coord closest = null;
+//        double closest_distance = Double.MAX_VALUE;
+//        for (Coord c: clusters.keySet()) {
+//          if (closest == null || (c.distance(i, j) < closest_distance)) {
+//            closest = c;
+//            closest_distance = closest.distance(i, j);
+//          }
+//        }
+//        ArrayList<Coord> clusterMembers = clusters.get(closest);
+//        clusterMembers.add(new Coord(i, j));
+//        clusters.put(closest, clusterMembers);
+//      }
+//    }
+//  }
+
+  private void sortIntoCluster(Map<Coord, ArrayList<Coord>> clusters,
+                                                       ImageModel img) {
+    for (int i = 0; i < img.getHeight(); i ++) {
+      for (int j = 0; j < img.getWidth(); j ++) {
+        Coord closest = null;
+        double closest_distance = Double.MAX_VALUE;
+        for (Coord c: clusters.keySet()) {
+          if (closest == null || (c.distance(i, j) < closest_distance)) {
+            closest = c;
+            closest_distance = closest.distance(i, j);
+          }
+        }
+        clusters.get(closest).add(new Coord(i, j));
+      }
+    }
   }
 }
