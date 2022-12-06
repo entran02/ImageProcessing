@@ -109,9 +109,7 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
       clusters.put(new Coord(rand.nextInt(img.getWidth()),
               rand.nextInt(img.getHeight())), new ArrayList<Coord>());
     }
-    long startTime = System.currentTimeMillis();
     this.sortIntoCluster(clusters, img);
-    System.out.println("sorting took: " + (System.currentTimeMillis() - startTime));
 
     ImageModel newimg = new ImageModelImpl(img.getHeight(), img.getWidth(), img.getMaxValue());
 
@@ -121,15 +119,15 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
       }
       int[] avg = new int[3];
       for (Coord coord: c.getValue()) {
-        avg[0] += img.getPixelAt(coord.getX(), coord.getY()).getRedChannel();
-        avg[1] += img.getPixelAt(coord.getX(), coord.getY()).getGreenChannel();
-        avg[2] += img.getPixelAt(coord.getX(), coord.getY()).getBlueChannel();
+        avg[0] += img.getPixelAt(coord.getY(), coord.getX()).getRedChannel();
+        avg[1] += img.getPixelAt(coord.getY(), coord.getX()).getGreenChannel();
+        avg[2] += img.getPixelAt(coord.getY(), coord.getX()).getBlueChannel();
       }
       avg[0] /= c.getValue().size();
       avg[1] /= c.getValue().size();
       avg[2] /= c.getValue().size();
       for (Coord coord: c.getValue()) {
-        newimg.updateImagePixel(coord.getX(), coord.getY(), new PixelImpl(avg[0], avg[1], avg[2]));
+        newimg.updateImagePixel(coord.getY(), coord.getX(), new PixelImpl(avg[0], avg[1], avg[2]));
       }
     }
 
@@ -156,8 +154,8 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
               Math.min((c.getY() / sectorY) * sectorY, sectorY*10))).add(c);
     }
 
-    for (int i = 0; i < img.getHeight(); i ++) {
-      for (int j = 0; j < img.getWidth(); j ++) {
+    for (int i = 0; i < img.getWidth(); i ++) {
+      for (int j = 0; j < img.getHeight(); j ++) {
         Coord closest = null;
         double closest_distance = Double.MAX_VALUE;
         for (Coord c : this.mergeSectors(sectors, sectorX, sectorY, i, j)) {
@@ -169,7 +167,6 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
         clusters.get(closest).add(new Coord(i, j));
       }
     }
-    int x = 0;
   }
 
   private ArrayList<Coord> mergeSectors(Map<Coord, ArrayList<Coord>> sectors,
@@ -185,28 +182,13 @@ public class Mosaic extends AbstractCommand implements ImageCommand {
         }
       }
     }
-    if (seedsToCheck.size() == 0) {
+    if (seedsToCheck.size() <= numSeeds / 100) {
+      // if the seed count is low or in the unlikely chance there are very few seeds
+      // in the nearby sectors, check with all seeds
       for (ArrayList<Coord> coords : sectors.values()) {
         seedsToCheck.addAll(coords);
       }
     }
     return seedsToCheck;
   }
-
-//  private void sortIntoCluster(Map<Coord, ArrayList<Coord>> clusters,
-//                                                       ImageModel img) {
-//    for (int i = 0; i < img.getHeight(); i ++) {
-//      for (int j = 0; j < img.getWidth(); j ++) {
-//        Coord closest = null;
-//        double closest_distance = Double.MAX_VALUE;
-//        for (Coord c: clusters.keySet()) {
-//          if (closest == null || (c.distance(i, j) < closest_distance)) {
-//            closest = c;
-//            closest_distance = closest.distance(i, j);
-//          }
-//        }
-//        clusters.get(closest).add(new Coord(i, j));
-//      }
-//    }
-//  }
 }
