@@ -38,7 +38,10 @@ public class TestHistogram {
     assertEquals(0, histogram.getLowValue());
     assertEquals(255, histogram.getHighValue());
 
-   /* int[][] redHistogram = histogram.getHistogram("red");
+    /*
+    test commented because it doesn't pass as given to us
+
+    int[][] redHistogram = histogram.getHistogram("red");
 
     assertEquals(0, redHistogram[0][0]);
     assertEquals(155, redHistogram[155][0]);

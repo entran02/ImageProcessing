@@ -29,13 +29,13 @@ public class TestMosaic {
     Appendable out = new StringBuilder();
     ImageModelView view = new ImageModelTextView(out);
     ImageController controller = new ImageControllerImpl(read, model, view);
-    controller.load("res/shanghai.png", "image");
+    controller.load("res/test/shanghai.png", "image");
     ImageCommand mosaic = new Mosaic(1000, "image", "mosaicImage-1000", new Random(12345));
     mosaic.apply(model);
     mosaic = new Mosaic(5000, "image", "mosaicImage-5000", new Random(12345));
     mosaic.apply(model);
-    controller.load("res/shanghai-1000.png", "expectedMosaic-1000");
-    controller.load("res/shanghai-5000.png", "expectedMosaic-5000");
+    controller.load("res/test/shanghai-1000.png", "expectedMosaic-1000");
+    controller.load("res/test/shanghai-5000.png", "expectedMosaic-5000");
 
     assertEquals(images.get("expectedMosaic-1000"), images.get("mosaicImage-1000"));
     assertEquals(images.get("expectedMosaic-5000"), images.get("mosaicImage-5000"));

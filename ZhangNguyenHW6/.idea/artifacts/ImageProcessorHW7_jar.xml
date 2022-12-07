@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="ImageProcessorHW7:jar">
+    <output-path>$PROJECT_DIR$</output-path>
+    <root id="archive" name="ImageProcessorHW7.jar">
+      <element id="module-output" name="ZhangNguyenHW6" />
+      <element id="library" level="project" name="ImageProcessor" />
+    </root>
+  </artifact>
+</component>

@@ -9,9 +9,14 @@ import view.ImageGUIViewImpl;
 import view.ImageModelTextView;
 import view.ImageModelView;
 
+/**
+ * Main class for running either the GUI or text-based mode of the program.
+ */
 public class ImageProgramExchange {
   /**
-   * Main method to run ImageProcessingController either from console or script file.
+   * Main method to run ImageProcessingController either from console, script file,
+   * or launch to GUI.
+   *
    * @param args Add argument "-file path/to/script.txt" containing path to text file
    *             containing a list of commands separated by a newline. If "-text"
    *             is supplied, the System console is used for input and output. If no
@@ -20,13 +25,13 @@ public class ImageProgramExchange {
   public static void main(String[] args) {
     Appendable outAppendable = new StringBuilder();
     ImageProcessorModel model = new ImageProcessorModelImpl();
-    ImageControllerSwing GUIController = null;
+    ImageControllerSwing guiController = null;
     ImageController imageController = null;
     String scriptFile = "";
     if (args.length == 0) {
       ImageGUIViewImpl controllerView = new ImageGUIViewImpl();
-      GUIController = new ImageControllerSwing(controllerView);
-      GUIController.runImageProcessor();
+      guiController = new ImageControllerSwing(controllerView);
+      guiController.runImageProcessor();
     } else if (args[0].equals("-file")) {
       if (args.length < 2) { // no argument after '-file'
         throw new IllegalArgumentException("No file provided after -file argument");
