@@ -218,15 +218,9 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
         applyMacro(new MacroAdjustBrightness(increment), sc);
         break;
       case "mosaic":
-        try {
-          int seeds = sc.nextInt();
-          String imgName = sc.next();
-          String destName = sc.next();
-          this.model.copy(imgName, destName);
-          this.model.apply(destName, new MacroMosaic(seeds));
-        } catch (NoSuchElementException | IllegalArgumentException e) {
-          writeMessage("Invalid operation! Please try again.\n");
-        }
+        int seeds = sc.nextInt();
+        applyMacro(new MacroMosaic(seeds), sc);
+        break;
       case "menu": //print the menu of supported instructions
         welcomeMessage();
         break;
