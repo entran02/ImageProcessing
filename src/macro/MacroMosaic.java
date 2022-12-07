@@ -135,8 +135,8 @@ public class MacroMosaic implements Macro {
     }
     this.sortIntoCluster(clusters, img);
 
-    Image newimg = new ImageImpl(img.getHeight(), img.getWidth(), img.getMaxVal(),
-            new ArrayList<>(new ArrayList<>()));
+//    Image newimg = new ImageImpl(img.getHeight(), img.getWidth(), img.getMaxVal(),
+//            new ArrayList<>(new ArrayList<>()));
 
     for (Map.Entry<Coord, ArrayList<Coord>> c : clusters.entrySet()) {
       if (c.getValue().size() == 0) {
@@ -152,11 +152,11 @@ public class MacroMosaic implements Macro {
       avg[1] /= c.getValue().size();
       avg[2] /= c.getValue().size();
       for (Coord coord : c.getValue()) {
-        newimg.setPixel(coord.getY(), coord.getX(), new Pixel(avg[0], avg[1], avg[2]));
+        img.setPixel(coord.getY(), coord.getX(), new Pixel(avg[0], avg[1], avg[2]));
       }
     }
 
-    return newimg;
+    return img;
   }
 
   /**
