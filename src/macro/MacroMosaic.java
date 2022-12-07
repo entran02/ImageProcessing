@@ -7,7 +7,6 @@ import java.util.Objects;
 import java.util.Random;
 
 import model.Image;
-import model.ImageImpl;
 import model.Pixel;
 
 /**

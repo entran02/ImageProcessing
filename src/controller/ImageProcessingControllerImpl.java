@@ -7,6 +7,7 @@ import java.util.Scanner;
 import macro.Macro;
 import macro.MacroAdjustBrightness;
 import macro.MacroBlueGreyscale;
+import macro.MacroDownscale;
 import macro.MacroFlipHorizontal;
 import macro.MacroFlipVertical;
 import macro.MacroGreenGreyscale;
@@ -220,6 +221,11 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
       case "mosaic":
         int seeds = sc.nextInt();
         applyMacro(new MacroMosaic(seeds), sc);
+        break;
+      case "downscale":
+        int scaleX = sc.nextInt();
+        int scaleY = sc.nextInt();
+        applyMacro(new MacroDownscale(scaleX, scaleY), sc);
         break;
       case "menu": //print the menu of supported instructions
         welcomeMessage();
