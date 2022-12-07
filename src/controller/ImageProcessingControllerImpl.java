@@ -12,6 +12,7 @@ import macro.MacroFlipVertical;
 import macro.MacroGreenGreyscale;
 import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
+import macro.MacroMosaic;
 import macro.MacroRedGreyscale;
 import macro.MacroValueRepresentation;
 import macro.MacroBlur;
@@ -216,6 +217,16 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
         int increment = sc.nextInt();
         applyMacro(new MacroAdjustBrightness(increment), sc);
         break;
+      case "mosaic":
+        try {
+          int seeds = sc.nextInt();
+          String imgName = sc.next();
+          String destName = sc.next();
+          this.model.copy(imgName, destName);
+          this.model.apply(destName, new MacroMosaic(seeds));
+        } catch (NoSuchElementException | IllegalArgumentException e) {
+          writeMessage("Invalid operation! Please try again.\n");
+        }
       case "menu": //print the menu of supported instructions
         welcomeMessage();
         break;

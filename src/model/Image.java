@@ -31,6 +31,15 @@ public interface Image {
   List<List<Pixel>> getPixels();
 
   /**
+   * Returns value of single pixel.
+   *
+   * @param row the row of the pixel
+   * @param col the column of the pixel
+   * @return the pixel
+   */
+  public Pixel getPixel(int row, int col);
+
+  /**
    * Replaces a specific pixel with given one.
    * @param row row of pixel to set
    * @param col col of pixel to set

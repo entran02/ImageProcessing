@@ -82,6 +82,21 @@ public class ImageImpl implements Image {
   }
 
   /**
+   * Returns value of single pixel.
+   *
+   * @param row the row of the pixel
+   * @param col the column of the pixel
+   * @return the pixel
+   */
+  public Pixel getPixel(int row, int col) {
+    try {
+      return this.pixels.get(row).get(col);
+    } catch (IndexOutOfBoundsException e) {
+      throw new IllegalArgumentException("invalid row/col");
+    }
+  }
+
+  /**
    * Replaces a specific pixel with given one.
    *
    * @param row row of pixel to set
