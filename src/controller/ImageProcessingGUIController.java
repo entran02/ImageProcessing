@@ -3,10 +3,10 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
-import javax.swing.JFileChooser;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -21,6 +21,7 @@ import macro.MacroGreenGreyscale;
 import macro.MacroGreyscale;
 import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
+import macro.MacroMosaic;
 import macro.MacroRedGreyscale;
 import macro.MacroSepia;
 import macro.MacroSharpen;
@@ -160,6 +161,18 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         descriptor = "greyscale";
         applyMacro(new MacroGreyscale(), descriptor);
         break;
+      case "mosaic":
+        descriptor = "mosaic";
+        String askSeeds = JOptionPane.showInputDialog("How many seeds?");
+        if (askSeeds.matches("^[a-zA-Z0-9]*$")) {
+          applyMacro(new MacroMosaic(Integer.parseInt(askSeeds)), descriptor);
+        } else {
+          try {
+            this.view.renderMessage("not valid seed value, try again.");
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        }
       default:
     }
   }
