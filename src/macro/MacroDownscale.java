@@ -43,7 +43,6 @@ public class MacroDownscale implements Macro {
     for (int i = 0; i < newHeight; i++) {
       List<Pixel> row = new ArrayList<>();
       for (int j = 0; j < newWidth; j++) {
-        // x = (x' / w') * w
         row.add(pixelMath(img,i * img.getHeight() / (double) newHeight,
                 j * img.getWidth() / (double) newWidth));
       }
