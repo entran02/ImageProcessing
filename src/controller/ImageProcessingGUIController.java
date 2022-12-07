@@ -15,6 +15,7 @@ import macro.Macro;
 import macro.MacroAdjustBrightness;
 import macro.MacroBlueGreyscale;
 import macro.MacroBlur;
+import macro.MacroDownscale;
 import macro.MacroFlipHorizontal;
 import macro.MacroFlipVertical;
 import macro.MacroGreenGreyscale;
@@ -164,7 +165,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       case "mosaic":
         descriptor = "mosaic";
         String askSeeds = JOptionPane.showInputDialog("How many seeds?");
-        if (askSeeds.matches("^[a-zA-Z0-9]*$")) {
+        if (askSeeds.matches("^[0-9]*$")) {
           applyMacro(new MacroMosaic(Integer.parseInt(askSeeds)), descriptor);
         } else {
           try {
@@ -173,6 +174,22 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
             throw new RuntimeException(ex);
           }
         }
+        break;
+      case "downscale":
+        descriptor = "downscale";
+        String askScaleX = JOptionPane.showInputDialog("Downscale image width to what percent?");
+        String askScaleY = JOptionPane.showInputDialog("Downscale image height to what percent?");
+        if (askScaleX.matches("^[0-9]*$") && askScaleY.matches("^[0-9]*$")) {
+          applyMacro(new MacroDownscale(Double.parseDouble(askScaleX), Double.parseDouble(askScaleY)),
+                  descriptor);
+        } else {
+          try {
+            this.view.renderMessage("not valid scale value(s), try again.");
+          } catch (IOException ex) {
+            throw new RuntimeException(ex);
+          }
+        }
+        break;
       default:
     }
   }

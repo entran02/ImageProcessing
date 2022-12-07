@@ -107,6 +107,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     addOperation("value-component", filterPane, actionEvent);
     addOperation("sepia", filterPane, actionEvent);
     addOperation("mosaic", filterPane, actionEvent);
+    addOperation("downscale", filterPane, actionEvent);
     pane.add(filterPane, BorderLayout.WEST);
     filterPane.setPreferredSize(new Dimension(180, 700));
 
