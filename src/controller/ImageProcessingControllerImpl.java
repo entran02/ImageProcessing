@@ -13,6 +13,7 @@ import macro.MacroFlipVertical;
 import macro.MacroGreenGreyscale;
 import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
+import macro.MacroMask;
 import macro.MacroMosaic;
 import macro.MacroRedGreyscale;
 import macro.MacroValueRepresentation;
@@ -152,19 +153,39 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
       String imgName = sc.next();
       String destName = sc.next();
       this.model.copy(imgName, destName);
-      this.model.apply(destName, macro);
+      try {
+        this.model.apply(destName, new MacroMask(macro, this.model.getImage("@mask-image@")));
+      } catch (IllegalArgumentException e) { // mask doesn't exist
+        this.model.apply(destName, macro);
+      }
     } catch (NoSuchElementException | IllegalArgumentException e) {
       writeMessage("Invalid operation! Please try again.\n");
     }
   }
 
+  private void loadImage(String filePath, String name) {
+    this.model.add(name, ImageUtil.readFile(filePath));
+  }
+
   protected void processCommand(String userInstruction, Scanner sc, ImageProcessingModel model) {
     switch (userInstruction) {
+      case "load-mask":
+        try {
+          this.loadImage(sc.next(), "@mask-image@");
+        } catch (NoSuchElementException | IllegalArgumentException e) {
+          writeMessage("Loading mask failed! Please try again.\n");
+        }
+        break;
+      case "remove-mask":
+        try {
+          this.model.remove("@mask-image@");
+        } catch (IllegalArgumentException e) {
+          writeMessage("No mask was loaded.\n");
+        }
+        break;
       case "load":
         try {
-          String filePath = sc.next();
-          String name = sc.next();
-          this.model.add(name, ImageUtil.readFile(filePath));
+          this.loadImage(sc.next(), sc.next());
         } catch (NoSuchElementException | IllegalArgumentException e) {
           writeMessage("Invalid operation! Please try again.\n");
         }

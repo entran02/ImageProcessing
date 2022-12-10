@@ -1,0 +1,3 @@
+load res/example/shanghai.png shanghai
+downscale 50 50 shanghai shanghai-half
+save res/shanghai-half.png shanghai-half

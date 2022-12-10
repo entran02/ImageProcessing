@@ -57,7 +57,15 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
   - Created Histogram and HistogramPanel classes
     - Histogram class located in model package and contains the logic for the histogram
     - HistogramPanel is the object for the histogram when displayed on the GUI
-
+- V4 - Extra Crdit update
+  - Implement downcaling function
+    - added `setSize` method to our Image class to allow for resizing images
+    - added new Macro for downscaling
+  - Partial Image Manipulation with Masks
+    - added new command `load-mask` and `unload-mask`
+    - if mask is loaded, all operations done will be using the mask, `unload-mask` can be called to revert to original operation
+    - in order to reduce code change of existing code, the mask is stored like other images in the processing model with the unique name "@mask-image@"
+    - the entire image is first manipulated by the desired command, but only the masked pixels of the new image are copied over, with the remaining pixels untouched
 
 ----------------------------
 ### Image Credts:

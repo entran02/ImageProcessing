@@ -8,9 +8,9 @@ import java.util.Objects;
  * Implementation of Image. Stores dimensions and pixel values of a single image.
  */
 public class ImageImpl implements Image {
-  private final int width;
-  private final int height;
-  private final int maxVal;
+  private int width;
+  private int height;
+  private int maxVal;
   private List<List<Pixel>> pixels;
 
   /**
@@ -177,6 +177,21 @@ public class ImageImpl implements Image {
       pix.add(r);
     }
     return new ImageImpl(this.width, this.height, this.maxVal, pix);
+  }
+
+  /**
+   * Resizes this image to given width and height.
+   *
+   * @param w new width of this image
+   * @param h new height of this image
+   */
+  @Override
+  public void setSize(int w, int h) {
+    if (w <= 0 || h <= 0) {
+      throw new IllegalArgumentException("Width or height cannot be negative or zero.");
+    }
+    this.width = w;
+    this.height = h;
   }
 
   @Override

@@ -65,4 +65,11 @@ public interface Image {
    * @return copy of this image.
    */
   Image copy();
+
+  /**
+   * Resizes this image to given width and height.
+   * @param w new width of this image
+   * @param h new height of this image
+   */
+  void setSize(int w, int h);
 }

@@ -24,7 +24,6 @@ public abstract class AMacro implements Macro {
         this.img.setPixel(row, col, applyToPixel(this.img.getPixels().get(row).get(col)));
       }
     }
-    this.img = null;
   }
 
   /**

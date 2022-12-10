@@ -31,13 +31,11 @@ public class MacroDownscale implements Macro {
   }
 
   /**
-   * Creates a new Image with the new width, height, and list of pixels
-   *
-   * @return the new image
+   * Creates a new Image with the new width, height, and list of pixels.
    */
-  public Image downsize(Image img) {
-    int newWidth = (int) ((1.0 - this.scaleX / 100) * img.getWidth());
-    int newHeight = (int) ((1.0 - this.scaleY / 100) * img.getHeight());
+  public void downsize(Image img) {
+    int newWidth = (int) ((1.0 - this.scaleX / 100.0) * img.getWidth());
+    int newHeight = (int) ((1.0 - this.scaleY / 100.0) * img.getHeight());
 
     List<List<Pixel>> lop = new ArrayList<>();
     for (int i = 0; i < newHeight; i++) {
@@ -48,7 +46,9 @@ public class MacroDownscale implements Macro {
       }
       lop.add(row);
     }
-    return new ImageImpl(newWidth, newHeight, 255, lop);
+//    return new ImageImpl(newWidth, newHeight, img.getMaxVal(), lop);
+    img.setSize(newWidth, newHeight);
+    img.setPixels(lop);
   }
 
   private Pixel pixelMath(Image image, double i, double j) {
