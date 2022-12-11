@@ -39,11 +39,13 @@ public class ImageGraphicsView extends JFrame implements IView {
   private JPanel imagePanel;
   private JPanel histoPanel;
   private JLabel imageLabel;
+  private JLabel previewLabel;
   private Container pane;
 
   public ImageGraphicsView() {
     super();
     this.imageLabel = new JLabel();
+    this.previewLabel = new JLabel();
   }
 
   /**
@@ -78,7 +80,6 @@ public class ImageGraphicsView extends JFrame implements IView {
     JScrollPane imageScrollPane = new JScrollPane(this.imageLabel);
     imageScrollPane.setPreferredSize(new Dimension(600, 600));
     imagePanel.add(imageScrollPane);
-
     pane.add(imagePanel, BorderLayout.CENTER);
 
     // side panel for picture operations
@@ -113,11 +114,27 @@ public class ImageGraphicsView extends JFrame implements IView {
     pane.add(filterPane, BorderLayout.WEST);
     filterPane.setPreferredSize(new Dimension(180, 700));
 
+    // right side
+    Container rightPane = new JPanel(new BorderLayout());
+    pane.add(rightPane, BorderLayout.EAST);
+    rightPane.setPreferredSize(new Dimension(425, 750));
+
     // histogram
     this.histoPanel = new JPanel();
     this.histoPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
-    pane.add(histoPanel, BorderLayout.EAST);
+    rightPane.add(histoPanel, BorderLayout.CENTER);
     histoPanel.setPreferredSize(new Dimension(425, 425));
+
+    // preview
+    JPanel previewPanel = new JPanel();
+    previewPanel.setBorder(BorderFactory.createTitledBorder("Preview"));
+    rightPane.add(previewPanel, BorderLayout.NORTH);
+    previewPanel.setPreferredSize(new Dimension(425, 250));
+    JScrollPane previewScrollPane = new JScrollPane(this.previewLabel);
+    previewScrollPane.setPreferredSize(new Dimension(200, 200));
+    previewPanel.add(previewScrollPane);
+
+
 
   }
 
@@ -172,6 +189,7 @@ public class ImageGraphicsView extends JFrame implements IView {
       }
     }
     this.imageLabel.setIcon(new ImageIcon(display));
+    this.previewLabel.setIcon(new ImageIcon(display));
     imagePanel.validate();
   }
 
