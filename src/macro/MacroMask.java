@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import model.Image;
 
-public class MacroMask implements Macro{
+public class MacroMask implements Macro {
   private final Macro macro;
   private final Image mask;
 
