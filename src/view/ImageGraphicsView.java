@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+import javax.swing.JToggleButton;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -53,7 +54,7 @@ public class ImageGraphicsView extends JFrame implements IView {
    */
   public void makeFrame(ActionListener actionEvent, ChangeListener changeEvent) {
     this.setTitle("PictureStore");
-    this.setSize(1250, 700);
+    this.setSize(1250, 750);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.pane = new JPanel(new BorderLayout());
 
@@ -75,7 +76,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.imagePanel = new JPanel();
     this.imagePanel.setBorder(BorderFactory.createTitledBorder("Image"));
     JScrollPane imageScrollPane = new JScrollPane(this.imageLabel);
-    imageScrollPane.setPreferredSize(new Dimension(700, 500));
+    imageScrollPane.setPreferredSize(new Dimension(600, 600));
     imagePanel.add(imageScrollPane);
 
     pane.add(imagePanel, BorderLayout.CENTER);
@@ -94,6 +95,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     filterPane.add(brightnessLabel);
     brightnessSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
     filterPane.add(brightnessSlider);
+    addToggle("preview mode", filterPane, actionEvent);
     addOperation("blur", filterPane, actionEvent);
     addOperation("sharpen", filterPane, actionEvent);
     addOperation("horizontal-flip", filterPane, actionEvent);
@@ -115,7 +117,7 @@ public class ImageGraphicsView extends JFrame implements IView {
     this.histoPanel = new JPanel();
     this.histoPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
     pane.add(histoPanel, BorderLayout.EAST);
-    histoPanel.setPreferredSize(new Dimension(450, 450));
+    histoPanel.setPreferredSize(new Dimension(425, 425));
 
   }
 
@@ -125,6 +127,15 @@ public class ImageGraphicsView extends JFrame implements IView {
   private static void addOperation(String text, Container container, ActionListener actionEvent) {
     container.add(Box.createVerticalStrut(10));
     JButton button = new JButton(text);
+    button.setAlignmentX(Component.CENTER_ALIGNMENT);
+    container.add(button);
+    button.setActionCommand(text);
+    button.addActionListener(actionEvent);
+  }
+
+  private static void addToggle(String text, Container container, ActionListener actionEvent) {
+    container.add(Box.createVerticalStrut(10));
+    JToggleButton button = new JToggleButton("toggle " + text);
     button.setAlignmentX(Component.CENTER_ALIGNMENT);
     container.add(button);
     button.setActionCommand(text);
@@ -173,7 +184,7 @@ public class ImageGraphicsView extends JFrame implements IView {
   public void displayHistogram(Image image) {
     this.histoPanel.removeAll();
     HistogramPanel histo = new HistogramPanel(new Histogram(image));
-    histo.setPreferredSize(new Dimension(425, 425));
+    histo.setPreferredSize(new Dimension(400, 400));
     histo.setBorder(BorderFactory.createLineBorder(Color.black));
     this.histoPanel.add(histo, BorderLayout.CENTER);
     this.histoPanel.validate();
