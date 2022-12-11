@@ -22,6 +22,7 @@ import macro.MacroGreenGreyscale;
 import macro.MacroGreyscale;
 import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
+import macro.MacroMask;
 import macro.MacroMosaic;
 import macro.MacroRedGreyscale;
 import macro.MacroSepia;
@@ -196,7 +197,9 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         if (selected == true) {
           // replace below code with placing 200x200 mask image on photo in gui and applying
           // whatever filter
-          String testT = JOptionPane.showInputDialog("test true");
+          //String testT = JOptionPane.showInputDialog("test true");
+          this.model.add("@mask-image@", ImageUtil.readFile(
+                  "C:/Users/14138/Desktop/CS3500/ImageProcessing/res/1200x600-mask-top-left.png"));
         }
         else {
           break;
@@ -232,7 +235,11 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       String imgName = file.toString();
       String destName = descriptor + imgName;
       this.model.copy(imgName, destName);
-      this.model.apply(destName, macro);
+      try {
+        this.model.apply(destName, new MacroMask(macro, this.model.getImage("@mask-image@")));
+      } catch (IllegalArgumentException e) { // mask doesn't exist
+        this.model.apply(destName, macro);
+      }
       this.view.displayImage(this.model.getImage(destName));
       this.view.displayHistogram(this.model.getImage(destName));
       this.file.delete(0, file.length());
@@ -240,6 +247,10 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
     } catch (NoSuchElementException | IllegalArgumentException e) {
       throw new IllegalArgumentException();
     }
+  }
+
+  private void loadImage(String filePath, String name) {
+    this.model.add(name, ImageUtil.readFile(filePath));
   }
 
 }
