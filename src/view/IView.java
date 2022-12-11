@@ -33,4 +33,11 @@ public interface IView extends ImageProcessingView {
    */
   void displayHistogram(Image image);
 
+  /**
+   * Displays the preview to the GUI for the user.
+   *
+   * @param image the preview to be displayed
+   */
+  void displayPreview(Image image);
+
 }

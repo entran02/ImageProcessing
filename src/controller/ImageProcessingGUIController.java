@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -24,6 +25,7 @@ import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
 import macro.MacroMask;
 import macro.MacroMosaic;
+import macro.MacroPreview;
 import macro.MacroRedGreyscale;
 import macro.MacroSepia;
 import macro.MacroSharpen;
@@ -41,6 +43,9 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
   private final IView view;
   private final StringBuilder file;
 
+  private Point previewLocation;
+  private Macro lastCommand;
+
   /**
    * Constructor that sets the model and view.
    *
@@ -56,6 +61,8 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
     this.model = model;
     this.view = view;
     this.file = new StringBuilder("Image");
+    this.previewLocation = new Point(0, 0);
+    this.lastCommand = null;
   }
 
   /**
@@ -194,12 +201,14 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       case "preview mode":
         AbstractButton abstractButton = (AbstractButton)e.getSource();
         boolean selected = abstractButton.getModel().isSelected();
-        if (selected == true) {
-          // replace below code with placing 200x200 mask image on photo in gui and applying
-          // whatever filter
-          //String testT = JOptionPane.showInputDialog("test true");
-          this.model.add("@mask-image@", ImageUtil.readFile(
-                  "C:/Users/14138/Desktop/CS3500/ImageProcessing/res/1200x600-mask-top-left.png"));
+        if (selected) {
+          try {
+            this.model.getImage(file.toString());
+          } catch (IllegalArgumentException ex) {
+            break;
+          }
+          this.model.copy(file.toString(), "@preview@");
+          this.view.displayPreview(this.model.getImage("@preview@"));
         }
         else {
           break;
@@ -217,12 +226,20 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
    */
   @Override
   public void stateChanged(ChangeEvent e) {
-    String descriptor = "brightness";
-    JSlider source = (JSlider) e.getSource();
-    if (!source.getValueIsAdjusting()) {
-      int brightness = source.getValue();
-      applyMacro(new MacroAdjustBrightness(brightness), descriptor);
-      source.setValue(0);
+    if (e.getSource() instanceof JSlider) {
+      // brightness slider
+      String descriptor = "brightness";
+      JSlider source = (JSlider) e.getSource();
+      if (!source.getValueIsAdjusting()) {
+        int brightness = source.getValue();
+        applyMacro(new MacroAdjustBrightness(brightness), descriptor);
+        source.setValue(0);
+      }
+    } else if (e.getSource() instanceof JViewport) {
+      // preview pane scrolling
+      JViewport source = (JViewport) e.getSource();
+      this.previewLocation = source.getViewPosition();
+      this.applyMacro(this.lastCommand, "@preview@");
     }
   }
 
@@ -231,26 +248,39 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
    * as making it the current image in the model to be worked on.
    */
   private void applyMacro(Macro macro, String descriptor) {
+    if (file.toString().equals("Image") || macro == null) {
+      // no image loaded yet
+      return;
+    }
     try {
       String imgName = file.toString();
       String destName = descriptor + imgName;
+
       this.model.copy(imgName, destName);
-      try {
-        this.model.apply(destName, new MacroMask(macro, this.model.getImage("@mask-image@")));
-      } catch (IllegalArgumentException e) { // mask doesn't exist
+      if (!isPreview()) {
         this.model.apply(destName, macro);
+      } else {
+        this.model.apply("@preview@", new MacroPreview(macro,
+                this.previewLocation.x, this.previewLocation.y));
+        this.view.displayPreview(this.model.getImage("@preview@"));
+        destName = imgName;
       }
       this.view.displayImage(this.model.getImage(destName));
       this.view.displayHistogram(this.model.getImage(destName));
       this.file.delete(0, file.length());
       this.file.append(destName);
+      this.lastCommand = macro;
     } catch (NoSuchElementException | IllegalArgumentException e) {
       throw new IllegalArgumentException();
     }
   }
 
-  private void loadImage(String filePath, String name) {
-    this.model.add(name, ImageUtil.readFile(filePath));
+  private boolean isPreview() {
+    try {
+      return this.model.getImage("@preview@") != null;
+    } catch (IllegalArgumentException e) {
+      return false;
+    }
   }
 
 }

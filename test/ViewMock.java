@@ -57,6 +57,20 @@ public class ViewMock implements IView {
   }
 
   /**
+   * Displays the preview to the GUI for the user.
+   *
+   * @param image the preview to be displayed
+   */
+  @Override
+  public void displayPreview(Image image) {
+    try {
+      log.append("Preview displayed\n");
+    } catch (Exception e) {
+      return;
+    }
+  }
+
+  /**
    * Render a specific message to the provided data destination.
    *
    * @param message the message to be transmitted

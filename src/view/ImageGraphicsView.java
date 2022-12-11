@@ -38,6 +38,8 @@ import model.Pixel;
 public class ImageGraphicsView extends JFrame implements IView {
   private JPanel imagePanel;
   private JPanel histoPanel;
+
+  private JPanel previewPanel;
   private JLabel imageLabel;
   private JLabel previewLabel;
   private Container pane;
@@ -126,15 +128,14 @@ public class ImageGraphicsView extends JFrame implements IView {
     histoPanel.setPreferredSize(new Dimension(425, 425));
 
     // preview
-    JPanel previewPanel = new JPanel();
+    this.previewPanel = new JPanel();
     previewPanel.setBorder(BorderFactory.createTitledBorder("Preview"));
     rightPane.add(previewPanel, BorderLayout.NORTH);
     previewPanel.setPreferredSize(new Dimension(425, 250));
     JScrollPane previewScrollPane = new JScrollPane(this.previewLabel);
     previewScrollPane.setPreferredSize(new Dimension(200, 200));
+    previewScrollPane.getViewport().addChangeListener(changeEvent);
     previewPanel.add(previewScrollPane);
-
-
 
   }
 
@@ -179,6 +180,10 @@ public class ImageGraphicsView extends JFrame implements IView {
    */
   @Override
   public void displayImage(Image image) {
+    this.showImage(image, this.imagePanel, this.imageLabel);
+  }
+
+  private void showImage(Image image, JPanel panel, JLabel label) {
     BufferedImage display = new BufferedImage(image.getWidth(), image.getHeight(),
             BufferedImage.TYPE_INT_RGB);
     for (int i = 0; i < image.getHeight(); i++) {
@@ -188,9 +193,12 @@ public class ImageGraphicsView extends JFrame implements IView {
         display.setRGB(j, i, rgb.getRGB());
       }
     }
-    this.imageLabel.setIcon(new ImageIcon(display));
-    this.previewLabel.setIcon(new ImageIcon(display));
-    imagePanel.validate();
+    label.setIcon(new ImageIcon(display));
+    panel.validate();
+  }
+
+  public void displayPreview(Image image) {
+    this.showImage(image, this.previewPanel, this.previewLabel);
   }
 
   /**
