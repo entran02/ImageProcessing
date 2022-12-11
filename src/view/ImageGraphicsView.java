@@ -122,13 +122,13 @@ public class ImageGraphicsView extends JFrame implements IView {
     // histogram
     this.histoPanel = new JPanel();
     this.histoPanel.setBorder(BorderFactory.createTitledBorder("Histogram"));
-    rightPane.add(histoPanel, BorderLayout.NORTH);
+    rightPane.add(histoPanel, BorderLayout.CENTER);
     histoPanel.setPreferredSize(new Dimension(425, 425));
 
     // preview
     JPanel previewPanel = new JPanel();
     previewPanel.setBorder(BorderFactory.createTitledBorder("Preview"));
-    rightPane.add(previewPanel, BorderLayout.CENTER);
+    rightPane.add(previewPanel, BorderLayout.NORTH);
     previewPanel.setPreferredSize(new Dimension(425, 250));
     JScrollPane previewScrollPane = new JScrollPane(this.previewLabel);
     previewScrollPane.setPreferredSize(new Dimension(200, 200));
