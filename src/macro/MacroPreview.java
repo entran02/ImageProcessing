@@ -32,19 +32,20 @@ public class MacroPreview implements Macro {
     Objects.requireNonNull(img);
 
     List<List<Pixel>> pix = new ArrayList<>(new ArrayList<>());
-    for (int r = x; r < x + 200; r++) {
+    for (int r = x; r < x + Math.max(200, img.getHeight()); r++) {
       List<Pixel> row = new ArrayList<>();
-      for (int c = y; c < y + 200; c++) {
+      for (int c = y; c < y + Math.max(200, img.getWidth()); c++) {
         row.add(new Pixel(img.getPixel(r, c).getR(), img.getPixel(r, c).getG(),
                 img.getPixel(r, c).getB()));
       }
       pix.add(row);
     }
-    Image preview = new ImageImpl(200, 200, img.getMaxVal(), pix);
+    Image preview = new ImageImpl(Math.max(200, img.getHeight()),
+            Math.max(200, img.getWidth()), img.getMaxVal(), pix);
     this.macro.apply(preview);
 
-    for (int r = x; r < x + 200; r++) {
-      for (int c = y; c < y + 200; c++) {
+    for (int r = x; r < x + Math.max(200, img.getHeight()); r++) {
+      for (int c = y; c < y + Math.max(200, img.getWidth()); c++) {
         img.setPixel(r, c, preview.getPixel(r, c));
       }
     }

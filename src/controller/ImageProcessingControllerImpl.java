@@ -164,6 +164,9 @@ public class ImageProcessingControllerImpl implements ImageProcessingController 
   }
 
   private void loadImage(String filePath, String name) {
+    if (name.equals("@mask-image@")) {
+      throw new IllegalArgumentException("Illegal name: image cannot be named '@mask-image@");
+    }
     this.model.add(name, ImageUtil.readFile(filePath));
   }
 

@@ -181,8 +181,8 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         String askScaleX = JOptionPane.showInputDialog("Downscale image width to what percent?");
         String askScaleY = JOptionPane.showInputDialog("Downscale image height to what percent?");
         if (askScaleX.matches("^[0-9]*$") && askScaleY.matches("^[0-9]*$")) {
-          applyMacro(new MacroDownscale(Double.parseDouble(askScaleX), Double.parseDouble(askScaleY)),
-                  descriptor);
+          applyMacro(new MacroDownscale(Double.parseDouble(askScaleX),
+                          Double.parseDouble(askScaleY)), descriptor);
         } else {
           try {
             this.view.renderMessage("not valid scale value(s), try again.");
