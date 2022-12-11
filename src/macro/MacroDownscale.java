@@ -34,8 +34,8 @@ public class MacroDownscale implements Macro {
    * Creates a new Image with the new width, height, and list of pixels.
    */
   public void downsize(Image img) {
-    int newWidth = (int) ((1.0 - this.scaleX / 100.0) * img.getWidth());
-    int newHeight = (int) ((1.0 - this.scaleY / 100.0) * img.getHeight());
+    int newWidth = (int) ((this.scaleX / 100.0) * img.getWidth());
+    int newHeight = (int) ((this.scaleY / 100.0) * img.getHeight());
 
     List<List<Pixel>> lop = new ArrayList<>();
     for (int i = 0; i < newHeight; i++) {
