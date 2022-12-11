@@ -39,6 +39,5 @@ public class MacroMask implements Macro {
         }
       }
     }
-
   }
 }
