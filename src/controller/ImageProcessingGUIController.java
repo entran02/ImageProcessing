@@ -190,6 +190,18 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
           }
         }
         break;
+      case "preview mode":
+        AbstractButton abstractButton = (AbstractButton)e.getSource();
+        boolean selected = abstractButton.getModel().isSelected();
+        if (selected == true) {
+          // replace below code with placing 200x200 mask image on photo in gui and applying
+          // whatever filter
+          String testT = JOptionPane.showInputDialog("test true");
+        }
+        else {
+          break;
+        }
+        break;
       default:
     }
   }
