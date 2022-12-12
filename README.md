@@ -68,6 +68,7 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
     - the entire image is first manipulated by the desired command, but only the masked pixels of the new image are copied over, with the remaining pixels untouched
       - this allows support for commands like flip even with irregular shaped masks
   - Preview mode
+    - To use preview, the user must select preview mode, apply the preview desired and may view it in the preview window. If the previewed operation is desired, the user may use the apply-preview button to apply the previewed operation on the image.
     - the desired command is only performed on a 200x200 chunk of the image, which is shown to the user.
     - added new methods displayPreview() to GUI view and isPreview() to GUI controller.
     - updated the makeFrame() method in GUI view to create new portion in the GUI for the preview
