@@ -245,8 +245,8 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       JSlider source = (JSlider) e.getSource();
       if (!source.getValueIsAdjusting()) {
         int brightness = source.getValue();
-        applyMacro(new MacroAdjustBrightness(brightness), descriptor);
         source.setValue(0);
+        applyMacro(new MacroAdjustBrightness(brightness), descriptor);
       }
     } else if (e.getSource() instanceof JViewport) {
       JViewport source = (JViewport) e.getSource();
