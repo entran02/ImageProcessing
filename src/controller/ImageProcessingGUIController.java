@@ -256,10 +256,12 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       String imgName = file.toString();
       String destName = descriptor + imgName;
 
-      this.model.copy(imgName, destName);
       if (!isPreview()) {
+        this.model.copy(imgName, destName);
         this.model.apply(destName, macro);
       } else {
+        this.model.remove("@preview@");
+        this.model.copy(imgName, "@preview@");
         this.model.apply("@preview@", new MacroPreview(macro,
                 this.previewLocation.x, this.previewLocation.y));
         this.view.displayPreview(this.model.getImage("@preview@"));
