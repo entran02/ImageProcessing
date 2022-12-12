@@ -136,6 +136,8 @@ public class ImageGraphicsView extends JFrame implements IView {
     JScrollPane previewScrollPane = new JScrollPane(this.previewLabel);
     previewScrollPane.setPreferredSize(new Dimension(218, 218));
     previewScrollPane.getViewport().addChangeListener(changeEvent);
+    previewScrollPane.getHorizontalScrollBar().getModel().addChangeListener(changeEvent);
+    previewScrollPane.getVerticalScrollBar().getModel().addChangeListener(changeEvent);
     previewPanel.add(previewScrollPane);
 
   }

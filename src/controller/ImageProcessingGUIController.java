@@ -249,14 +249,13 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         source.setValue(0);
       }
     } else if (e.getSource() instanceof JViewport) {
-      // preview pane scrolling
-      //JScrollPane scrollPane = (JScrollPane) e.getSource();
       JViewport source = (JViewport) e.getSource();
-      //if (scrollPane.getHorizontalScrollBar().getValueIsAdjusting() ||
-      //      scrollPane.getVerticalScrollBar().getValueIsAdjusting()) {
-        this.previewLocation = source.getViewPosition();
+      this.previewLocation = source.getViewPosition();
+    } else if (e.getSource() instanceof BoundedRangeModel) {
+      BoundedRangeModel source = (BoundedRangeModel) e.getSource();
+      if (!source.getValueIsAdjusting()) {
         this.applyMacro(this.lastCommand, "@preview@");
-      //}
+      }
     }
   }
 
