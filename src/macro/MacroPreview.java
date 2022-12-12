@@ -32,21 +32,22 @@ public class MacroPreview implements Macro {
     Objects.requireNonNull(img);
 
     List<List<Pixel>> pix = new ArrayList<>(new ArrayList<>());
-    for (int r = x; r < x + Math.min(200, img.getHeight()); r++) {
+    for (int r = y; r < Math.min(200 + y, img.getHeight()); r++) {
       List<Pixel> row = new ArrayList<>();
-      for (int c = y; c < y + Math.min(200, img.getWidth()); c++) {
+      for (int c = x; c < Math.min(200 + x, img.getWidth()); c++) {
         row.add(new Pixel(img.getPixel(r, c).getR(), img.getPixel(r, c).getG(),
                 img.getPixel(r, c).getB()));
       }
       pix.add(row);
     }
-    Image preview = new ImageImpl(Math.min(200, img.getHeight()),
-            Math.min(200, img.getWidth()), img.getMaxVal(), pix);
+    Image preview = new ImageImpl(Math.min(200, img.getWidth()),
+            Math.min(200, img.getHeight()), img.getMaxVal(), pix);
+
     this.macro.apply(preview);
 
-    for (int r = x; r < x + Math.min(200, img.getHeight()); r++) {
-      for (int c = y; c < y + Math.min(200, img.getWidth()); c++) {
-        img.setPixel(r, c, preview.getPixel(r, c));
+    for (int r = y; r < Math.min(200 + y, img.getHeight()); r++) {
+      for (int c = x; c < Math.min(200 + x, img.getWidth()); c++) {
+        img.setPixel(r, c, preview.getPixel(r - y, c - x).copy());
       }
     }
   }

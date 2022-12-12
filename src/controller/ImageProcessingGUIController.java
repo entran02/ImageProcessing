@@ -23,7 +23,6 @@ import macro.MacroGreenGreyscale;
 import macro.MacroGreyscale;
 import macro.MacroIntensityRepresentation;
 import macro.MacroLumaRepresentation;
-import macro.MacroMask;
 import macro.MacroMosaic;
 import macro.MacroPreview;
 import macro.MacroRedGreyscale;
@@ -211,7 +210,13 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
           this.view.displayPreview(this.model.getImage("@preview@"));
         }
         else {
-          break;
+          try {
+            this.lastCommand = null;
+            this.model.remove("@preview@");
+            this.view.displayPreview(null);
+          } catch (IllegalArgumentException ex) {
+            break;
+          }
         }
         break;
       default:
@@ -265,13 +270,14 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         this.model.apply("@preview@", new MacroPreview(macro,
                 this.previewLocation.x, this.previewLocation.y));
         this.view.displayPreview(this.model.getImage("@preview@"));
+        this.lastCommand = macro;
         destName = imgName;
       }
       this.view.displayImage(this.model.getImage(destName));
       this.view.displayHistogram(this.model.getImage(destName));
       this.file.delete(0, file.length());
       this.file.append(destName);
-      this.lastCommand = macro;
+
     } catch (NoSuchElementException | IllegalArgumentException e) {
       throw new IllegalArgumentException();
     }
