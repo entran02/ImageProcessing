@@ -98,7 +98,8 @@ public class ImageGraphicsView extends JFrame implements IView {
     filterPane.add(brightnessLabel);
     brightnessSlider.setAlignmentX(Component.CENTER_ALIGNMENT);
     filterPane.add(brightnessSlider);
-    addToggle("preview mode", filterPane, actionEvent);
+    addOperation("preview mode", filterPane, actionEvent);
+    addOperation("apply-preview", filterPane, actionEvent);
     addOperation("blur", filterPane, actionEvent);
     addOperation("sharpen", filterPane, actionEvent);
     addOperation("horizontal-flip", filterPane, actionEvent);
@@ -150,16 +151,6 @@ public class ImageGraphicsView extends JFrame implements IView {
     button.setActionCommand(text);
     button.addActionListener(actionEvent);
   }
-
-  private static void addToggle(String text, Container container, ActionListener actionEvent) {
-    container.add(Box.createVerticalStrut(10));
-    JToggleButton button = new JToggleButton("toggle " + text);
-    button.setAlignmentX(Component.CENTER_ALIGNMENT);
-    container.add(button);
-    button.setActionCommand(text);
-    button.addActionListener(actionEvent);
-  }
-
 
   /**
    * Makes the GUI visible to the user.

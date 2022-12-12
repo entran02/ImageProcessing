@@ -198,9 +198,7 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         }
         break;
       case "preview mode":
-        AbstractButton abstractButton = (AbstractButton)e.getSource();
-        boolean selected = abstractButton.getModel().isSelected();
-        if (selected) {
+        if (!isPreview()) {
           try {
             this.model.getImage(file.toString());
           } catch (IllegalArgumentException ex) {
@@ -220,6 +218,16 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
         }
         break;
       default:
+      case "apply-preview":
+        descriptor = "preview-applied";
+        if (!isPreview() || this.lastCommand == null) {
+          break;
+        }
+        this.model.remove("@preview@");
+        this.view.displayPreview(null);
+        applyMacro(this.lastCommand, descriptor);
+        this.lastCommand = null;
+        break;
     }
   }
 
