@@ -1,0 +1,54 @@
+load res/state-house.jpg state-house
+
+horizontal-flip state-house modified-state-house
+save res/demo/horizontal-state-house.png modified-state-house
+
+vertical-flip state-house modified-state-house
+save res/demo/vertical-state-house.png modified-state-house
+
+brighten 50 state-house modified-state-house
+save res/demo/bright-state-house.png modified-state-house
+
+brighten -50 state-house modified-state-house
+save res/demo/dark-state-house.png modified-state-house
+
+greyscale state-house modified-state-house
+save res/demo/grey-state-house.png modified-state-house
+
+sharpen state-house modified-state-house
+save res/demo/sharp-state-house.png modified-state-house
+
+blur state-house modified-state-house
+save res/demo/blurry-state-house.png modified-state-house
+
+sepia state-house modified-state-house
+save res/demo/sepia-state-house.png modified-state-house
+
+load-mask res/mask-checkerboard-640x400.png
+
+
+horizontal-flip state-house modified-state-house
+save res/demo/mask-horizontal-state-house.png modified-state-house
+
+vertical-flip state-house modified-state-house
+save res/demo/mask-vertical-state-house.png modified-state-house
+
+brighten 50 state-house modified-state-house
+save res/demo/mask-bright-state-house.png modified-state-house
+
+brighten -50 state-house modified-state-house
+save res/demo/mask-dark-state-house.png modified-state-house
+
+greyscale state-house modified-state-house
+save res/demo/mask-grey-state-house.png modified-state-house
+
+sharpen state-house modified-state-house
+save res/demo/mask-sharp-state-house.png modified-state-house
+
+blur state-house modified-state-house
+save res/demo/mask-blurry-state-house.png modified-state-house
+
+sepia state-house modified-state-house
+save res/demo/mask-sepia-state-house.png modified-state-house
+
+q

@@ -7,7 +7,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.NoSuchElementException;
 
-import javax.swing.*;
+import javax.swing.BoundedRangeModel;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.JSlider;
+import javax.swing.JViewport;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;

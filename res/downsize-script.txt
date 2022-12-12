@@ -1,3 +1,9 @@
-load res/example/shanghai.png shanghai
-downscale 50 50 shanghai shanghai-half
-save res/shanghai-half.png shanghai-half
+load res/shanghai.png shanghai
+
+downscale 50 50 shanghai modified-shanghai
+save res/demo/shanghai-half.png modified-shanghai
+
+downscale 80 20 shanghai modified-shanghai
+save res/demo/shanghai-fat.png modified-shanghai
+
+q

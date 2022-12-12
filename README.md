@@ -34,6 +34,9 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
     - Sharpen
     - Greyscale
     - Sepia
+    - Mask
+    - Downscale
+    - Preview
 - ImageUtil.java: read and store PPM, png, bmp, jpg files
 - Image.java: represents an image. Stores its dimensions and pixel values.
 - Pixel.java: represents a single pixel. Has RGB values.
@@ -79,3 +82,5 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
 ### Image Credts:
 - `Kirby.ppm` created by Evan Tran manually with Intellij color-picker
 - `shanghai.jpg` from https://en.wikipedia.org/wiki/File:Pudong_Shanghai_November_2017_panorama.jpg under Creative Commons License 
+- `state-house.jpg` from https://commons.wikimedia.org/wiki/File:Boston_-Massachusetts_State_House_(48718911666).jpg under Creative Commons License
+
