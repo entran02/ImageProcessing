@@ -69,6 +69,9 @@ Example: ```java -jar ImageProgessingProgram.jar -file exampleScript.txt``` (Ima
       - this allows support for commands like flip even with irregular shaped masks
   - Preview mode
     - the desired command is only performed on a 200x200 chunk of the image, which is shown to the user.
+    - added new methods displayPreview() to GUI view and isPreview() to GUI controller.
+    - updated the makeFrame() method in GUI view to create new portion in the GUI for the preview
+      - added preview mode and apply-preview buttons
     
 
 ----------------------------

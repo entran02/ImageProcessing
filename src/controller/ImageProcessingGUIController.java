@@ -250,9 +250,13 @@ public class ImageProcessingGUIController implements ImageProcessingController, 
       }
     } else if (e.getSource() instanceof JViewport) {
       // preview pane scrolling
+      JScrollPane scrollPane = (JScrollPane) e.getSource();
       JViewport source = (JViewport) e.getSource();
-      this.previewLocation = source.getViewPosition();
-      this.applyMacro(this.lastCommand, "@preview@");
+      if (scrollPane.getHorizontalScrollBar().getValueIsAdjusting() ||
+              scrollPane.getVerticalScrollBar().getValueIsAdjusting()) {
+        this.previewLocation = source.getViewPosition();
+        this.applyMacro(this.lastCommand, "@preview@");
+      }
     }
   }
 
